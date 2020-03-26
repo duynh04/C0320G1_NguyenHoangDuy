@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài thực hành</title>
+</head>
+<body>
+<h2>Bài tập 1</h2>
+<script>
+    let i = 10;
+    let f = 20.5;
+    let b = true;
+    let s = "Hà Nội";
+    document.write('i = ' + i);
+    document.write('<br/>');
+    document.write('f = ' + f);
+    document.write('<br/>');
+    document.write('b = ' + b);
+    document.write('<br/>');
+    document.write('s = ' + s);
+</script>
+<h2>Bài tập 2</h2>
+<script>
+    let width = 20;
+    let height = 10;
+    let area = width * height;
+    document.write('Area = ' + area);
+</script>
+<h2>Bài tập 3</h2>
+<script>
+    let x,y;
+    let temp_x, temp_y;
+    let mod;
+    while (true)
+    {
+        x = prompt("Pick a number x");
+        temp_x = parseInt(x);
+        if (isNaN(temp_x))
+        {
+            alert(x + " is not a number, try again");
+        }
+        else
+        {
+            break;
+        }
+    }
+    while (true)
+    {
+        y = prompt("Pick a number y");
+        temp_y = parseInt(y);
+        if (isNaN(temp_y))
+        {
+            alert(temp_y + " is not a number, try again");
+        }
+        else
+        {
+            if (temp_y == 0)
+            {
+                alert("y must not be zero");
+            }
+            else
+            {
+                break;
+            }
+
+        }
+    }
+    mod = temp_x % temp_y;
+    if (mod == 0)
+    {
+        alert(temp_x + " là bội của " + temp_y);
+    }
+    else {
+        alert(temp_x + " không là bội của " + temp_y);
+    }
+</script>
+</body>
+</html>

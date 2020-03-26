@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate Area of Circle</title>
+</head>
+<body>
+<script>
+    let PI = 3.14;
+    let radius;
+    let area;
+    while(true)
+    {
+        radius = prompt("Input radius of circle");
+        if (radius < 0)
+        {
+            alert("radius must be positive.");
+        }
+        else
+        {
+            break;
+        }
+    }
+    area = PI * (radius ** 2);
+    document.write("Area of circle: " + area);
+</script>
+</body>
+</html>

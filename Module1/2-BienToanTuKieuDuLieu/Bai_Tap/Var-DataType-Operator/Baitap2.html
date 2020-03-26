@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Convert</title>
+</head>
+<body>
+<script>
+    let c_temper, f_temper;
+    while (true) {
+        c_temper = prompt("Input Celsius Temperature");
+        if (isNaN(c_temper)) {
+            alert("Temperature is a number, try again.");
+        } else
+            break;
+    }
+    f_temper = (9 * c_temper) / 5 + 32;
+    document.write("The temperature is " + f_temper + " degrees Fahrenheit")
+</script>
+</body>
+</html>

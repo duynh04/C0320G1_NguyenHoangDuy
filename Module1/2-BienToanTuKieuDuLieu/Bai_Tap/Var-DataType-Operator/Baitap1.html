@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate Sum and Average student score</title>
+</head>
+<body>
+<script>
+    let biologyScore, physicsScore, chemicalsScore;
+    let sum = 0;
+    let average = 0;
+    while(true)
+    {
+        biologyScore = prompt("Input biology score");
+        if (isNaN(biologyScore))
+        {
+            alert("The score is not a number, try again.");
+        }
+        else {
+            if (biologyScore < 0) {
+                alert("The score must be positive, try again.");
+            } else {
+                break;
+            }
+        }
+    }
+    while(true)
+    {
+        physicsScore = prompt("Input physicals score");
+        if (isNaN(physicsScore))
+        {
+            alert("The score is not a number, try again.");
+        }
+        else {
+            if (physicsScore < 0) {
+                alert("The score must be positive, try again");
+            } else {
+                break;
+            }
+        }
+    }
+    while(true)
+    {
+        chemicalsScore = prompt("Input chemicals score");
+        if (isNaN(chemicalsScore))
+        {
+            alert("The score is not a number, try again.");
+        }
+        else {
+            if (chemicalsScore < 0) {
+                alert("The score must be positive, try again");
+            } else {
+                break;
+            }
+        }
+    }
+    sum = biologyScore + physicsScore + chemicalsScore;
+    average = sum / 3;
+    document.write("Sum score: " + sum);
+    document.write('<br/>');
+    document.write("Average score: " + average);
+</script>
+</body>
+</html>

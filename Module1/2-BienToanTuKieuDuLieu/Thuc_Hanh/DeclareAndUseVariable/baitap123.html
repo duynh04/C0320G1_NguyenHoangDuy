@@ -34,8 +34,7 @@
     while (true)
     {
         x = prompt("Pick a number x");
-        temp_x = parseInt(x);
-        if (isNaN(temp_x))
+        if (isNaN(x))
         {
             alert(x + " is not a number, try again");
         }
@@ -47,14 +46,13 @@
     while (true)
     {
         y = prompt("Pick a number y");
-        temp_y = parseInt(y);
-        if (isNaN(temp_y))
+        if (isNaN(y))
         {
-            alert(temp_y + " is not a number, try again");
+            alert(y + " is not a number, try again");
         }
         else
         {
-            if (temp_y == 0)
+            if (y == 0)
             {
                 alert("y must not be zero");
             }
@@ -65,13 +63,13 @@
 
         }
     }
-    mod = temp_x % temp_y;
+    mod = x % y;
     if (mod == 0)
     {
-        alert(temp_x + " là bội của " + temp_y);
+        alert(x + " là bội của " + y);
     }
     else {
-        alert(temp_x + " không là bội của " + temp_y);
+        alert(x + " không là bội của " + y);
     }
 </script>
 </body>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Currency Exchange</title>
+</head>
+<body>
+    <label for="fromCurrency">From Currency</label>
+    <select form="myForm" id="fromCurrency">
+        <option value="USD">USD</option>
+        <option value="VND">VND</option>
+    </select><br>
+    <label for="toCurrency">To Currency</label>
+    <select form="myForm" id="toCurrency">
+        <option value="VND">VND</option>
+        <option value="USD">USD</option>
+    </select><br>
+    <form id="myForm">
+        <label for="amount">Amount</label>
+        <input id="amount" type="number"><br>
+        <input type="button" value="Convert" onclick="Exchange()" style="background-color:SlateBlue;color:white">
+    </form><br>
+    <p id="result" style="color:green"></p>
+<script>
+    function Exchange()
+    {
+        let amount = document.forms["myForm"]["amount"].value;
+        let sel1 = document.getElementById("fromCurrency");
+        let fromCurrency = sel1.options[sel1.selectedIndex].value;
+        let sel2 = document.getElementById("toCurrency");
+        let toCurrency = sel2.options[sel2.selectedIndex].value;
+        if (fromCurrency === "VND") {
+            if (toCurrency ==="VND"){
+                return Print(amount, toCurrency);
+            }
+            else {
+                return Print(amount / 23000, toCurrency);
+            }
+        }
+        else {
+            if (toCurrency ==="USD"){
+                return Print(amount, toCurrency);
+            }
+            else {
+                return Print(amount * 23000, toCurrency);
+            }
+        }
+
+    }
+    function Print(amount, unit) {
+        document.getElementById("result").innerHTML = "Result: " + amount + " " + unit
+    }
+
+</script>
+</body>
+</html>

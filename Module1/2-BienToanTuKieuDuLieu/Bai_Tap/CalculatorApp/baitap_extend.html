@@ -97,23 +97,24 @@
                 clearScreen = true;
                 break;
             default:
-                if (lastOperator === '=')
-                {
-                    lastOperator = '';
-                    document.getElementById("history").innerHTML = '';
-                    lastResult = 0;
-                    document.getElementById("display").value = id;
-                    break;
-                }
+
                 if (lastOperator !== '') // +-*/=
                 {
-                    if (clearScreen)
+                    if (lastOperator === '=')
                     {
+                        lastOperator = '';
+                        document.getElementById("history").innerHTML = '';
+                        lastResult = 0;
                         document.getElementById("display").value = id;
-                        clearScreen = false;
+                        break;
                     }
-                    else
-                        document.getElementById("display").value += id;
+                    else {
+                        if (clearScreen) {
+                            document.getElementById("display").value = id;
+                            clearScreen = false;
+                        } else
+                            document.getElementById("display").value += id;
+                    }
                 }
                 else
                 {

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid blue;
+            border-collapse: collapse;
+            padding: 3px;
+            border-radius: 4px;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 20px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            text-align: right;
+        }
+        input[type=button] {
+            width: 80px;
+            border-radius: 4px;
+            text-align: center;
+            color: blue;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Calculator Extend</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td colspan="4">
+            <input type="text" id="display" readonly value="0">
+        </td>
+    </tr>
+    <tr>
+        <td><input type="button" onclick="BtnClick('7')" value="7"></td>
+        <td><input type="button" onclick="BtnClick('8')" value="8"></td>
+        <td><input type="button" onclick="BtnClick('9')" value="9"></td>
+        <td><input type="button" onclick="BtnClick('x')" value="x"></td>
+    </tr>
+    <tr>
+        <td><input type="button" onclick="BtnClick('4')" value="4"></td>
+        <td><input type="button" onclick="BtnClick('5')" value="5"></td>
+        <td><input type="button" onclick="BtnClick('6')" value="6"></td>
+        <td><input type="button" onclick="BtnClick('-')" value="-"></td>
+    </tr>
+    <tr>
+        <td><input type="button" onclick="BtnClick('1')" value="1"></td>
+        <td><input type="button" onclick="BtnClick('2')" value="2" ></td>
+        <td><input type="button" onclick="BtnClick('3')" value="3"></td>
+        <td><input type="button" onclick="BtnClick('+')" value="+"></td>
+    </tr>
+    <tr>
+        <td><input type="button" onclick="BtnClick('C')" value="C"></td>
+        <td><input type="button" onclick="BtnClick('0')" value="0"></td>
+        <td><input type="button" onclick="BtnClick('=')" value="="></td>
+        <td><input type="button" onclick="BtnClick('/')" value="/"></td>
+    </tr>
+</table>
+<p>Log: </p>
+<p id="history"></p>
+<script>
+    let lastResult = 0;
+    let lastOperator = '';
+    let clearScreen = false;
+    function BtnClick(id) {
+        const currentScreen = document.getElementById("display").value;
+        switch (id) {
+            case 'C':
+                lastResult = 0;
+                document.getElementById("display").value = '0';
+                document.getElementById("history").innerHTML = '';
+                lastOperator = '';
+                break;
+            case '=1':
+                document.getElementById("history").innerHTML +=currentScreen + id;
+                if (lastOperator !== '')
+                {
+                    Calc(lastOperator, id);
+                    lastOperator = id;
+                }
+                break;
+            case '+': case '-': case 'x': case '/': case '=':
+                document.getElementById("history").innerHTML += currentScreen + id;
+                if (lastOperator !== '')
+                {
+                    Calc(lastOperator, id);
+                }
+                else
+                {
+                    lastResult = document.getElementById("display").value;
+                }
+                lastOperator = id;
+                clearScreen = true;
+                break;
+            default:
+
+                if (lastOperator !== '') // +-*/=
+                {
+                    if (lastOperator === '=')
+                    {
+                        lastOperator = '';
+                        document.getElementById("history").innerHTML = '';
+                        lastResult = 0;
+                        document.getElementById("display").value = id;
+                        break;
+                    }
+                    else {
+                        if (clearScreen) {
+                            document.getElementById("display").value = id;
+                            clearScreen = false;
+                        } else
+                            document.getElementById("display").value += id;
+                    }
+                }
+                else
+                {
+                    document.getElementById("history").innerHTML = "";
+                    document.getElementById("display").value += id;
+                }
+        }
+    }
+    function Calc(type, nextOperator) {
+        let secondNum = document.getElementById("display").value;
+        secondNum = parseInt(secondNum);
+        lastResult = parseInt(lastResult);
+        switch (type) {
+            case '+': lastResult += secondNum; break;
+            case '-': lastResult -= secondNum; break;
+            case 'x': lastResult *= secondNum; break;
+            case '/': lastResult /= secondNum; break;
+            case '=':
+                document.getElementById("history").innerHTML = '';
+                document.getElementById("history").innerHTML = secondNum + nextOperator;
+                break;
+        }
+        document.getElementById("display").value = lastResult;
+    }
+
+</script>
+</body>
+</html>

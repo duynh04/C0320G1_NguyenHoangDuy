@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a,b;
+    let mod;
+    while (true) {
+        a = prompt("Input number a");
+        a = parseFloat(a);
+        if (isNaN(a))
+            alert('a is not a number, try again.');
+        else
+            break;
+    }
+    while(true) {
+        b = prompt("Input number b");
+        b = parseFloat(b);
+        if (isNaN(b))
+            alert('a is not b number, try again.');
+        else
+        {
+            if (b == 0)
+                alert('b mus be not zero');
+            else
+                break;
+        }
+    }
+    mod = a % b;
+    if (mod == 0)
+        alert("a chia het cho b");
+    else
+        alert("a khong chia het cho b");
+
+</script>
+</body>
+</html>

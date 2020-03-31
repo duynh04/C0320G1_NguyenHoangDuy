@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label for="num">Your number</label>
+<input id="num" type="number">
+<button onclick="CheckValid()">Check</button>
+<p id="result"></p>
+<script>
+    function CheckValid() {
+        let num = document.getElementById("num");
+        let temp_num = parseInt(num.value);
+        if (temp_num > 0)
+            document.getElementById("result").innerHTML = num.value + " greater than zero";
+        else if (temp_num < 0)
+            document.getElementById("result").innerHTML = num.value + " less than zero";
+        else
+            document.getElementById("result").innerHTML = num.value + " equal to zero";
+    }
+</script>
+</body>
+</html>

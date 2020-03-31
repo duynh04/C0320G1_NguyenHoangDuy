@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate personal income tax</title>
+</head>
+<body>
+<label for="amount">Your salary in a year (in mil) VND</label>
+<input type="number" id="amount" min="0">
+<input type="button" onclick="CalcPerTax()" value="Your Payment">
+<p id="result">
+</p>
+<script>
+    let salary = document.getElementById("amount");
+    function CalcPerTax() {
+        let temp_salary = parseInt(salary.value);
+        let tax;
+        if (temp_salary <= 5)
+            tax = temp_salary * 5 / 100;
+        else if (temp_salary <= 10)
+            tax = (temp_salary * 10 / 100) - 0.25;
+        else if (temp_salary <= 18)
+            tax = (temp_salary * 15 / 100) - 0.75;
+        else if (temp_salary <= 32)
+            tax = (temp_salary * 20 / 100) - 1.65;
+        else if (temp_salary <= 52)
+            tax = (temp_salary * 25 / 100) - 3.25;
+        else if (temp_salary <= 80)
+            tax = (temp_salary * 30 / 100) - 5.85;
+        else
+            tax = (temp_salary * 35 / 100) - 9.85;
+        document.getElementById("result").innerHTML = "You have to pay " + tax + " mil VND.";
+    }
+</script>
+</body>
+</html>

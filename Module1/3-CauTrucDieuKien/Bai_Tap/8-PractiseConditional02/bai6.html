@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ax + B = 0</title>
+</head>
+<body>
+<div style="margin: 50px 1px 1px 20px">
+    <input type="number" id="a">
+    <label>x + </label>
+    <input type="number" id="b">
+    <label>= 0 </label><br>
+    <input type="button" onclick="SolveMath()" value="Solve">
+</div>
+<p id="result"></p>
+<script>
+    let a = document.getElementById('a');
+    let b = document.getElementById('b');
+    function SolveMath() {
+        let result;
+        let temp_a = parseInt(a.value);
+        let temp_b = parseInt(b.value);
+        if (temp_a === 0) {
+            if (temp_b === 0)
+                document.getElementById("result").innerHTML = "Phuonng trinh co vo so nghiem.";
+            else
+                document.getElementById("result").innerHTML = "Phuonng trinh vo nghiem.";
+        }
+        else
+        {
+            result = - temp_b / temp_a;
+            document.getElementById("result").innerHTML = "Phuonng trinh co nghiem x = " + result;
+        }
+
+    }
+</script>
+</body>
+</html>

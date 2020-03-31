@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> C - F degree conversion</title>
+</head>
+<body>
+<script>
+    let cDegree;
+    let fDegree;
+    while(true)
+    {
+        cDegree = parseFloat(prompt('Input C degree'));
+        if (isNaN(cDegree))
+            alert('This is not a number');
+        else
+            break;
+    }
+    fDegree = 32 + (9 / 5) * cDegree;
+    alert("F degree is: " + fDegree);
+</script>
+</body>
+</html>

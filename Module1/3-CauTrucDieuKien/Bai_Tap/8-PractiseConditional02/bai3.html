@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate Area of Square</title>
+</head>
+<body>
+<script>
+    let a;
+    let area;
+    while(true)
+    {
+        a = parseFloat(prompt("Input square edge"));
+        if (isNaN(a))
+            alert('This is not a number');
+        else
+        if (a < 0)
+            alert('the number must be greater than 0');
+        else
+            break;
+    }
+    area = a**2;
+    alert("Area: " + area + " m2");
+</script>
+</body>
+</html>

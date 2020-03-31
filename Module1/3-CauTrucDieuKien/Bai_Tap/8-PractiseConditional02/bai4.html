@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate Area of Rectangle</title>
+</head>
+<body>
+<script>
+    let width, height;
+    let area;
+    while(true)
+    {
+        width = parseFloat(prompt("Input width"));
+        if (isNaN(width))
+            alert('This is not a number');
+        else
+        if (width < 0)
+            alert('the number must be greater than 0');
+        else
+            break;
+    }
+    while(true)
+    {
+        height = parseFloat(prompt("Input height"));
+        if (isNaN(height))
+            alert('This is not a number');
+        else
+        if (height < 0)
+            alert('the number must be greater than 0');
+        else
+            break;
+    }
+    area = width * height;
+    alert("Area: " + area + " m2");
+</script>
+</body>
+</html>

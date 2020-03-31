@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate Area of Right Triangle</title>
+</head>
+<body>
+<script>
+    let edgeA, edgeB;
+    let area;
+    while(true)
+    {
+        edgeA = parseFloat(prompt("Input edge A"));
+        if (isNaN(edgeA))
+            alert('This is not a number');
+        else
+        if (edgeA < 0)
+            alert('the number must be greater than 0');
+        else
+            break;
+    }
+    while(true)
+    {
+        edgeB = parseFloat(prompt("Input edge B"));
+        if (isNaN(edgeB))
+            alert('This is not a number');
+        else
+        if (edgeB < 0)
+            alert('the number must be greater than 0');
+        else
+            break;
+    }
+    area = (edgeA * edgeB) / 2;
+    alert("Area: " + area + " m2");
+    </script>
+</body>
+</html>

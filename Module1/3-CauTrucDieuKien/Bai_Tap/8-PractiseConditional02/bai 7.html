@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ax2 + Bx + C = 0</title>
+</head>
+<body>
+<div style="margin: 50px 10px 10px 20px">
+    <input type="number" id="a">
+    <label>X<sup>2</sup> + </label>
+    <input type="number" id="b">
+    <label>X + </label>
+    <input type="number" id="c">
+    <label>= 0 </label><br><br>
+    <input type="button" onclick="SolveMath()" value="Solve">
+</div>
+<p id="result"></p>
+<script>
+    let a = document.getElementById('a');
+    let b = document.getElementById('b');
+    let c = document.getElementById('c');
+    function SolveMath() {
+        let x1, x2;
+        let temp_a = parseFloat(a.value);
+        let temp_b = parseFloat(b.value);
+        let temp_c = parseFloat(c.value);
+        let delta = (temp_b * temp_b) - (4 * temp_a * temp_c);
+        if (delta < 0)
+            document.getElementById("result").innerHTML = "Phuonng trinh vo nghiem.";
+        else if (delta === 0)
+        {
+            x1 = -temp_b / (2 * temp_a);
+            document.getElementById("result").innerHTML = "Phuonng trinh co nghiem kep x1 = x2 = " + x1;
+        }
+        else
+        {
+            x1 = (-temp_b + Math.sqrt(delta)) / (2 * temp_a);
+            x2 = (-temp_b - Math.sqrt(delta)) / (2 * temp_a);
+            document.getElementById("result").innerHTML = "Phuonng trinh co nghiem x1 = " + x1 + ", x2 = " + x2;
+        }
+    }
+</script>
+</body>
+</html>

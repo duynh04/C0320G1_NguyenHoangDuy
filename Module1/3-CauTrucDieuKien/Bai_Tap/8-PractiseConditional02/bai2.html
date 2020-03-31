@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>met - feet conversion</title>
+</head>
+<body>
+<script>
+    let m;
+    let ft;
+    while(true)
+    {
+        m = parseFloat(prompt("Input a number in m"));
+        if (isNaN(m))
+            alert('This is not a number');
+        else
+            if (m < 0)
+                alert('The number must be greater than 0');
+            else
+                break;
+    }
+    ft = m * 3.2808;
+    alert(m + " m = " + ft + " ft");
+</script>
+</body>
+</html>

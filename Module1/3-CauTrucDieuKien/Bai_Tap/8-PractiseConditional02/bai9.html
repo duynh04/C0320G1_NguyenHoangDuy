@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        input {
+            border-radius: 4px;
+            margin: 10px 10px 10px 10px;
+            background-color: white;
+            font-size: 15px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Check If it is a triangle</title>
+</head>
+<body>
+<div style="margin: 50px 10px 10px 20px">
+    <label>Number a</label>
+    <input type="number" id="a"><br>
+    <label>Number b</label>
+    <input type="number" id="b"><br>
+    <label>Number c</label>
+    <input type="number" id="c"><br>
+    <input type="button" onclick="CheckTriangle()" value="Check">
+    <p id="result"></p>
+</div>
+<script>
+    let a = document.getElementById('a');
+    let b = document.getElementById('b');
+    let c = document.getElementById('c');
+    function CheckTriangle() {
+        let temp_a = parseInt(a.value);
+        let temp_b = parseInt(b.value);
+        let temp_c = parseInt(c.value);
+        let check = (temp_a > 0) && (temp_b > 0) && (temp_c > 0);
+        if (check) {
+            check = temp_a + temp_b > temp_c;
+            if (check) {
+                check = temp_a + temp_c > temp_b;
+                if (check)
+                    check = temp_b + temp_c > temp_a;
+            }
+        }
+        if (check)
+            document.getElementById("result").innerHTML = "a, b and c are edges of a triangle.";
+        else
+            document.getElementById("result").innerHTML = "a, b and c are not edges of a triangle.";
+    }
+</script>
+</body>
+</html>

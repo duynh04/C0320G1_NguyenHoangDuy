@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate Electric bill</title>
+</head>
+<body>
+<label for="amount">Input your power consumption (kWh)</label>
+<input type="number" id="amount" min="0">
+<input type="button" onclick="CheckCallPayment()" value="Your Payment">
+<p id="result">
+</p>
+<script>
+    let powerAmount = document.getElementById("amount");
+    function CheckCallPayment() {
+        let temp_powerAmount = parseInt(powerAmount.value);
+        let fee;
+        if (temp_powerAmount <= 50)
+            fee = temp_powerAmount * 1678;
+        else if (temp_powerAmount <= 100)
+            fee = (50 * 1678) + (temp_powerAmount - 50) * 1734;
+        else if (temp_powerAmount <= 200)
+            fee = (50 * 1678) + (50 * 1734) + (temp_powerAmount - 100) * 2014;
+        else if (temp_powerAmount <= 300)
+            fee = (50 * 1678) + (50 * 1734) + (100 * 2014) +  (temp_powerAmount - 200) * 2536;
+        else if (temp_powerAmount <= 400)
+            fee = (50 * 1678) + (50 * 1734) + (100 * 2014) + (100 * 2536) +  (temp_powerAmount - 300) * 2834;
+        else
+            fee = (50 * 1678) + (50 * 1734) + (100 * 2014) + (100 * 2536) + (100 * 2834) +  (temp_powerAmount - 400) * 2927;
+        document.getElementById("result").innerHTML = "You have to pay " + fee;
+    }
+</script>
+</body>
+</html>

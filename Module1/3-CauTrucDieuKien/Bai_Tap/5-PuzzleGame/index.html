@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            height: 120px;
+            width: 640px;
+            margin: 1px 50px 1px 100px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Puzzle Game</title>
+</head>
+<body onload="Init()">
+<div>
+<img id="img0" src="images/cat0.jpg" onclick="Click(0)" alt="">
+<img id="img1" src="images/monkey1.jpg" onclick="Click(1)" alt="">
+<img id="img2" src="images/panda2.jpg" onclick="Click(2)" alt="">
+<img id="img3" src="images/cat3.jpg" onclick="Click(3)" alt="">
+<img id="img4" src="images/monkey4.jpg" onclick="Click(4)" alt="">
+</div>
+<script>
+    let imgNames = ["cat", "monkey", "panda"];
+    let lastIndex = [0, 1, 2, 0, 2];
+    let lastImages = [];
+    let img0, img1, img2, img3, img4;
+    function Init(){
+        img0 = document.getElementById("img0");
+        img1 = document.getElementById("img1");
+        img2 = document.getElementById("img2");
+        img3 = document.getElementById("img3");
+        img4 = document.getElementById("img4");
+        lastImages[0] = GetImageName(img0);
+        lastImages[1] = GetImageName(img1);
+        lastImages[2] = GetImageName(img2);
+        lastImages[3] = GetImageName(img3);
+        lastImages[4] = GetImageName(img4);
+    }
+    function GetImageName(img) {
+        let temp_arr = img.src.split("/");
+        return temp_arr[temp_arr.length - 1];
+    }
+
+    function Click(num) {
+        ChangeImage(num);
+        CheckCorrect(num);
+    }
+    function ChangeImage(num) {
+        let id = "img" + num;
+        let randomImage, imageName;
+        lastIndex[num]++;
+        if (lastIndex[num] >= imgNames.length)
+        {
+            lastIndex[num] = 0;
+        }
+        imageName = imgNames[lastIndex[num]] + num + ".jpg";
+        document.getElementById(id).src = "images/" + imageName;
+        lastImages[num] = imageName;
+    }
+    function CheckCorrect(num) {
+        let isSimilar;
+        let length = lastImages.length;
+        let imgName = imgNames[lastIndex[num]];
+        for (let i = 0; i < length; i++) {
+            isSimilar = (lastImages[i].indexOf(imgName) !== -1) ? true : false;
+            if (!isSimilar) {
+                break;
+            }
+        }
+        if (isSimilar)
+        {
+            alert("You win");
+        }
+    }
+</script>
+</body>
+</html>

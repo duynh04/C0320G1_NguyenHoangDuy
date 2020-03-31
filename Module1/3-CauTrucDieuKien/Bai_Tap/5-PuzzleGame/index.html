@@ -47,11 +47,21 @@
     }
     function ChangeImage(num) {
         let id = "img" + num;
-        let randomImage, imageName;
-        lastIndex[num]++;
-        if (lastIndex[num] >= imgNames.length)
+        let imageName;
+        let mod = num % 2;
+        if (mod == 0 )
         {
-            lastIndex[num] = 0;
+            lastIndex[num]++;
+            if (lastIndex[num] >= imgNames.length)
+            {
+                lastIndex[num] = 0;
+            }
+        } else{
+            lastIndex[num]--;
+            if (lastIndex[num] < 0)
+            {
+                lastIndex[num] = imgNames.length - 1;
+            }
         }
         imageName = imgNames[lastIndex[num]] + num + ".jpg";
         document.getElementById(id).src = "images/" + imageName;

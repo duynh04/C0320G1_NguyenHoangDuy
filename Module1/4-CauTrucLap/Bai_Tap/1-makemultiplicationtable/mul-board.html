@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiplication board</title>
+</head>
+<body>
+<script>
+    const ROW = 9;
+    const COL = 9;
+    let mulTable = "<table width='100%' border='2px' >";
+    let i,j;
+    let cellValue;
+    for (i = 1; i <= ROW; i++) {
+        mulTable += "<tr>";
+        for (j = 2; j <= COL; j++) {
+            cellValue = i * j;
+            mulTable += "<td>" + j + " x " + i + " = " + cellValue + "</td>";
+        }
+        mulTable += "</tr>";
+    }
+    mulTable += "</table>";
+    document.write(mulTable);
+</script>
+</body>
+</html>

@@ -36,6 +36,9 @@
         lastImages[3] = GetImageName(img3);
         lastImages[4] = GetImageName(img4);
     }
+    /**
+     * @return {string}
+     */
     function GetImageName(img) {
         let temp_arr = img.src.split("/");
         return temp_arr[temp_arr.length - 1];
@@ -68,7 +71,7 @@
         let length = lastImages.length;
         let imgName = imgNames[lastIndex[num]];
         for (let i = 0; i < length; i++) {
-            isSimilar = (lastImages[i].indexOf(imgName) !== -1) ? true : false;
+            isSimilar = (lastImages[i].indexOf(imgName) !== -1);
             if (!isSimilar) {
                 break;
             }

@@ -61,7 +61,7 @@
         let length = lastImages.length;
         let imgName = imageNames[lastIndex[num]];
         for (let i = 0; i < length; i++) {
-            isSimilar = (lastImages[i].indexOf(imgName) !== -1);
+            isSimilar = lastImages[i].indexOf(imgName) !== -1;
             if (!isSimilar) {
                 return;
             }

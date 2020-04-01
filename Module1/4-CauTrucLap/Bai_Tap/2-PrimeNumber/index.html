@@ -2,18 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Prime Number using Sieve of Eratosthenes</title>
+    <title>Prime Number</title>
 </head>
 <body>
+<label>Input number of prime</label>
+<input type="number" id="num1" min="1">
+<button onclick="FindPrimeNumber()">Check</button><br>
+<p id="result"></p>
 <script>
-    let num = 20;
-    let prime = 2;
-    let listPrime = [];
-    listPrime[0] = prime; // first prime number
-    let listNum = []; // num phần tử. mark with true false.
-    for (let i = 2; i < num; i++)
-    {
+    function FindPrimeNumber() {
+        let numberOfPrime = parseInt(document.getElementById('num1').value);
+        let count = 3;
+        let num = 1;
+        let i;
+        let isPrime = true;
+        let result = "2"; // base case
+        while (num < numberOfPrime) {
+            for (i = 2; i <= count / 2; i++) {
+                if ((count % i) === 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                result += ", " + count;
 
+                num++;
+            } else {
+                isPrime = true;
+            }
+            if (++count % 2 === 0) {
+                count++;
+            }
+            // console.log("result: " + result);
+            // console.log("num: " + num);
+            // console.log("count: " + count);
+        }
+        document.getElementById('result').innerHTML = result;
     }
 </script>
 </body>

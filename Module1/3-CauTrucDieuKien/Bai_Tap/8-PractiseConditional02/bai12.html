@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<p id="result"></p>
 <body>
-
+<script>
+    let NoGoc = parseInt(prompt(' nhap so tien vay ban dau'));
+    let ThangVay = parseInt(prompt('nhap so thang vay'));
+    let Lai = parseInt(prompt('nhap so lai vay hang thang'));
+    let Macdinh = 1 + (Lai / 100);
+    let TienCacThangSau = NoGoc * Macdinh ** ThangVay;
+    document.getElementById('result').innerHTML = TienCacThangSau; 
+</script>
 </body>
 </html>

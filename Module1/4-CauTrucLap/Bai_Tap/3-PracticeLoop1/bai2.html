@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let temper;
+        while(true) {
+            temper = parseFloat(prompt('Input temperature'));
+            if (temper < 20) {
+                alert('temperture is too low, input again');
+            }
+            else if (temper > 100) {
+                alert('temperture is too high, innput again')
+            }
+            else {
+                alert('OK');
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

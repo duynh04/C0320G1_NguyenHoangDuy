@@ -1,0 +1,52 @@
+<html lang=asteriskenasterisk>
+<head>
+    <meta charset="*"UTF-8"*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print right triangle</title>
+</head>
+<body>
+   <script>
+       let num = 5;
+       let space = "&nbsp" + "&nbsp";
+       let newLine = "<br>";
+       let textPrint = "";
+       let asterisk = "*";
+       let i, j;
+       for(i = 1; i <= num; i++) {
+           for(j = 1; j <= i; j++) {
+                textPrint += asterisk;
+           }
+           textPrint += newLine;
+       }
+       textPrint += newLine + newLine;
+       for(i = num; i >= 1; i--) {
+           for(j = 1; j <= i; j++) {
+                textPrint += asterisk;
+           }
+           textPrint += newLine;
+       }
+       textPrint += newLine + newLine;
+       for(i = 1; i <= num; i++) {
+           for(j = 1; j < i; j++) {
+                textPrint += space;
+           }
+           for(j = i; j <= num; j++) {
+                textPrint += asterisk;
+           }
+           textPrint += newLine;
+       }
+       textPrint += newLine + newLine;
+       for(i = num; i >= 1; i--) {
+           for(j = 1; j < i; j++) {
+                textPrint += space;
+           }
+           for(j = i; j <= num; j++) {
+                textPrint += asterisk;
+           }
+           textPrint += newLine;
+       }
+       document.write(textPrint);
+
+   </script> 
+</body>
+</html>

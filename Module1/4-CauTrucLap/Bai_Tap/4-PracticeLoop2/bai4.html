@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Rectangle</title>
+</head>
+<body>
+   <script>
+       const H = 21;
+       const W = 7;
+       const SPACE = "&nbsp" + "&nbsp";
+       const NEW_LINE = "<br>";
+       const ASTERISK = "*";
+       let i,j;
+       let recPrint = "";
+       for(i = 1; i <= W ; i++) {
+        for(j = 1; j <= H ; j++) {
+            if (i === 1 || i === W) {
+                recPrint += ASTERISK;
+                continue;
+            }
+            if (j === 1 || j === H) {
+                recPrint += ASTERISK;
+            } else {
+                recPrint += SPACE;
+            } 
+        }
+            recPrint += NEW_LINE;
+       }
+       document.write(recPrint);
+   </script> 
+</body>
+</html>

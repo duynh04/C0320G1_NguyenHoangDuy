@@ -2,11 +2,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabonacci</title>
+    <title>fabonacci-2</title>
 </head>
 <body>
     <script>
-        const NUM_OF_FABO = 20;
         let count = 0;
         let prevNum1 = 0;
         let prevNum2 = 1;
@@ -16,16 +15,16 @@
         function findFabonacci()  {
             while(true) {
                 count ++
-                if (count > NUM_OF_FABO) {
+                curNum = prevNum1 + prevNum2;
+                if (curNum % 5 === 0) {
+                    document.write("the first number is " + curNum);
                     break;
                 }
-                curNum = prevNum1 + prevNum2;
-                txtPr += curNum + "-";
                 prevNum2 = prevNum1;
                 prevNum1 = curNum;
             }
-            document.write(txtPr);
         }
     </script>
+
 </body>
 </html>

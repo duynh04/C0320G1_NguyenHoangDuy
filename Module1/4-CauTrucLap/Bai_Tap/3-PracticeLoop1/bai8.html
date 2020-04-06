@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Game</title>
+</head>
+<body>
+    <button onclick="play()">Play</button>
+    <script>
+        const MAX = 3;
+        let minRange = parseInt(prompt('Min value'));
+        let maxRange = parseInt(prompt('Max value'));
+        let randomNumber = Math.floor(Math.random() * maxRange) + minRange;
+        console.log(randomNumber);
+        function play() {
+            let guessNumber;
+            var i;
+            for(i = 0; i < MAX; i++) {
+               guessNumber = parseInt(prompt('Guess number'));
+               if (guessNumber === randomNumber) {
+                    alert('You win');
+                    break;
+               }
+               else if (guessNumber > randomNumber){
+                   alert('Your number is greater than our number.');
+               }else {
+                   alert('Your number is less than our number.');
+               }
+            } 
+            if (i === 3) {
+                alert('You lose');
+            }
+        }
+    </script>
+</body>
+</html>

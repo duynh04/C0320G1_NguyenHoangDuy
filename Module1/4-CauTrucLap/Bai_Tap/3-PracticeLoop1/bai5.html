@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabonacci</title>
+    <title>Document</title>
 </head>
 <body>
     <script>
@@ -11,7 +11,7 @@
         let prevNum1 = 0;
         let prevNum2 = 1;
         let curNum; // first case
-        let txtPr = "";
+        let total = 0;  
         findFabonacci();
         function findFabonacci()  {
             while(true) {
@@ -20,12 +20,13 @@
                     break;
                 }
                 curNum = prevNum1 + prevNum2;
-                txtPr += curNum + "-";
+                total += curNum;
                 prevNum2 = prevNum1;
                 prevNum1 = curNum;
             }
-            document.write(txtPr);
+            document.write(total);
         }
     </script>
+
 </body>
 </html>

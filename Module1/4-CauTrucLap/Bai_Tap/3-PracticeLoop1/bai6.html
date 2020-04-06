@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       const SEVEN = 7;
+       const NUM = 30;
+       let sum = calcSum();
+       document.write("Tong 30 so dau tien chia het cho 7 la: " + sum);
+       function calcSum() {
+           let i;
+           let sum = 0;
+            for(let i = 1; i <= NUM ; i++) {
+                sum += SEVEN * i;
+            }
+            return sum;
+       }
+   </script> 
+</body>
+</html>

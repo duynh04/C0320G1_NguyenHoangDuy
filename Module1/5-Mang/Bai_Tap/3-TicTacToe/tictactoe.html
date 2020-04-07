@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+    <style>
+        p {
+            padding: 10px 10px 10px 15px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <table style="border-style: solid;">
+        <tr>
+            <td>
+                <p id="board"></p>
+            </td>
+        </tr>
+    </table>
+    
+    <div>
+        <label for="p1x">X</label>
+        <input type="number" min="0" max="2" id="p1x">&nbsp;
+        <button onclick="play(true)">Player 1</button><br>
+        <label for="p1y">Y</label>
+        <input type="number" min="0" max="2" id="p1y"><br><br>
+    </div>
+    <div>
+        <label for="p2x">X</label>
+        <input type="number" min="0" max="2" id="p2x">&nbsp;
+        <button onclick="play(false)">Player 2</button><br>
+        <label for="p2y">Y</label>
+        <input type="number" min="0" max="2" id="p2y"><br>
+    </div>
+   <script>
+        const SPACE = "&nbsp;&nbsp;&nbsp;&nbsp";
+        const COL = 3;
+        const ROW = 3; 
+        let p1x = document.getElementById('p1x');
+        let p1y = document.getElementById('p1y');
+        let p2x = document.getElementById('p2x');
+        let p2y = document.getElementById('p2y');
+        let dispBoard = document.getElementById('board');
+        let boardGame = [];
+        let currTurn = true;
+        let posY;
+        let posX;
+        let marker;
+        let name;
+        for(let i = 0; i < ROW; i++) { 
+            boardGame[i] = new Array('-', '-', '-');
+            // tempBoard1[i] = new Array('-', ',', ',');
+            // tempBoard2[i] = new Array('-', ',', ',');
+        }
+        displayBoard();
+        function checkTurn(playerTurn) {
+            return playerTurn == currTurn;
+        }
+        function checkCellValue() {
+            return boardGame[posY][posX] != '-';
+        }
+        function getPosition(playerTurn) {
+            if (playerTurn) {
+               posX = p1x.value;
+               posY = p1y.value; 
+               marker = 'x';
+               name = "player1";
+            } else {
+               posX = p2x.value;
+               posY = p2y.value;
+               marker = 'o';
+               name = "player2";
+            }
+            console.log("x: " + posX);
+            console.log("y: " + posY);
+            console.log("marker: " + marker);
+        }
+        function markCellValue() {
+            boardGame[posY][posX] = marker;
+        }
+        function checkAllValue() {
+            let i;
+            let countX = 0;
+            let countY = 0;
+            let tempX, tempY;
+            // scan column
+            for(i = 0; i < COL; i++) {
+                tempX = boardGame[posY][i] == marker ? 1 : 0;
+                countX += tempX; 
+            }
+            if(countX == 3) {
+                alert(name + " win");
+                return;
+            }
+            // scan row
+            for(i = 0; i < ROW; i++) {
+                tempY = boardGame[i][posX] == marker ? 1 : 0;
+                countY += tempY;
+            }
+            if(countY == 3) {
+                alert(name + " win");
+                return; 
+            }
+
+        }
+        function play(playerTurn) {
+           let isMarked;
+           let isYourTurn = checkTurn(playerTurn);
+           if (isYourTurn) {
+                getPosition(playerTurn);
+                isMarked = checkCellValue(); 
+                console.log("Is marked: " + isMarked);
+                if(!isMarked) {
+                    markCellValue();
+                    displayBoard();
+                    checkAllValue();
+                    currTurn = currTurn ^ true; 
+                }
+           }
+
+        }
+        function displayBoard() {
+            dispBoard.innerHTML = "";
+            for(let i = 0; i < ROW ; i++) {
+                for(let j = 0; j < COL ; j++) {
+                    dispBoard.innerHTML += boardGame[i][j] + SPACE;
+                }
+                dispBoard.innerHTML += "<br><br>";
+            }
+        }
+   </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let numString = prompt("input number series");
+        let strLength = numString.length;
+        let currValue;
+        let lastValue = parseInt(numString[0]) % 2 == 0;
+        let newArr = [numString[0]];
+        for(let i = 1; i < strLength; i++) {
+            currValue = parseInt(numString[i]) % 2 == 0;
+            if (currValue && lastValue) {
+                newArr.push("-", numString[i]);        
+            } else {
+                newArr.push(numString[i]);
+            }
+            lastValue = currValue;
+        }
+        alert(newArr);
+    </script>
+</body>
+</html>

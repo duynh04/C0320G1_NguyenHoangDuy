@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+</head>
+<body>
+    <input type="text" id="word">
+    <button onclick="translate()">Translate</button>
+    <p id='result'></p>
+    <script>
+        let eWord = document.getElementById('word');
+        let engDic = ["what", "where", "when", "how", "why"]
+        let viDic = ["cái gi", "ơ đau", "khi nao", "như the nao", "tai sao"];
+        let index;
+        function translate() {
+           index = engDic.indexOf(eWord.value);
+           if (index != - 1) {
+                document.getElementById('result').innerHTML = viDic[index];
+                
+           } else {
+               document.getElementById('result').innerHTML = "Not found";
+               
+           } 
+        }
+
+        
+    </script>
+</body>
+</html>

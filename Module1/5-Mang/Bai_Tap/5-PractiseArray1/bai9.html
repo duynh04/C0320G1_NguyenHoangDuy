@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <button onclick="merge()">Merge</button>
+   <p id="arra"></p>
+   <p id="arrb"></p>
+   <p id="result"></p>
+   <script>
+       let arra = [10, 23, 11, 5, 1, 2, 16, 0, -14, 8];
+       let arrb = [1, 4, 15, 3, 9, 22, 0, -1, -5, -8];
+       let arrc = [];
+       let num = document.getElementById('element');
+       document.getElementById('arra').innerHTML = "Array A: " + arra;
+       document.getElementById('arrb').innerHTML = "Array B: " + arrb;
+       function merge() {
+           arrc = arra.concat(arrb);
+           document.getElementById('result').innerHTML ="Array C: " + arrc;
+       }
+   </script>
+</body>

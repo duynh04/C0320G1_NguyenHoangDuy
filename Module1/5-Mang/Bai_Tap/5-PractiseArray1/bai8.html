@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <input type="number" id="element"> 
+   <button onclick="addElement()">Add</button>
+   <button onclick="sort()">Sort</button>
+   <p id="arr1"></p>
+   <p id="result"></p>
+   <script>
+       let arr = [];
+       let num = document.getElementById('element');
+       let numToFind;
+       function addElement(parameter) {
+          arr.push(num.value); 
+          document.getElementById('arr1').innerHTML = arr;
+       }
+       function sort() {
+           let _length = arr.length;
+           arr.sort(sortNumber);
+           document.getElementById('result').innerHTML = arr;
+       }
+       function sortNumber(a, b) {
+            return b - a;
+       }
+   </script>
+</body>

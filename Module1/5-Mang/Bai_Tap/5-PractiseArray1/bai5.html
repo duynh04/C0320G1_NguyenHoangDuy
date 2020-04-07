@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <input type="number" id="element"> 
+   <button onclick="addElement()">Add</button>
+   <button onclick="count()">Count</button>
+   <p id="arr1"></p>
+   <p id="result"></p>
+   <script>
+       let arr = [];
+       let num = document.getElementById('element');
+       
+       function addElement(parameter) {
+          arr.push(num.value); 
+          document.getElementById('arr1').innerHTML = arr;
+       }
+       function count() {
+           let temp = arr.filter(findNegNumber);
+           document.getElementById('result').innerHTML = "The number of negative number is " + temp.length;
+           
+       }
+       function findNegNumber(value) {
+            return value < 0;
+       }
+   </script>
+</body>
+</html>

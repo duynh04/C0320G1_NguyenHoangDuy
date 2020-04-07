@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <input type="text" id="element"> 
+   <button onclick="addElement()">Add</button>
+   <button onclick="reverseElement()">Reverse</button>
+   <p id="arr1"></p>
+   <p id="result"></p>
+   <script>
+       let arr = [];
+       let num = document.getElementById('element');
+       
+       function addElement(parameter) {
+          arr.push(num.value); 
+          document.getElementById('arr1').innerHTML = arr;
+       }
+       function reverseElement() {
+           let _length = arr.length;
+           let temp;
+           for(let i = 0; i < _length / 2; i++) {
+                temp = arr[i];
+                arr[i] = arr[_length - 1 - i];
+                arr[_length - 1 - i] = temp;
+           }
+           document.getElementById('result').innerHTML = arr;
+           
+       }
+   </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="message">Type anthing slowly</label><br>
+    <textarea onkeypress="test()" id="message" rows="10" cols="30"></textarea>
+</body>
+<script>
+    let val = document.getElementById("message");
+    let lastTxt = "";
+   function test() {
+       val.value = lastTxt;
+       val.value += 2;
+       lastTxt = val.value;
+   } 
+</script>
+</html>

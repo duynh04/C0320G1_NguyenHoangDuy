@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <input type="number" id="element"> 
+   <button onclick="addElement()">Add</button>
+   <button onclick="check()">Check</button>
+   <p id="arr1"></p>
+   <p id="result"></p>
+   <p id="result1"></p>
+   <script>
+       let arr = [];
+       let num = document.getElementById('element');
+       let numToFind;
+       function addElement(parameter) {
+          arr.push(num.value); 
+         document.getElementById('arr1').innerHTML = arr;
+       }
+       function check() {
+           numToFind = prompt("Input your number"); 
+           let foundId = arr.indexOf(numToFind);
+           if (foundId != -1) {
+                document.getElementById('result').innerHTML = numToFind + " is in array";
+                arr.splice(foundId, 1);
+                arr.push(0);
+                document.getElementById('result1').innerHTML = "new array: " + arr;
+           } else {
+                document.getElementById('result').innerHTML = numToFind + " is not in array";              
+           }
+       }
+   </script>
+</body>

@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [10, 23, 11, 5, 1, 2, 16, 0, -14, 8];
+        let filterArr = arr.filter(check);
+        function check(value) {
+            return value >= 10;
+        }
+        document.write(arr + '<br>');
+        document.write(filterArr + '<br>');
+        document.write("there are " + filterArr.length + " value greater than 10" + '<br>');
+    </script>
+</body>
+</html>

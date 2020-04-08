@@ -80,28 +80,74 @@
         }
         function checkAllValue() {
             let i;
-            let countX = 0;
-            let countY = 0;
+            let count = 0;
             let tempX, tempY;
             // scan column
             for(i = 0; i < COL; i++) {
-                tempX = boardGame[posY][i] == marker ? 1 : 0;
-                countX += tempX; 
+                count += (boardGame[posY][i] == marker ? 1 : 0); 
+                if(count == 3) {
+                    alert(name + " win");
+                    return;
+                }
             }
-            if(countX == 3) {
-                alert(name + " win");
-                return;
-            }
+            count = 0;
             // scan row
             for(i = 0; i < ROW; i++) {
-                tempY = boardGame[i][posX] == marker ? 1 : 0;
-                countY += tempY;
+                count += (boardGame[i][posX] == marker ? 1 : 0);
+                if(count == 3) {
+                    alert(name + " win");
+                    return; 
+                }
             }
-            if(countY == 3) {
-                alert(name + " win");
-                return; 
+            // scan cross line
+            count = 1;
+            tempX = posX;
+            tempY = posY;
+            while(true) {
+                if(++tempX >= ROW || ++tempY >= COL)
+                    break;
+                count += (boardGame[tempY][tempX] == marker ? 1 : 0);
+                if(count == 3) {
+                    alert(name + " win.");
+                    return;
+                }
             }
-
+            tempX = posX;
+            tempY = posY;
+            while(true) {
+                if(--tempX < 0 || --tempY < 0)
+                    break;
+                count += (boardGame[tempY][tempX] == marker ? 1 : 0);
+                if(count == 3) {
+                    alert(name + " win.");
+                    return;
+                }
+            }
+            // scan cross line
+            count = 1;
+            tempX = posX;
+            tempY = posY;
+            while(true) {
+                if(++tempX >= ROW || --tempY < 0)
+                    break;
+                count += (boardGame[tempY][tempX] == marker ? 1 : 0);
+                if(count == 3) {
+                    alert(name + " win.");
+                    return;
+                }
+            }
+            tempX = posX;
+            tempY = posY;
+            while(true) {
+                if(--tempX < 0 || ++tempY >= ROW)
+                    break;
+                count += (boardGame[tempY][tempX] == marker ? 1 : 0);
+                if(count == 3) {
+                    alert(name + " win.");
+                    return;
+                }
+            }
+            console.log('count'+ count);
         }
         function play(playerTurn) {
            let isMarked;

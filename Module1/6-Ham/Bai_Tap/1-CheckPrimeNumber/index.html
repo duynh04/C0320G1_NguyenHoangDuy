@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function isPrime(num) {
+        let result = true;
+        for (let i = 2; i <= num / 2; i++) {
+                if ((num % i) === 0) {
+                    result = false;
+                    break;
+                }
+            }
+        return result;
+    }
+    let count = 3;
+    let isPrimeNumber;
+    let result = "2"; // base case
+    while (count < 10000) {
+        isPrimeNumber = isPrime(count);
+        if (isPrimeNumber) {
+            result += ", " + count;
+        }
+        if (++count % 2 === 0) {
+            count++;
+        }
+    }
+    console.log(result);
+    document.write(result);
+</script>
+</body>
+</html>

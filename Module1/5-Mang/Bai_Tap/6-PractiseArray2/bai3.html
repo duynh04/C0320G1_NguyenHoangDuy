@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [];
+        let _length = parseInt(prompt("input array length"));
+        let element, temp;
+        let count = 0;
+        for(let i = 0; i < _length; i++) {
+            element = prompt("Element " + i);
+            temp = parseInt(element);
+            arr.push(element);
+            if (!isNaN(temp)) {
+                count += 1;
+            }
+        }
+        document.write("Your arraay: " + arr + "<br>");
+        document.write("There's " + count + " number character");
+    </script>
+</body>
+</html>

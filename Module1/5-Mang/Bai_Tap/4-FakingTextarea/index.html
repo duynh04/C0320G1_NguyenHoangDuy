@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>VIET BAT CU DIEU GI VAO O TEXT</h2>
+    <textarea id="txt" onkeypress="one()" style="height: 100px;width: 400px"></textarea>
+    <script>
+        let arrText = ['T', 'O', 'I', ' ', 'L', 'A', ' ', 'M', 'O', 'T', ' ', 'K', 'E', ' ','N','G','O','C'];
+        let temp = "";
+        let txtVal = document.getElementById("txt");
+        function one() {
+            let _length = txtVal.value.length;
+            console.log("length:" + _length);
+            
+            if (_length > arrText.length) {
+                    txtVal.value = "";
+                    temp = "";
+                    return;
+                }
+            for (let i = 0; i < _length; i++) {
+                temp += arrText[i];
+            }
+            txtVal.value = temp;
+            temp = "";
+            setTimeout("one()", 1)
+        }
+    </script>
+<body>
+</html>

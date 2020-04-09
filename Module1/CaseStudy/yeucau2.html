@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+    <style>
+        label {
+            position: absolute;
+            width: 120px;
+        }
+        input, select {
+            position: relative;
+            left: 125px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label for="name">Name</label>
+        <input type="text" id="name"><br><br>
+        <label for="idcard">ID Card</label>
+        <input type="text" id="idcard"><br><br>
+        <label for="dob">Date Of Birth</label>
+        <input type="date" id="dob" ><br><br>
+        <label for="email">E-mail</label>
+        <input type="email" id="email"><br><br>
+        <label for="addr">Address</label>
+        <input type="text" id="addr"><br><br>
+        <label>Type of Customer</label>
+        <select  id="typeOfCustomer">
+            <option value="member">Member</option>
+            <option value="silver">Silver</option>
+            <option value="gold">Gold</option>
+            <option value="platinum">Platinum</option>
+            <option value="diamond">Diamond</option>
+        </select><br><br>
+        <label for="discount">Discount</label>
+        <input type="number" id="discount" min="0" max="100" step="0.1"><br><br>
+        <label for="quantityIncluded">Quantity Included</label>
+        <input type="number" id="quantityIncluded" min="0"><br><br>   
+        <label for="rentDay">Rent Day</label>
+        <input type="number" id="rentDay" min="0"><br><br>
+        <label>Type of Service</label>
+        <select  id="typeOfService">
+            <option value="room">Room</option>
+            <option value="house">House</option>
+            <option value="villa">Villa</option>
+        </select><br><br>
+        <label>Type of Room</label>
+        <select  id="typeOfRoom">
+            <option value="normal">Normal</option>
+            <option value="business">Business</option>
+            <option value="vip">Vip</option>
+        </select><br><br>
+        <input type="button" value="Edit" onclick="edit()">
+        <h2 id="show"></h2>
+    </form>
+    <script>
+        let name = document.getElementById('name');
+        let idcard = document.getElementById('idcard');
+        let dob = document.getElementById('dob');
+        let email = document.getElementById('email');
+        let addr = document.getElementById('addr');
+        let typeOfCustomer = document.getElementById('typeOfCustomer');   
+        let discount = document.getElementById('discount');
+        let quantityIncluded = document.getElementById('quantityIncluded');
+        let rentDay = document.getElementById('rentDay');
+        let typeOfService = document.getElementById('typeOfService');
+        let typeOfRoom = document.getElementById('typeOfRoom');
+        let totalPrice;
+        // show customer infomation
+        createCustomer();
+        function createCustomer() {
+            name.value = "Nguyen Hoang Duy";
+            idcard.value = "312277832";
+            dob.value = "1996-04-15"; 
+            email.value = "nguyenhoang.duy154@gmail.com";
+            addr.value = "Danang";
+            typeOfCustomer.value = "platinum";
+            discount.value = 10;
+            quantityIncluded.value = 1;
+            rentDay.value = 5;
+            typeOfService.value = "villa";
+            typeOfRoom.value = "vip";
+            edit();
+        }
+        function calcCharge() {
+            let allDiscount = discountAddress(addr.value) + 
+                              discountRent(rentDay.value) + 
+                              discountCustomerType(typeOfCustomer.value);
+            let servicePrice = checkTypeOfService(typeOfService.value);
+            let totalCharge = servicePrice * parseInt(rentDay.value) - allDiscount;
+            return totalCharge;
+        }
+        function displayCharge(charge) {
+            document.getElementById('show').innerHTML = "customer: " + name.value + " have to pay " + charge + "$ total.";
+        }
+        function edit() {
+            let totalCharge = calcCharge();
+            displayCharge(totalCharge);
+        }
+        function checkTypeOfService(type) {
+            switch(type) {
+                case 'villa':
+                    return 500;
+                case 'house':
+                    return 300;
+                case 'room':
+                    return 100;
+            }
+        }
+        function discountAddress(at) {
+            switch(at) {
+                case "Danang":
+                    return 20;
+                case "Hue" :
+                    return 10;    
+                case "Quangnam":
+                    return 5;
+                default:
+                    return 0;
+            }
+        }
+        function discountRent(dayNum) {
+            if (dayNum > 7) {
+                return 30;
+            } else if (dayNum >= 5) {
+                return 20;
+            } else if (dayNum >= 2) {
+                return 10;
+            } else {
+                return 0;
+            }
+        }
+        function discountCustomerType(type) {
+            switch(type) {
+                case "diamond":
+                    return 15;
+                case "platinum":
+                    return 10;
+                case "gold":
+                    return 5;
+                case "silver":
+                    return 2;
+                default:
+                    return 0;
+            }
+        }
+    </script>
+</body>
+</html>

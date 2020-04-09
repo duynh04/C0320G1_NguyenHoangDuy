@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let inNum = prompt("input your character");
+        if (isPositive(inNum)) {
+            alert("This is a positive number.");
+        } else {
+            alert("This is a negative number.");
+        }
+        function isPositive(str) {
+            let num = parseInt(str);
+            if (num < 0) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

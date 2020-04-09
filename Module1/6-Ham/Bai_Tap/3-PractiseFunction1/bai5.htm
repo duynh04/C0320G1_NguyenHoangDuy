@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let starName1 = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+        let starName2 = ["Ursa Minor", "Tarurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+        let yourStar = prompt("Input a star");
+        let result = findStar(yourStar);
+        alert(result);
+        function findStar(star) {
+            let index = starName1.indexOf(star)
+            if (index == -1) {
+                return "Not found";
+            }
+            return starName2[index];
+        }
+    </script>
+</body>
+</html>

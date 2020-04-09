@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num1 = 4;
+        let num2 = 5;
+        swapElement(num1, num2);
+
+        function swapElement(a, b) {
+            let arr = [a, b];
+            alert("before swap element arr: " + arr);
+            arr.splice(0, 2 , b, a);
+            alert("after swap element arr: " + arr);
+        }
+    </script>
+</body>
+</html>

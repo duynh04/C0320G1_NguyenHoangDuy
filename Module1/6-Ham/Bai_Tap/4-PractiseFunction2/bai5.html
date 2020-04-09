@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num1 = parseInt(prompt("Input 1st number"));
+        let num2 = parseInt(prompt("Input 2nd number"));
+        let num3 = parseInt(prompt("Input 3th number"));
+        let min = findMin(num1, num2, num3);
+        alert("the min number is " + min);
+
+        function findMin(a, b, c) {
+            let min = a;
+            min = min > b ? b : min;
+            min = min > c ? c : min;
+            return min;
+        }
+    </script>
+</body>
+</html>

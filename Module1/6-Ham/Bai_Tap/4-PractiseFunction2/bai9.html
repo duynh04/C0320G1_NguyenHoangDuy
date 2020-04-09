@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = ['a', 'b', 'd', '1', 'a', 'a'];
+        let char = 'a';
+        let f = findCharacter(arr, char)
+        alert("The number of times of char \''" + char + "\'' in array is " + f);
+        function findCharacter(arr, c) {
+            let newArr = arr.filter(function (value) { return value == c;});
+            if (newArr.length == 0) {
+                return -1;
+            }
+            return newArr.length;
+        }
+    </script>
+</body>
+</html>

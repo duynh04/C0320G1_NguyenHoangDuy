@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" style="border:1px solid #d3d3d3;"></canvas>
+    <script>
+        let cv = document.getElementById("myCanvas");
+        let ctx = cv.getContext("2d");
+        cv.width = window.innerWidth;
+        cv.height = window.innerHeight;
+        let rect = new Rectangle(100, 100, 50, 10);
+        rect.draw();
+        alert("Area: " + rect.Area());
+        alert("Circumference: " + rect.circumference());
+        rect.w = 100;
+        rect.h = 50;
+        alert("Area: " + rect.Area());
+        alert("Circumference: " + rect.circumference());
+        function Rectangle(x, y, w, h) {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.Area = function () {
+                return this.w * this.h;
+            };
+            this.circumference = function () {
+                return 2 * (this.w + this.h);
+            };
+            this.draw = function () {
+                ctx.strokeStyle = 'red';
+                ctx.beginPath();
+                ctx.rect(this.x, this.y, this.w, this.h);
+                ctx.stroke();
+            }
+        }
+    </script>
+</body>
+</html>

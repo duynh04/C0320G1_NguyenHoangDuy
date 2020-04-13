@@ -93,7 +93,12 @@
             return totalCharge;
         }
         function displayCharge(charge) {
-            document.getElementById('show').innerHTML = "customer: " + name.value + " have to pay " + charge + "$ total.";
+            document.getElementById('show').innerHTML = "Customer Infomation: " + "<br>" +
+                                                        "Name: " + name.value + "<br>" + 
+                                                        "ID number: " + idcard.value + "<br>" + 
+                                                        "DOB: " + dob.value + "<br>" + 
+                                                        "Address: " + addr.value + "<br>" + 
+                                                        "Payment: " + charge + "$ total.";
         }
         function edit() {
             let totalCharge = calcCharge();

@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Temperature Conversion</h1>
+    <label for="temper">C degree</label>
+    <input type="number" id="temper" min="-273" step="0.01" oninput="transfer()">
+    <p id="show"></p>
+    <script>
+        let temper = document.getElementById("temper");
+        function transfer() {
+            let val = new Temperature(parseFloat(temper.value));
+            document.getElementById('show').innerHTML = "F degree: " + val.transferToF() + "<br>" + 
+                                                        "K degree: " + val.transferToK();
+        }
+        function Temperature(temper) {
+            this.temper = temper;
+            this.transferToF = function () {
+                return (9 / 5) * this.temper + 32;
+            }
+            this.transferToK = function () {
+                return this.temper + 273;
+            }
+        }
+    </script>
+</body>
+</html>

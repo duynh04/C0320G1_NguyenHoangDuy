@@ -5,27 +5,48 @@
     <title>Document</title>
 </head>
 <body>
-    <canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3;"></canvas>
+    <canvas id="myCanvas" style="border:1px solid #d3d3d3;"></canvas>
     <script>
+        let cv = document.getElementById("myCanvas");
+        let ctx = cv.getContext("2d");
+        let balls = [];
+        cv.width = window.innerWidth;
+        cv.height = window.innerHeight;
+        createMultipleCircle();
         function Circle(x, y, radius){
             this.x = x;
             this.y = y;
             this.radius = radius;
         }
         function createCircle(){
-            var ctx = document.getElementById("myCanvas").getContext("2d");
-            var radius = Math.floor(Math.random() * 80);
-            var color = getRandomColor();
-            var x = Math.random() * window.innerWidth;
-            var y = Math.random() * window.innerHeight;
-            var circle= new Circle(x, y, radius);
-            ctx.beginPath();
-            ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
-            ctx.fillStyle = color;
-            ctx.fill();
+            let radius = Math.floor(Math.random() * 60) + 5;
+            let x = Math.random() * window.innerWidth;
+            let y = Math.random() * window.innerHeight;
+            balls.push(new Circle(x, y, radius));
+        }
+        function animate() {
+            let dx, dy;
+            ctx.clearRect(0,0, cv.width, cv.height);
+            for(let i = 0; i < balls.length; i++) {
+                dx = Math.floor(Math.random() * 5) + 5;
+                dx *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+                dy = Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+                dy *= Math.floor(Math.random() * 5) + 5;
+                balls[i].x += dx;
+                balls[i].y += dy;
+                draw(i);
+            }
+            window.requestAnimationFrame(animate);
+        }
+        function draw(id) {
+                ctx.beginPath();
+                let color = getRandomColor();
+                ctx.arc(balls[id].x, balls[id].y, balls[id].radius, 0, 2 * Math.PI);
+                ctx.fillStyle = color;
+                ctx.fill();
         }
         function getRandomHex(){
-            return Math.floor(Math.random()*255);
+            return Math.floor(Math.random()*255 + 1);
         }
 
         function getRandomColor(){
@@ -35,11 +56,12 @@
 	        return "rgb(" + red + "," + blue + "," + green +")";
         }
         function createMultipleCircle(){
-		    for(var i = 0; i < 30; i++){
+		    for(var i = 0; i < 50; i++){
         	    createCircle();
             }
         }
-        createMultipleCircle(); 
+
+        animate();
     </script>
 </body>
 </html>

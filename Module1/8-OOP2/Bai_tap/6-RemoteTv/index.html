@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let remote = new Remote();
+        let tv = new Television();
+        remote.connectToTv(tv);
+        tv.turnOn();
+        remote.moveTo(7);
+        remote.moveTo(3);
+        remote.volumeUp();
+        remote.volumeUp();
+        remote.turnOff();
+        function Remote() {
+            this.tv;
+            this.connectToTv = (tv) => this.tv = tv;
+            this.moveTo = (channel) => {
+                this.tv.moveTo(channel);
+            };
+            this.volumeUp = () => {
+                this.tv.volumeUp();
+            }
+            this.volumeDown = () => {
+                this.tv.volumeDown();
+            }
+            this.turnOn= () => {
+                this.tv.turnOn();
+            }
+            this.turnOff= () => {
+                this.tv.turnOff();
+            }
+        }
+        function Television() {
+            this.status = "OFF";
+            this.currentChannel = 1;
+            this.volume = 20;
+            this.volumeUp = () => {
+                this.volume++;
+                console.log("The volume: " + this.volume);
+            }
+            this.volumeDown = () => {
+                this.volume--;
+                console.log("The volume: " + this.volume);
+            }
+
+            this.moveTo = (channel) => {
+                this.currentChannel = channel;
+                console.log("The current channel is " + this.currentChannel);
+            }
+            this.turnOn= () => {
+                this.status = "ON";
+                console.log("TV is turned ON.");
+            }
+            this.turnOff= () => {
+                this.status = "OFF";
+                console.log("TV is turned OFF.");
+            }
+        }
+    </script>
+</body>
+</html>

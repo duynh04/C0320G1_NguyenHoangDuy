@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let jerry = new Mouse("Jerry", 20, 10);
+        let jerrySon = new Mouse("Jerry Son", 15, 20);
+        let tom = new Cat("Tom", 30, 15);
+        jerry.sound();
+        tom.sound();
+        tom.catch(jerry);
+        jerry.isAlive = false;
+        tom.eat(jerry);
+        tom.catch(jerrySon);
+        tom.eat(jerrySon);
+        function Mouse(name, weight, speed) {
+            this.name = name;
+            this.weight = weight;
+            this.speed = speed;
+            this.isAlive = true;
+            this.sound = () => {
+                console.log("rit rit"); 
+            }
+        }
+        function Cat(name, weight, speed) {
+            this.name = name;
+            this.weight = weight;
+            this.speed = speed;
+            this.isCatch = false;
+            this.sound = () => {
+                console.log("meow meow");
+            }   
+            this.catch = (rat) => {
+                if (this.speed > rat.speed) {
+                    console.log(this.name + " catched " + rat.name);
+                    this.isCatch = true;
+                } else {
+                    console.log(this.name + " cannot catch " + rat.name);
+                    this.isCatch = false;
+                }
+            }
+            this.eat = (rat) => {
+                if (this.isCatch) {
+                    if (rat.isAlive) {
+                        this.weight += rat.weight;
+                        console.log("After eating, " + this.name + " has gained " + this.weight + " kg.");
+                    } else {
+                        console.log(rat.name + " is dead. " + this.name + " cannot eat.");
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

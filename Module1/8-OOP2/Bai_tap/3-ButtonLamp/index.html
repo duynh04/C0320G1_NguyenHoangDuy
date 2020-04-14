@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let btn = new SwitchButton();
+        let lamp = new ElectricLamp();
+        let count = 0;
+        btn.connectToLamp(lamp);
+        console.log("Button is connected to Lamp");
+        while(count < 10) {
+            btn.switchOn();
+            console.log("Button Switch: " + btn.status + " , Lamp turn: " + lamp.status);
+            btn.switchOff();
+            console.log("Button Switch: " + btn.status + " , Lamp turn: " + lamp.status);
+            count++;
+        }
+        function ElectricLamp() {
+            this.status = "OFF";
+            this.turnOn = () => this.status = "ON";
+            this.turnOff = () => this.status = "OFF";
+        }
+        function SwitchButton() {
+            this.status = "OFF";
+            this.electricLamp;
+            this.connectToLamp = (lamp) => this.electricLamp = lamp;
+            this.switchOn = () => {
+                this.electricLamp.turnOn();
+                this.status = "ON";
+            }
+            this.switchOff = () => {
+                this.electricLamp.turnOff();
+                this.status = "OFF";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        isValidName("C0318G");
+        isValidName("A0320H");
+        isValidName("P0320M");
+        isValidName("M0318G");
+        isValidName("P0323A");
+        isValidName("B0314N");
+        function isValidName(str) {
+            let regexp = /^[ACP]\d{4}[GHIKLM]$/;
+            if(regexp.test(str)) {
+                console.log("This " + str + " is valid.");
+                console.log("---");
+            } else {
+                console.log("This " + str + " is unvalid."); 
+                console.log("---");
+            }
+        }
+    </script>
+</body>

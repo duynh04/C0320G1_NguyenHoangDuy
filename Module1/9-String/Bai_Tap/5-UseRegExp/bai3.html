@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       countChar("The man is strong.");
+       countChar("My name is Duy.");
+       countChar("Hello, goog morning.");
+       function countChar(str) {
+            let regVowel = /[aeiou]/gi;
+            let regCons = /[^aeiou\s.'"-]/gi 
+            let arr1 = str.match(regVowel);
+            let arr2 = str.match(regCons);
+            // console.log(arr);
+            console.log("There are " + arr1.length + " vowels in " + str);
+            console.log("There are " + arr2.length + " consonant in " + str);
+            console.log("------");
+        }
+   </script> 
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        isValidDate("15/04/1996");
+        isValidDate("15/04/2020");
+        isValidDate("35/04/2020");
+        isValidDate("15/14/1996");
+        isValidDate("29/02/2020");
+        isValidDate("29/2/2020");
+        isValidDate("31/03/2020");
+        function isValidDate(str) {
+            let regexp = /^(([012]\d)|(3[01]))\/((0\d)|(1[12]))\/(\d{4})$/;
+            if(regexp.test(str)) {
+                console.log("This " + str + " is valid.");
+                console.log("---");
+            } else {
+                console.log("This " + str + " is unvalid."); 
+                console.log("---");
+            }
+        }
+        
+    </script>
+</body>
+</html>

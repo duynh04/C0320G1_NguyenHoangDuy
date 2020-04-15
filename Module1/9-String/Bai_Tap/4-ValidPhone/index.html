@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        isPhoneNumber("(84)-(948755804)");
+        isPhoneNumber("(84)-(704554885)");
+        isPhoneNumber("(a4)-(948755804)");
+        isPhoneNumber("(84)-(94a755804)");
+
+        function isPhoneNumber(str) {
+            let regexp = /^\(\d{2}\)-\(\d{9}\)$/;
+            if(regexp.test(str)) {
+                console.log("This " + str + " is valid.");
+                console.log("---");
+            } else {
+                console.log("This " + str + " is unvalid."); 
+                console.log("---");
+            }
+        }
+    </script>
+</body>

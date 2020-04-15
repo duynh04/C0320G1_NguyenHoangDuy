@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        checkPassWord("12356");
+        checkPassWord("1235@");
+        checkPassWord("12i35");
+        checkPassWord("1235");
+        checkPassWord("12_i5");
+        function checkPassWord(str) {
+            let regexp = /^[a-z\d_]{5}$/i;
+            if (regexp.test(str)) {
+                console.log("This " + str + " is valid.");
+            } else {
+                console.log("This " + str + " is unvalid.");
+            }
+        }
+    </script>
+</body>
+</html>

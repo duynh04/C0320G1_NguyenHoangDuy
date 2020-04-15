@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        isValidAccount("123abc_");
+        isValidAccount("_abc123");
+        isValidAccount("______");
+        isValidAccount("123456");
+        isValidAccount("abcdefg");
+        isValidAccount(".@");
+        isValidAccount("12345");
+        isValidAccount("1234_");
+        isValidAccount("abcde");
+        function isValidAccount(str) {
+            let regexp = /^[a-z\d_]{6,}$/;
+            if(regexp.test(str)) {
+                console.log("This " + str + " is valid.");
+                console.log("---");
+            } else {
+                console.log("This " + str + " is unvalid."); 
+                console.log("---");
+            }
+        }
+    </script>
+</body>

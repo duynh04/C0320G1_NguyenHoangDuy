@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        isEmail("a@gmail.com")
+        isEmail("@gmail.com")
+        isEmail("ab@yahoo.com")
+        isEmail("ab@gmail.")
+        isEmail("abc@hotmail.com")
+        isEmail("@#abc@gmail.com")
+        function isEmail(str) {
+            let regexp = /^[-.\w]+@([-\w]+\.)+\w+$/;
+            if(regexp.test(str)) {
+                console.log("This " + str + " is valid.");
+                console.log("---");
+            } else {
+                console.log("This " + str + " is unvalid."); 
+                console.log("---");
+            }
+        }
+    </script>
+</body>
+</html>

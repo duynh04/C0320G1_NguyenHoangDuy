@@ -6,7 +6,43 @@
 </head>
 <body>
     <script>
-        
+        let nums = [];
+        for(let i = 0;i < 10000000;++i) {
+            nums[i] = i;
+        }
+        let val = parseInt(prompt("Input your Number"));
+        let start = Date.now();
+        let liPos = linearSearch(nums, val);
+        let end = Date.now();
+        document.write("The linear serach algorithm takes " + (end - start) + " ms to complete <br>");
+        start = Date.now();
+        let binPos = binSearch(nums, val, 0, nums.length - 1);
+        end = Date.now();
+        document.write("The binary serach algorithm takes " +  (end - start) + " ms to complete <br>");
+        document.write("Position for linear is " + liPos + "<br>"); 
+        document.write("Position for binary is " + binPos);
+        function linearSearch(arr, data) {
+            let _length = arr.length;
+            for(let i = 0; i < _length; i++) {
+                if (data == arr[i]) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        function binSearch(arr, data, lowPos, highPos) {
+            if (lowPos > highPos) {
+                return -1;
+            }
+            let mid = Math.floor((lowPos + highPos) / 2)
+            if (data == arr[mid] ) {
+                return mid;
+            } else if (data > arr[mid]) {
+                return binSearch(arr, data, mid + 1, highPos);
+            } else {
+                return binSearch(arr, data, lowPos, mid - 1);
+            }
+        }
     </script>
 </body>
 </html>

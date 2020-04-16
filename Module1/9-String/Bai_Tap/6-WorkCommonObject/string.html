@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str = "Toi yeu ngon ngu lap trinh Javascript."
+        let num = str.split('a').length - 1;
+        console.log("Step 1");
+        console.log("There are " + num + " words 'a'.");
+        let arrStr = str.split(" ");
+        console.log("Step 2");
+        console.log("Array of string: " + arrStr);
+        console.log("Step 3");
+        console.log("The number of words are " + arrStr.length);
+        console.log("Step 4");
+        console.log("New string is \"" + str.replace(/javascript/gi, "typeScript") + "\"");
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let dob = new Date(1996,04,15,23,0,0,0);
+        let today = new Date();
+        function dateDiff(time1, time2) {
+            return time1.getTime() - time2.getTime();
+        }
+        let diff = dateDiff(today, dob);
+        console.log("I lived " + Math.floor(diff) + " miliseconds");
+        console.log("I lived " + Math.floor(diff / 1000) + " seconds");
+        console.log("I lived " + Math.floor(diff / 1000 / 60) + " minutes");
+        console.log("I lived " + Math.floor(diff / 1000 / 60 / 60) + " hours");
+        console.log("I lived " + Math.floor(diff / 1000 / 60 / 60 / 24) + " days");
+        console.log("I lived " + Math.floor(diff / 1000 / 60 / 60 / 24 / 365) + " years");
+    </script>
+</body>
+</html>

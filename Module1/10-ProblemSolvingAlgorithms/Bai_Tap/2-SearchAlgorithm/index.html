@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let phoneNumbers = ["0948755804", "0704554885", "0359893599", "0861234567", "0952345676", "03512345378"];
+        let viettel = findViettelNumber(phoneNumbers);
+        document.write(phoneNumbers.join(" - ") + "<br>");
+        document.write("Viettel number: " + viettel.join(" - "));
+        function findViettelNumber(arr) {
+            let regexp = /^(0((3[2-9])|(9[678])|(86)))\d{7}$/;
+            let viettelNumbers = [];
+            for(let i = 0; i < arr.length; i++) {
+                if (regexp.test(arr[i])) {
+                    viettelNumbers.push(arr[i]);
+                }
+            }
+            return viettelNumbers;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <style>
+        div {
+            /* position: relative; */
+            border-color: red;
+            background-color:gray;
+            border-radius: 6px;
+            width: 260px;
+            height: 40px;
+            padding: 20px 15px 15px 30px;
+        }
+        input {
+            border-radius: 6px;
+            height: 30px;
+        }
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            width: 100px;
+            height: 30px;
+            font-size: medium;
+        }
+        table, tr, th, td {
+            border: 1px;
+            border-style: solid;
+            border-collapse: collapse;
+        }
+        p {
+            font-size: 20;
+            color: brown;
+            font-style:italic
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Add New Product</h2>
+    <div>
+        <input type="text" id="prod" placeholder="New Product">
+        <button onclick="addProduct()">Add</button>
+    </div>
+    <h3>Display all products.</h3>
+    <p id="count"></p>
+    <table id="prodtbl">
+    </table>
+    <script>
+        let products = ["Iphone 11 Pro Max", "Sony Xperia", "Oppo A71", "Iphone Xs", "Xiaomi Redmi Note 4"];
+        let newProduct = document.getElementById("prod");
+        let prodTableHtml = document.getElementById("prodtbl"); 
+        updateProduct();
+        function updateProduct() {
+            let prodCount = countProduct();
+            let prodTable = "";
+            const COL = 3;
+            prodTable += "<tr><th>Product Name</th><th></th><th></th></tr>";
+            for(let i = 0; i < prodCount; i++) {
+                prodTable += "<tr>"
+                prodTable += "<td>" + products[i] + "</td>";
+                prodTable += "<td>" + "<button onclick='editProduct(" + i + ")'>Edit</button>";
+                prodTable += "<td>" + "<button onclick='delProduct(" + i + ")'>Delete</button>";
+            }
+            
+            prodTableHtml.innerHTML = prodTable;
+            document.getElementById('count').innerHTML = prodCount + " Products.";
+        }
+
+        function countProduct() {
+            return products.length;
+        }
+        function addProduct() {
+            products.push(newProduct.value);
+            updateProduct();
+            alert("Product added.");
+        }
+        function editProduct(productId) {
+            products[productId] = newProduct.value;
+            updateProduct();
+            alert("Product Edited.");
+        }
+        function delProduct(productId) {
+            // let index = products.findIndex(productName);
+            products.splice(productId, 1);
+            updateProduct();
+            alert("Product deleted.");
+        }
+    </script>
+</body>
+</html>

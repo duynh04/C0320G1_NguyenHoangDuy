@@ -5,18 +5,69 @@
     <title>Document</title>
 </head>
 <body>
-    <canvas id="myCanvas" width="400" height="400" style="border:1px solid black;"></canvas>
+    <canvas id="myCanvas" width="600" height="600" style="border:1px solid black;"></canvas>
     <script>
-        let img = new Image();
-        img.src = "car.jpg"
+        let imgs = [];
+        let imgNames = ["ninjaup1.png","ninjadown1.png","ninjaleft1.png","ninjaright1.png"]
         let canvas = document.getElementById("myCanvas");
         let ctx = canvas.getContext("2d");
-        img.onload = function() {
-            // ctx.drawImage(img, 10, 10, 50, 50);
-            ctx.drawImage(img, 0, 0, 50, 50);
-            ctx.rotate(10 * Math.PI / 180);
-            ctx.translate(200, 200);
-        };
+        let x = 200;
+        let y = 200;
+        let speed = 2;
+        let lastKey = 38;
+        for(let i = 0; i < 4; i++) {
+            imgs[i] = new Image(10, 10);
+            imgs[i].src = imgNames[i]
+        }
+        window.onload = docReady();
+        function docReady() {
+            window.addEventListener('keydown', moveSelection);
+            move();
+        }
+        imgs[0].onload = () => {
+            ctx.drawImage(imgs[0], x, y, 300, 300);
+        }
+        function moveSelection(evt) {
+            switch(evt.keyCode) {
+                case 16:
+                    speed -= 3;
+                    break;
+                case 17:
+                    speed += 3;
+                    break;
+                default:
+                    lastKey = evt.keyCode;
+            }
+            move();
+        }
+        function move() {
+            console.log("key code: " + lastKey);
+            switch (lastKey) {
+                case 37: // left
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    x -= speed;
+                    ctx.drawImage(imgs[2], x, y, 300, 300);
+                    break;
+                case 39: //right
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    x += speed;
+                    ctx.drawImage(imgs[3], x, y, 300, 300);
+                    break;
+                case 38: //up
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    y -= speed;
+                    ctx.drawImage(imgs[0], x, y, 300, 300);
+                    break;
+                case 40: //down
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    y += speed; 
+                    ctx.drawImage(imgs[1], x, y, 300, 300);
+                    break;
+            }
+            setTimeout(move, 500);
+            // window.requestAnimationFrame(move);
+        }
+        // move();
     </script>
 </body>
 </html>

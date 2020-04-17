@@ -30,10 +30,11 @@
 </head>
 <body>
     <Script>
-        let caroGame = new Board(20, 20);
-        let player1 = new Player('John-X', 'X', 'red');
-        let player2 = new Player('John-O', 'O', 'blue');
+        let caroGame = new Board(20, 20); // Create a board 20x20 
+        let player1 = new Player('John-X', 'X', 'red'); // player 1
+        let player2 = new Player('John-O', 'O', 'blue'); // player 2
         let turn = 1;
+        // draw board
         caroGame.createBoard();
         caroGame.drawBoard();
         // function onclick event
@@ -110,8 +111,8 @@
             }
             //get position for scaning
             this.getPosition = function (currPos, step) {
-                let tempLow; // first value of every row
-                let tempHigh; // last value
+                let tempLow; 
+                let tempHigh; 
                 let temp
                 if (step == 1) {
                     temp = currPos % this.sizeX;
@@ -149,7 +150,6 @@
                 this.getPosition(player.lastPos, 1);
                 console.log("current: " + player.lastPos);
                 counter = this.scanBoard(player.sign, this.lowPos, this.highPos, 1);
-                console.log("counter" + counter);
                 // console.log(this.lowPos + "----" + this.highPos);
                 if (counter >= 5) {
                     return alert(player.name + " win.");
@@ -157,21 +157,18 @@
                 // scan column 
                 this.getPosition(player.lastPos, this.sizeX);
                 counter = this.scanBoard(player.sign, this.lowPos, this.highPos, this.sizeX);
-                console.log("counter" + counter);
                 if (counter >= 5) {
                     return alert(player.name + " win.");
                 }
                 // scan diagnos
                 this.getPosition(player.lastPos, this.sizeX - 1);
                 counter = this.scanBoard(player.sign, this.lowPos, this.highPos, this.sizeX - 1);
-                console.log("counter" + counter);
                 if (counter >= 5) {
                     return alert(player.name + " win.");
                 }
                 // scan diagnos
                 this.getPosition(player.lastPos, this.sizeX + 1);
                 counter = this.scanBoard(player.sign, this.lowPos, this.highPos, this.sizeX + 1);
-                console.log("counter" + counter);
                 if (counter >= 5) {
                     return alert(player.name + " win.");
                 }

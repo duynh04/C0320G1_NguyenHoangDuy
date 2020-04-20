@@ -64,135 +64,134 @@
         let rentDay = document.getElementById('rentDay');
         let typeOfService = document.getElementById('typeOfService');
         let typeOfRoom = document.getElementById('typeOfRoom');
-        let totalPrice;
+        let emailReg = /^[-.\w]+@([-\w]+\.)+[\w-]+$/;
+        let idReg = /^\d{9}$/;
+        let dobReg = /^((01)|([0-2][2-9])|([1-3][01]))\/((0[1-9])|(1[0-2]))\/(\d{4})$/;
+        let positiveNumReg = /^\d+$/;
         // show customer infomation
+        function checkValid(regExpType, strCheck) {
+            if (regExpType.test(strCheck)) {
+                return true;
+            } 
+            return false;
+        }
         function checkValidation() {
-            if (!checkEmail()) {
+            if (!checkValid(emailReg, email.value)) {
                 alert("Your Email is invalid.");
-            } else if (!checkIdCard()) {
+            } else if (!checkValid(idReg, idCard.value)) {
                 alert("Your ID is invalid.");
-            } else if (!checkDob()) {
+            } else if (!checkValid(dobReg, dob.value)) {
                 alert("Your birthday is invalid.");
-            } else if (!checkPosiveNumber(rentDay.value)) {
+            } else if (!checkValid(positiveNumReg, rentDay.value)) {
                 alert("The rent day is invalid.");
-            } else if (!checkPosiveNumber(quantityIncluded.value)) {
+            } else if (!checkValid(positiveNumReg, quantityIncluded.value)) {
                 alert("The number of people is invalid.")
             } else {
-                alert("Every info is OK.");
+                alert("All info are OK.");
             }
             fomatValue(name);
             fomatValue(addr);
         }
         function fomatValue(type) {
-            let firstCharInWord = false;
-            let firstSpace = false;
             let tempValue = "";
+            type.value = type.value.trim().toLowerCase();
             let length = type.value.length;
             for(let i = 0; i < length; i++) {
-                if (type.value[i] != ' ') {
-                    if (firstCharInWord) {
-                        tempValue += type.value[i].toLowerCase();
-                    } else {
-                        firstCharInWord = true;
-                        firstSpace = false;
-                        tempValue += type.value[i].toUpperCase();
-                    }
-                } else {
-                    if (firstCharInWord) {
-                        if (!firstSpace) {
-                            firstCharInWord = false;
-                            firstSpace = true;
-                            tempValue += type.value[i];
-                        }
-                    }
+                if (type.value[i] == ' ' && type.value[i + 1] == ' ') {
+                    continue;
                 }
+                if (i == 0 || type.value[i - 1] == ' ') {
+                    tempValue += type.value[i].toUpperCase();
+                    continue;
+                }
+                tempValue += type.value[i];
             }
             type.value = tempValue;
         }
-        function checkEmail() {
-            let _email = email.value;
-            let _length = _email.length;
-            let atIndex= _email.length;
-            let dotIndex = 0;
-            let atCount = 0;
-            let dotCount = 0;
-            if (!_length) return false;
-            for(let i = 0; i < _length; i++) {
-                if ( _email[i] == ' ')
-                    return false;
-                if (_email[i] == '@') {
-                    atIndex = i;
-                    if (++atCount == 2) return false;
-                }
-                if (_email[i] == '.' && i > atIndex + 3){
-                    dotIndex = i; 
-                    if (++dotCount == 2) return false;
-                }
-            }
-            if (atIndex == _length || dotIndex == 0)
-                return false;
-            return true;
-        }
-        function checkIdCard() {
-            let id = idCard.value;
-            let _length = id.length;
-            if (!_length) {
-                return false;
-            } 
-            for(let i = 0; i < _length ; i++) {
-                if (id[i] == ' ')
-                    return false;
-                if (isNaN(id[i])) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        function checkDob() {
-            let temp;
-            let birthday = dob.value;
-            if (!birthday.length) return false;
-            let date = birthday.split('/');
-            if (date.length != 3) 
-                return false;
-            for(let i = 0; i < date.length; i++) {
-                temp = parseInt(date[i]);
-                if (isNaN(temp))
-                    return false;
-                switch (i) {
-                    case 0 :
-                        if (temp < 0 || temp > 31) {
-                            return false
-                        }
-                        break;
-                    case 1 :
-                        if (temp < 0 || temp > 12) {
-                            return false
-                        }
-                        break;
-                    case 2 :
-                        if (temp < 0) {
-                            return false
-                        }
-                }
-            }
-            return true;
-        }
-        function checkPosiveNumber(type) {
-            let length = type.length;
-            if (!length) return false;
-            for(let i = 0; i < length; i++) {
-                if (type[i] == ' ' || type[i] == '-' || type[i] == '.')
-                    return false;
-            }
-            let num = parseInt(type);
-            if (isNaN(num)) {
-                return false;
-            } else {
-                if ( num < 0) return false;
-            }
-            return true;
-        }
+        // function checkEmail() {
+        //     let _email = email.value;
+        //     let _length = _email.length;
+        //     let atIndex= _email.length;
+        //     let dotIndex = 0;
+        //     let atCount = 0;
+        //     let dotCount = 0;
+        //     if (!_length) return false;
+        //     for(let i = 0; i < _length; i++) {
+        //         if ( _email[i] == ' ')
+        //             return false;
+        //         if (_email[i] == '@') {
+        //             atIndex = i;
+        //             if (++atCount == 2) return false;
+        //         }
+        //         if (_email[i] == '.' && i > atIndex + 3){
+        //             dotIndex = i; 
+        //             if (++dotCount == 2) return false;
+        //         }
+        //     }
+        //     if (atIndex == _length || dotIndex == 0)
+        //         return false;
+        //     return true;
+        // }
+        // function checkIdCard() {
+        //     let id = idCard.value;
+        //     let _length = id.length;
+        //     if (!_length) {
+        //         return false;
+        //     } 
+        //     for(let i = 0; i < _length ; i++) {
+        //         if (id[i] == ' ')
+        //             return false;
+        //         if (isNaN(id[i])) {
+        //             return false;
+        //         }
+        //     }
+        //     return true;
+        // }
+        // function checkDob() {
+        //     let temp;
+        //     let birthday = dob.value;
+        //     if (!birthday.length) return false;
+        //     let date = birthday.split('/');
+        //     if (date.length != 3) 
+        //         return false;
+        //     for(let i = 0; i < date.length; i++) {
+        //         temp = parseInt(date[i]);
+        //         if (isNaN(temp))
+        //             return false;
+        //         switch (i) {
+        //             case 0 :
+        //                 if (temp < 0 || temp > 31) {
+        //                     return false
+        //                 }
+        //                 break;
+        //             case 1 :
+        //                 if (temp < 0 || temp > 12) {
+        //                     return false
+        //                 }
+        //                 break;
+        //             case 2 :
+        //                 if (temp < 0) {
+        //                     return false
+        //                 }
+        //         }
+        //     }
+        //     return true;
+        // }
+        // function checkPosiveNumber(type) {
+        //     let length = type.length;
+        //     if (!length) return false;
+        //     for(let i = 0; i < length; i++) {
+        //         if (type[i] == ' ' || type[i] == '-' || type[i] == '.')
+        //             return false;
+        //     }
+        //     let num = parseInt(type);
+        //     if (isNaN(num)) {
+        //         return false;
+        //     } else {
+        //         if ( num < 0) return false;
+        //     }
+        //     return true;
+        // }
     </script>
     
 </body>

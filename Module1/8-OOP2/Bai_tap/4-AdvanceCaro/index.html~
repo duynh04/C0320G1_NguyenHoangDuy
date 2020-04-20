@@ -1,0 +1,175 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .center {
+            line-height: 60px; 
+            position: absolute;
+            height: 40px;
+            width: 40px;
+            border: 1px solid green;
+            text-align: center;
+            }
+
+        .center p {
+            line-height: 1;
+            display: inline-block;
+            vertical-align: middle;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <Script>
+        let caroGame = new Board(20, 20); // Create a board 20x20 
+        let player1 = new Player('John-X', 'X', 'red'); // player 1
+        let player2 = new Player('John-O', 'O', 'blue'); // player 2
+        let turn = 1;
+        // draw board
+        caroGame.createBoard();
+        caroGame.drawBoard();
+        // function onclick event
+        function play(id) {
+            let isOk;
+            if (turn == 1) {
+                isOk = player1.drawSign(caroGame, id);
+                if(isOk)
+                    caroGame.check(player1);
+                turn = 2;
+            } else {
+                isOk = player2.drawSign(caroGame, id);
+                if(isOk)
+                    caroGame.check(player2);
+                turn = 1;
+            }
+        }
+
+        function Player(name, sign, color) {
+            this.name = name
+            this.sign = sign;
+            this.color = color;
+            this.lastPos = -1;
+            this.drawSign = (caroBoard, currPos) => {
+                if(caroBoard.board[currPos] == undefined) {
+                    this.lastPos = currPos;
+                    caroBoard.board[currPos] = this.sign;
+                    document.getElementById(currPos).style.color = this.color;
+                    document.getElementById(currPos).innerHTML = this.sign;
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        function Board(sizeX, sizeY) {
+            this.sizeX = sizeX;
+            this.sizeY = sizeY;
+            this.lowPos;
+            this.highPos
+            this.board;
+            this.size;
+            this.createBoard = () => {
+                this.size = this.sizeX * this.sizeY;
+                this.board = new Array(this.size)
+            }
+            this.drawBoard = () => {
+                let board1 = "";
+                let id;
+                for(let i = 0; i < this.sizeY; i++) {
+                    for(let j = 0; j < this.sizeX; j++) {
+                        id = i * this.sizeX + j;
+                        board1 += "<div class='center' onclick='play(" + id + ")' style='top:" + (40 * i) + "px; left:" + (40 * j) + "px;'> <p id='" + id + "'></p> </div>";
+                    }
+                    board1 += "<br>";
+                }    
+                document.write(board1);
+            }
+            this.scanBoard = (sign, lowPos, highPos, step) => {
+                let count = 0;
+                for(let i = lowPos; i <= highPos; i += step) {
+                    console.log("step " + step + " --sign: " + sign + " --- value " + this.board[i] + " at pos : " + i);
+                    if (this.board[i] == sign) {
+                        count += 1;
+                        if (count == 5) {
+                            return count;
+                        }
+                    } else {
+                        count = 0;
+                    }
+                }
+                console.log("counter : " + count);
+                return count;
+            }
+            //get position for scaning
+            this.getPosition = function (currPos, step) {
+                let tempLow; 
+                let tempHigh; 
+                let temp
+                if (step == 1) {
+                    temp = currPos % this.sizeX;
+                } else {
+                    temp = Math.floor(currPos / this.sizeX);
+                }
+                for(let i = 0; i <= temp; i++) {
+                        tempLow = currPos - i * step;
+                        if (tempLow < 0) {
+                            this.lowPos = tempLow + step;
+                            break;   
+                        } else {
+                            this.lowPos = tempLow;
+                        }
+                        // if temp > 4
+                        if (i == 4)
+                            break;
+                }
+                for(let i = 0; i < (this.sizeX - temp); i++) {
+                        tempHigh = currPos + i * step;
+                        if (tempHigh > this.size) {
+                            this.highPos = tempHigh - step;   
+                            break;
+                        } else {
+                            this.highPos = tempHigh;
+                        }
+                        // if temp > 4
+                        if (i == 4) 
+                            break;
+                }
+            }
+            this.check = function (player) {
+                let counter;
+                // scan row
+                this.getPosition(player.lastPos, 1);
+                console.log("current: " + player.lastPos);
+                counter = this.scanBoard(player.sign, this.lowPos, this.highPos, 1);
+                // console.log(this.lowPos + "----" + this.highPos);
+                if (counter >= 5) {
+                    return alert(player.name + " win.");
+                }
+                // scan column 
+                this.getPosition(player.lastPos, this.sizeX);
+                counter = this.scanBoard(player.sign, this.lowPos, this.highPos, this.sizeX);
+                if (counter >= 5) {
+                    return alert(player.name + " win.");
+                }
+                // scan diagnos
+                this.getPosition(player.lastPos, this.sizeX - 1);
+                counter = this.scanBoard(player.sign, this.lowPos, this.highPos, this.sizeX - 1);
+                if (counter >= 5) {
+                    return alert(player.name + " win.");
+                }
+                // scan diagnos
+                this.getPosition(player.lastPos, this.sizeX + 1);
+                counter = this.scanBoard(player.sign, this.lowPos, this.highPos, this.sizeX + 1);
+                if (counter >= 5) {
+                    return alert(player.name + " win.");
+                }
+            
+            }
+        }
+    </Script>
+</body>
+</html>
+
+      

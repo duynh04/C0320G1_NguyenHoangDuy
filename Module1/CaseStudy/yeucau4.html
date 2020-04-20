@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arrNameCustomers = [];
+        let name;
+        let amount;
+        let menus;
+        let isValid; 
+        let index;
+        while(true) {
+            menus = prompt("Menu \n 1.Add Customer \n 2.Delete Customer \n 3.Display Customer");
+            switch(menus) {
+                case '1':
+                    while (1) {
+                        amount = prompt("Number Of Customers");
+                        isValid = amount.match(/^\d+$/);
+                        if (isValid != null) {
+                            for(let i = 0; i < parseInt(amount); i++) {
+                                name = prompt("Customer " + (i + 1));
+                                arrNameCustomers.push(name);
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                case '2':
+                    name = prompt("Who do you want to delete? \n " + arrNameCustomers.join("\n"));
+                    index = arrNameCustomers.indexOf(name);
+                    if (index != -1) {
+                        arrNameCustomers.splice(index, 1);
+                    }
+                    break
+                case '3':
+                    alert("Customer list \n" + arrNameCustomers.sort().join("\n"));
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let customerEum = ["Member","silver","gold","platium","diamod"];
+        let roomEnum = ["normal","bussiness","vip"];
+        let serviceEnum = ["room","house","villa"];
+        // name, id, dob, email, rentDays, persons, customerType,serviceType, typeRoom, discount
+        let listCustomer = [];
+        let emailRegExp = /^[-\w]+@([-\w]+\.)+[\w-]+$/;
+        let idRegExp = /^\d{9}$/;
+        let dobRegExp = /^((01)|([0-2][2-9])|([1-3][01]))\/((0[1-9])|(1[0-2]))\/(\d{4})$/;
+        let positiveNumRegExp = /^\d+$/;
+        let name, id, dob, email, customerType, persons, rentDays, serviceType, typeRoom, discount;
+        while(true) {
+            menus = prompt("Menu\n    1.Add New Customer\n    2.Display Customer\n    3.Edit Infomation Customer\n    4.Delete Infomation Customer");
+            displayMainMenu(menus);
+        }
+        function displayMainMenu(menuId) {
+            switch(menuId) {
+                case '1':
+                    addNewCustomer();
+                    break;
+                case '2':
+                    displayCustomer();
+                    break;
+                case '3':
+                    editCustomer();
+                    break;
+                case '4':
+                    deleteCustomer();
+                    break;
+                default:
+            }
+        } 
+        function editCustomer() {
+            
+        }
+        function displayCustomer() {
+            alert(listCustomer.join("\n"));
+        }
+        function addNewCustomer() {
+            name = prompt("Customer Name");
+            name = fomatValue(name);
+            while(1) {
+                id   = prompt("Customer id", "XXXXXXXXX");
+                if (checkValid(idRegExp, id)) {
+                    break;
+                } else {
+                    alert("Your ID is invalid.");
+                }
+            }
+            while(1) {
+                dob = prompt("Customer Birthday","dd/MM/yyyy")
+                if (checkValid(dobRegExp, dob)) {
+                    break;
+                } else {
+                    alert("Your birthday is invalid.");
+                }
+            }
+            while(1) {
+                email = prompt("Customer Email", "abc@domain.com");
+                if (checkValid(emailRegExp, email)) {
+                    break;
+                } else {
+                    alert("Your email is invalid.");
+                }
+            }
+            while(1) {
+                rentDays = prompt("Rent Days");
+                if (checkValid(positiveNumRegExp, rentDays)) {
+                    break;
+                } else {
+                    alert("The rent days must be a number");
+                }
+            }
+            while(1) {
+                persons = prompt("Number of person")
+                if (checkValid(positiveNumRegExp, persons)) {
+                    break;
+                } else {
+                    alert("The persons must be a number");
+                }
+            }
+            while(1) {
+                customerType = prompt("Customer Type\n    1.Member\n    2.Silver\n    3.Gold\n    4.Platinum\n    5.Diamond");
+                if (checkValid(/[1-5]/, customerType)) {
+                    customerType = parseInt(customerType);
+                    break;
+                } else {
+                    alert("Choose from 1 - 5");
+                }
+            }
+            while(1) {
+                serviceType = prompt("Choose the service\n    1.Room\n    2.House\n    3.Villa");
+                if (checkValid(/[1-3]/, serviceType)) {
+                    serviceType = parseInt(serviceType)
+                    break;
+                } else {
+                    alert("Choose from 1 - 3");
+                }
+            }
+            while(1) {
+                typeRoom = prompt("Type of Room\n    1.Normal\n    2.Bussiness\n    3.Vip");
+                if (checkValid(/[1-3]/, typeRoom)) {
+                    typeRoom = parseInt(typeRoom);
+                    break;
+                } else {
+                    alert("Choose from 1 - 3");
+                }
+            }
+            while(1) {
+                discount = prompt("Your % discount");
+                if (checkValid(/^(0)|(\d{2})!(100)$/, discount)) {
+                    break;
+                } else {
+                    alert("Input from 0 - 100");
+                }
+            }
+            listCustomer.push([name, id, dob, email, rentDays, persons, customerEum[customerType - 1], serviceEnum[serviceType - 1], roomEnum[typeRoom - 1]])
+        }  
+        function checkValid(regExpType, strCheck) {
+            if (regExpType.test(strCheck)) {
+                return true;
+            } 
+            return false;
+        }
+        function fomatValue(value) {
+            let tempValue = "";
+            value = value.trim().toLowerCase();
+            let length = value.length;
+            for(let i = 0; i < length; i++) {
+                if (value[i] == ' ' && value[i + 1] == ' ') {
+                    continue;
+                }
+                if (i == 0 || value[i - 1] == ' ') {
+                    tempValue += value[i].toUpperCase();
+                    continue;
+                }
+                tempValue += value[i];
+            }
+            return tempValue;
+        }
+    </script>
+</body>
+</html>

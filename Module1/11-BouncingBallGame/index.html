@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="init()">
+    <canvas id="mycanvas"  style="border: 1px solid black;"></canvas>
+    <script src="Ball.js"></script>
+    <script src="Bar.js"></script>
+    <script>
+        let canvas = document.getElementById('mycanvas');
+        canvas.height = 450;
+        canvas.width = 600;
+        let ctx = canvas.getContext("2d");
+        let ball = new Ball(200, 200, 13, 'red');
+        let bar = new Bar(300, 300, 150, 10, 'blue');
+        ball.create();
+        bar.create();
+        function move() {
+            ball.move();
+            ball.isHitBar(bar);
+            // setTimeout(move, 100);
+            window.requestAnimationFrame(move);
+        }
+        function moveBar(evt) {
+            switch(evt.keyCode) {
+                case 37:
+                    bar.moveLeft();
+                    break;
+                case 39:
+                    bar.moveRight();
+                    break;
+            }
+        }
+        function init() {
+            window.addEventListener("keydown", moveBar)
+            move();
+        } 
+    </script>
+</body>
+</html>

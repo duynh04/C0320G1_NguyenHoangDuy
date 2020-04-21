@@ -1,0 +1,217 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="Customer.js"></script>
+    <script src="Employee.js"></script>
+    <script>
+        let info = ["1.Name", "2.Address", "3.ID", "4.Birthday", "5.Email", "6.Rent Days", "7.Persons", "8.Customer Type","9.Service Type", "10.Room Type", "11.Discount"];
+        let customerEum = ["Member","silver","gold","platium","diamod"];
+        let roomEnum = ["normal","bussiness","vip"];
+        let serviceEnum = ["room","house","villa"];
+        let positionEnum = ["manager", "sale", "marketing"]
+        let emailRegExp = /^[-\w]+@([-\w]+\.)+[\w-]+$/;
+        let idRegExp = /^\d{9}$/;
+        let dobRegExp = /^((01)|([0-2][2-9])|([1-3][01]))\/((0[1-9])|(1[0-2]))\/(\d{4})$/;
+        let positiveNumRegExp = /^\d+$/;
+        let listCustomer = [];
+        let listEmployee = [];
+        let mainExit = true;
+        let customerExit = true;
+        let employeeExit = true;
+        displayMainMenu(); 
+        function displayMainMenu() {
+            let mainMenu;
+            let menues;
+            while(mainExit) {
+                mainMenu = prompt("Menu\n    1.Customer\n    2.Employee\n    3.Exit");
+                if(mainMenu == '1') {
+                    customerExit = true;
+                    while(customerExit) {
+                        menus = prompt("Menu\n    1.Add New Customer\n    2.Display Customer\n    3.Payment\n    4.Edit Infomation Customer\n    5.Delete Infomation Customer\n    6.Exit");
+                        displayCustomerMenu(menus);
+                    }
+                } else if (mainMenu == '2') {
+                    employeeExit = true;
+                    while(employeeExit) {
+                        menus = prompt("Menu\n    1.Add New Employee\n    2.Display Employee\n    3.Salary of Employee\n    4.Exit");
+                        displayEmployeeMenu(menus);
+                    }
+                } else mainExit = false;
+            }
+
+        }
+        function displayEmployeeMenu(menuId) {
+            switch(menuId) {
+                case '1':
+                    addNew("Employee");
+                    break;
+                case '2':
+                    displayInfo(listEmployee);
+                    break;
+                case '3':
+                    displaySalary();
+                    break;
+                case '4':
+                    employeeExit = false;
+            }
+        }
+        function displayCustomerMenu(menuId) {
+            switch(menuId) {
+                case '1':
+                    addNew("Customer");
+                    break;
+                case '2':
+                    displayInfo(listCustomer);
+                    break;
+                case '3':
+                    displayPayment();
+                    break;
+                case '4':
+                    editCustomer();
+                    break;
+                case '5':
+                    del(listCustomer);
+                    break;
+                case '6':
+                    customerExit = false;
+                    break;
+            }
+        } 
+        function displayInfo(group) {
+                group.forEach((value) => value.info());
+        }
+        function displaySalary() {
+            listEmployee.forEach((value) => value.salary());
+        }
+        function displayPayment() {
+            let listName = "";
+            listCustomer.forEach((value, index) => {listName += (index + 1) + "." + value.name + "\n";});
+            let namePos = parseInt(prompt("    Select Customer\n"+ listName));
+            listCustomer[namePos - 1].charge();
+
+        }
+        function del(group) {
+            let listName = "";
+            group.forEach((value, index) => {listName += (index + 1) + "." + value.name + "\n";});
+            let namePos = parseInt(prompt("    Select option\n"+ listName));
+            let isConf = confirm("Do you want to delete?");
+            if (isConf) {
+                group.splice(namePos - 1, 1);
+            }
+
+        }
+        function SetInfomation(strPromp, strAlert, regExp){
+            while(1) {
+                value   = prompt(strPromp);
+                if (checkValid(regExp, value)) {
+                    return value;
+                } else {
+                    alert(strAlert);
+                }
+            }
+        }
+        function addNew(group) {
+            let op;
+            let name = prompt("Your Name");
+            name = fomatValue(name);
+            let id = SetInfomation("Your ID", "Your ID is invalid.", idRegExp);
+            let dob = SetInfomation("Your Birthday", "Your birthday is invalid.", dobRegExp);
+            let email = SetInfomation("Your email", "Your email is invalid.", emailRegExp);
+            if (group == "Customer") { // customer group
+                let addr = prompt("Your Address");
+                let rentDays= SetInfomation("Rent days", "The rent day must be a number", positiveNumRegExp);
+                let persons= SetInfomation("Number of person", "The person must be a number", positiveNumRegExp);
+                op = SetInfomation("Customer Type\n    1.Member\n    2.Silver\n    3.Gold\n    4.Platinum\n    5.Diamond", "Choose from 1-5", /[1-5]/);
+                let customerType  = customerEum[op - 1];
+                op = SetInfomation("Choose the service\n    1.Room\n    2.House\n    3.Villa", "Choose from 1-3", /[1-3]/);
+                let serviceType = serviceEnum[op - 1];
+                op = SetInfomation("Type of Room\n    1.Normal\n    2.Bussiness\n    3.Vip", "Choose from 1-3", /[1-3]/);
+                let typeRoom = roomEnum[op - 1];
+                let discount= SetInfomation("Your % discount", "Input from 0 - 100",/^((0)|(\d{2})|(100))$/);
+                let customer = new Customer(name, addr, id, dob, email, rentDays, persons, customerType, serviceType, typeRoom, discount);
+                listCustomer.push(customer);
+            } else { //employee group
+                let phone = SetInfomation("Your Phone Number", "Wrong number", /^0\d{9}$/);
+                op = SetInfomation("Position\n    1.Manager\n    2.Sale\n    3.Makerting", "Choose from 1-3", /[1-3]/);
+                let pos = positionEnum[op - 1];
+                let employee = new Employee(name, id, dob, email, phone, pos);
+                listEmployee.push(employee);
+            }
+        }
+        function editCustomer() {
+            let editValue;
+            let op;
+            let listName = "";
+            listCustomer.forEach((value, index) => {listName += (index + 1) + "." + value.name + "\n";});
+            let namePos = parseInt(prompt("    Select Customer\n"+ listName));
+            let infoPos  = parseInt(prompt("    Select Infomation\n" + info.join("\n")));
+            switch(infoPos) {
+                case 1:
+                    editValue = prompt("Customer Name");
+                    editValue = fomatValue(editValue);
+                    break;
+                case 2:
+                    editValue = prompt("Your Address");
+                    break;
+                case 3:
+                    editValue = SetInfomation("Customer ID", "Your ID is invalid.", idRegExp);
+                    break;
+                case 4:
+                    editValue = SetInfomation("Customer Birthday", "Your birthday is invalid.", dobRegExp);
+                    break;
+                case 5:
+                    editValue = SetInfomation("Customer email", "Your email is invalid.", emailRegExp);
+                    break;
+                case 6:
+                    editValue = SetInfomation("Rent days", "The rent day must be a number", positiveNumRegExp);
+                    break;
+                case 7:
+                    editValue = SetInfomation("Number of person", "The person must be a number", positiveNumRegExp);
+                    break;
+                case 8:
+                    op = SetInfomation("Customer Type\n    1.Member\n    2.Silver\n    3.Gold\n    4.Platinum\n    5.Diamond", "Choose from 1-5", /[1-5]/);
+                    editValue = customerEum[op - 1];
+                    break;
+                case 9:
+                    op =SetInfomation("Choose the service\n    1.Room\n    2.House\n    3.Villa", "Choose from 1-3", /[1-3]/);
+                    editValue = serviceEnum[op - 1];
+                    break;
+                case 10:
+                    op = SetInfomation("Type of Room\n    1.Normal\n    2.Bussiness\n    3.Vip", "Choose from 1-3", /[1-3]/);
+                    editValue = roomEnum[op - 1];
+                    break;
+                case 11:
+                    editValue = SetInfomation("Your % discount", "Input from 0 - 100",/^((0)|(\d{2})|(100))$/);
+                    break;
+            }
+            listCustomer[namePos - 1].modify(infoPos, editValue);
+        }
+        function checkValid(regExpType, strCheck) {
+            if (regExpType.test(strCheck)) {
+                return true;
+            } 
+            return false;
+        }
+        function fomatValue(value) {
+            let tempValue = "";
+            value = value.trim().toLowerCase();
+            let length = value.length;
+            for(let i = 0; i < length; i++) {
+                if (value[i] == ' ' && value[i + 1] == ' ') {
+                    continue;
+                }
+                if (i == 0 || value[i - 1] == ' ') {
+                    tempValue += value[i].toUpperCase();
+                    continue;
+                }
+                tempValue += value[i];
+            }
+            return tempValue;
+        }
+    </script>
+</body>
+</html>

@@ -9,15 +9,16 @@
         let customerEum = ["Member","silver","gold","platium","diamod"];
         let roomEnum = ["normal","bussiness","vip"];
         let serviceEnum = ["room","house","villa"];
-        // name, id, dob, email, rentDays, persons, customerType,serviceType, typeRoom, discount
+        let Info = ["1.Name", "2.Address", "3.ID", "4.Birthday", "5.Email", "6.Rent Days", "7.Persons", "8.Customer Type","9.Service Type", "10.Room Type", "11.Discount"];
         let listCustomer = [];
         let emailRegExp = /^[-\w]+@([-\w]+\.)+[\w-]+$/;
         let idRegExp = /^\d{9}$/;
         let dobRegExp = /^((01)|([0-2][2-9])|([1-3][01]))\/((0[1-9])|(1[0-2]))\/(\d{4})$/;
         let positiveNumRegExp = /^\d+$/;
-        let name, id, dob, email, customerType, persons, rentDays, serviceType, typeRoom, discount;
-        while(true) {
-            menus = prompt("Menu\n    1.Add New Customer\n    2.Display Customer\n    3.Edit Infomation Customer\n    4.Delete Infomation Customer");
+        let name, id, dob, addr, email, customerType, persons, rentDays, serviceType, typeRoom, discount;
+        let nonExit = true;
+        while(nonExit) {
+            menus = prompt("Menu\n    1.Add New Customer\n    2.Display Customer\n    3.Edit Infomation Customer\n    4.Delete Infomation Customer\n    5.Exit");
             displayMainMenu(menus);
         }
         function displayMainMenu(menuId) {
@@ -34,94 +35,110 @@
                 case '4':
                     deleteCustomer();
                     break;
-                default:
+                case '5':
+                    nonExit = false;
+                    break;
             }
         } 
+        function deleteCustomer() {
+            let listName = "";
+            listCustomer.forEach((value, index) => {listName += (index + 1) + "." + value[0] + "\n";});
+            let namePos = parseInt(prompt("    Select Customer\n"+ listName));
+            let isConf = confirm("Are you want to delete this customer?");
+            if (isConf) {
+                listCustomer.splice(namePos - 1, 1);
+            }
+
+        }
         function editCustomer() {
-            
+            let editValue;
+            let op;
+            let listName = "";
+            listCustomer.forEach((value, index) => {listName += (index + 1) + "." + value[0] + "\n";});
+            let namePos = parseInt(prompt("    Select Customer\n"+ listName));
+            let infoPos  = parseInt(prompt("    Select Infomation\n" + Info.join("\n")));
+            switch(infoPos) {
+                case 1:
+                    editValue = prompt("Customer Name");
+                    editValue = fomatValue(editValue);
+                    break;
+                case 2:
+                    editValue = prompt("Your Address");
+                    break;
+                case 3:
+                    editValue = SetInfomation("Customer id", "Your ID is invalid.", idRegExp);
+                    break;
+                case 4:
+                    editValue = SetInfomation("Customer Birthday", "Your birthday is invalid.", dobRegExp);
+                    break;
+                case 5:
+                    editValue = SetInfomation("Customer email", "Your email is invalid.", emailRegExp);
+                    break;
+                case 6:
+                    editValue= SetInfomation("Rent days", "The rent day must be a number", positiveNumRegExp);
+                    break;
+                case 7:
+                    editValue= SetInfomation("Number of person", "The person must be a number", positiveNumRegExp);
+                    break;
+                case 8:
+                    op =SetInfomation("Customer Type\n    1.Member\n    2.Silver\n    3.Gold\n    4.Platinum\n    5.Diamond", "Choose from 1-5", /[1-5]/);
+                    editValue = customerEum[op - 1];
+                    break;
+                case 9:
+                    op =SetInfomation("Choose the service\n    1.Room\n    2.House\n    3.Villa", "Choose from 1-3", /[1-3]/);
+                    editValue = serviceEnum[op - 1];
+                    break;
+                case 10:
+                    op =SetInfomation("Type of Room\n    1.Normal\n    2.Bussiness\n    3.Vip", "Choose from 1-3", /[1-3]/);
+                    editValue = roomEnum[op - 1];
+                    break;
+                case 11:
+                    editValue= SetInfomation("Your % discount", "Input from 0 - 100",/^((0)|(\d{2})|(100))$/);
+                    break;
+            }
+            listCustomer[namePos - 1][infoPos - 1] = editValue;
         }
         function displayCustomer() {
-            alert(listCustomer.join("\n"));
+            listCustomer.forEach((value) => {
+                alert("    Customer Infomation: " + "\n" +
+                    "Name: " + value[0] + "\n" + 
+                    "Address: " + value[1] + "\n" + 
+                    "ID number: " + value[2] + "\n" + 
+                    "DOB: " + value[3] + "\n" + 
+                    "Email: " + value[4] + "\n" + 
+                    "Rent days: " + value[5] + "\n" + 
+                    "Persons: " + value[6] + "\n" + 
+                    "Customer: " + value[7] + "\n" + 
+                    "Service: " + value[8] + "\n" + 
+                    "Room: " + value[9] + "\n" + 
+                    "Discount: " + value[10] + "\n" );
+            }
+            ); 
+        }
+        function SetInfomation(strPromp, strAlert, regExp){
+            while(1) {
+                value   = prompt(strPromp);
+                if (checkValid(regExp, value)) {
+                    return value;
+                } else {
+                    alert(strAlert);
+                }
+            }
         }
         function addNewCustomer() {
             name = prompt("Customer Name");
             name = fomatValue(name);
-            while(1) {
-                id   = prompt("Customer id", "XXXXXXXXX");
-                if (checkValid(idRegExp, id)) {
-                    break;
-                } else {
-                    alert("Your ID is invalid.");
-                }
-            }
-            while(1) {
-                dob = prompt("Customer Birthday","dd/MM/yyyy")
-                if (checkValid(dobRegExp, dob)) {
-                    break;
-                } else {
-                    alert("Your birthday is invalid.");
-                }
-            }
-            while(1) {
-                email = prompt("Customer Email", "abc@domain.com");
-                if (checkValid(emailRegExp, email)) {
-                    break;
-                } else {
-                    alert("Your email is invalid.");
-                }
-            }
-            while(1) {
-                rentDays = prompt("Rent Days");
-                if (checkValid(positiveNumRegExp, rentDays)) {
-                    break;
-                } else {
-                    alert("The rent days must be a number");
-                }
-            }
-            while(1) {
-                persons = prompt("Number of person")
-                if (checkValid(positiveNumRegExp, persons)) {
-                    break;
-                } else {
-                    alert("The persons must be a number");
-                }
-            }
-            while(1) {
-                customerType = prompt("Customer Type\n    1.Member\n    2.Silver\n    3.Gold\n    4.Platinum\n    5.Diamond");
-                if (checkValid(/[1-5]/, customerType)) {
-                    customerType = parseInt(customerType);
-                    break;
-                } else {
-                    alert("Choose from 1 - 5");
-                }
-            }
-            while(1) {
-                serviceType = prompt("Choose the service\n    1.Room\n    2.House\n    3.Villa");
-                if (checkValid(/[1-3]/, serviceType)) {
-                    serviceType = parseInt(serviceType)
-                    break;
-                } else {
-                    alert("Choose from 1 - 3");
-                }
-            }
-            while(1) {
-                typeRoom = prompt("Type of Room\n    1.Normal\n    2.Bussiness\n    3.Vip");
-                if (checkValid(/[1-3]/, typeRoom)) {
-                    typeRoom = parseInt(typeRoom);
-                    break;
-                } else {
-                    alert("Choose from 1 - 3");
-                }
-            }
-            while(1) {
-                discount = prompt("Your % discount");
-                if (checkValid(/^(0)|(\d{2})!(100)$/, discount)) {
-                    break;
-                } else {
-                    alert("Input from 0 - 100");
-                }
-            }
-            listCustomer.push([name, id, dob, email, rentDays, persons, customerEum[customerType - 1], serviceEnum[serviceType - 1], roomEnum[typeRoom - 1]])
+            addr = prompt("Your Address");
+            id = SetInfomation("Customer id", "Your ID is invalid.", idRegExp);
+            dob = SetInfomation("Customer Birthday", "Your birthday is invalid.", dobRegExp);
+            email = SetInfomation("Customer email", "Your email is invalid.", emailRegExp);
+            rentDays= SetInfomation("Rent days", "The rent day must be a number", positiveNumRegExp);
+            persons= SetInfomation("Number of person", "The person must be a number", positiveNumRegExp);
+            customerType =SetInfomation("Customer Type\n    1.Member\n    2.Silver\n    3.Gold\n    4.Platinum\n    5.Diamond", "Choose from 1-5", /[1-5]/);
+            serviceType =SetInfomation("Choose the service\n    1.Room\n    2.House\n    3.Villa", "Choose from 1-3", /[1-3]/);
+            typeRoom =SetInfomation("Type of Room\n    1.Normal\n    2.Bussiness\n    3.Vip", "Choose from 1-3", /[1-3]/);
+            discount= SetInfomation("Your % discount", "Input from 0 - 100",/^((0)|(\d{2})|(100))$/);
+            listCustomer.push([name, addr, id, dob, email, rentDays, persons, customerEum[customerType - 1], serviceEnum[serviceType - 1], roomEnum[typeRoom - 1], discount])
         }  
         function checkValid(regExpType, strCheck) {
             if (regExpType.test(strCheck)) {

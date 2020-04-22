@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="bai1.js"></script>
+    <script src="bai2.js"></script>
+    <script>
+        testSuite2();
+        // test bai 1
+        function testSuite1() {
+            test(JSON.stringify(createRectangle([[2, 5], [2, 2], [5, 5]])) == JSON.stringify([5, 2]));
+            test(JSON.stringify(createRectangle([[2, 8], [2, 3], [13, 3]])) == JSON.stringify([13,8]));
+            test(JSON.stringify(createRectangle([[-22, 16], [-14, 6], [-4, 14]])) == JSON.stringify([-12, 24]));
+            test(JSON.stringify(createRectangle([[40, 5], [25, 5], [40, -10]])) == JSON.stringify([25, -10]));
+            test(JSON.stringify(createRectangle([[-30, -10], [-35, 15], [-60, 10]])) == JSON.stringify([-55, -15]));
+        }
+        function testSuite2() {
+            console.log(setOfEquations([1,5,2,3,15,6]));
+            console.log(setOfEquations([1,1,2,1,2,8]));
+            console.log(setOfEquations([1,2,3,4,5,6]));
+            console.log(setOfEquations([1,2,3,1,2,4]));
+            console.log(setOfEquations([1,2,3,7,7,7]));
+            console.log(setOfEquations([120,187,2911,71,78,1298]));
+        }
+        function test(isPass) {
+            if(isPass) {
+                console.log("The test is OK.");
+            } else {
+                console.log("The test is FAILED.");
+            } 
+        }
+    </script>
+</body>
+</html>
+
+      

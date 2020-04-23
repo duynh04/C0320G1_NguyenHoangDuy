@@ -16,21 +16,30 @@ function setOfEquations(numbers) {
     //console.log(isZero);
     if(isZero) {
         if(detA)
-            return "Infinity";
+            return "Infinities";
         else {
             return "0, 0";
         }
     } else {
         if (detA == 0) {
-            if((matA[0] / matA[2] == matA[1] / matA[3]) && (matA[0] / matA[2] == matB[0] / matB[1])) {
-                return "Infinity";
+            if(matA[0] == 0 && matA[2] == 0){
+                check =  (matB[0] * matA[3] == matB[1] * matA[1]);
+            }
+            else if (matA[1] == 0 && matA[3] == 0) {
+                check  = (matB[0] * matA[2] == matB[1] * matA[0]);
             } else {
-                return "Cannot solved";
+                check =  (matB[0] * matA[3] == matB[1] * matA[1]);
+            }
+            if (check) {
+                return "Infinities";
+            } else {
+                return "Can not solve";
             }
         } else {
-            invMatA = invertMaxtrix(matA, detA);
+            invMatA = invertMaxtrix(matA);
             for(let i = 0; i < 4; i += 2) {
                 temp = invMatA[i] * matB[0] + invMatA[i + 1] * matB[1];
+                temp /= detA;
                 result.push(temp);
             }
             return result.join(",");
@@ -38,8 +47,7 @@ function setOfEquations(numbers) {
     } 
     
 }
-function invertMaxtrix(mat, det) {
+function invertMaxtrix(mat) {
     let tempMat = [mat[3], -mat[1], -mat[2], mat[0]];
-    return tempMat.map((value) => { return value / det});
-
+    return tempMat;
 }

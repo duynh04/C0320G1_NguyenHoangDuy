@@ -1,5 +1,5 @@
 function bestFriend(a,b) {
-  let maxV
+  let maxV;
   let minV;  
   let count = 0;
   let tempArr = [];

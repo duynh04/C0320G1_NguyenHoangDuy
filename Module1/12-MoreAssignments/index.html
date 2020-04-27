@@ -11,8 +11,10 @@
     <script src="bai4.js"></script>
     <script src="bai5.js"></script>
     <script src="bai6.js"></script>
+    <script src="bai7.js"></script>
+    <script src="bai8.js"></script>
     <script>
-        testSuite5();
+        testSuite8();
         // test bai 1
         function testSuite1() {
             console.log(createRectangle([[2, 5], [2, 2], [5, 5]]));
@@ -61,6 +63,23 @@
           console.log(soloBingoGame([[7, 8, 12, 4, 23], [9, 17, 21, 22, 19], [16, 18, 13, 14, 1], [25, 6, 3, 11, 2], [15, 10, 24, 20, 5]], [[7, 12, 10, 21, 20], [24, 11, 8, 2, 13], [17, 3, 25, 22, 5], [1, 9, 15, 4, 6], [18, 19, 16, 14, 23]], [17, 7, 22, 15, 13, 11, 24, 25, 3, 23, 14, 16, 9, 18, 21, 5, 12, 10, 2, 20, 4, 8, 19, 6, 1]));
           console.log(soloBingoGame([[4, 21, 5, 11, 15], [12, 25, 2, 10, 19], [18, 14, 20, 6, 1], [17, 16, 22, 24, 7], [23, 3, 8, 13, 9]], [[14, 16, 17, 24, 15], [25, 13, 8, 23, 6], [2, 11, 19, 5, 22], [12, 4, 9, 18, 3], [20, 7, 10, 21, 1]], [2, 13, 9, 7, 23, 12, 17, 25, 22, 8, 4, 14, 21, 5, 10, 16, 6, 24, 1, 19, 3, 20, 11, 18, 15]));
           console.log(soloBingoGame([[14, 4, 13, 24, 21], [25, 1, 9, 7, 22], [12, 5, 18, 15, 23], [2, 10, 16, 19, 17], [11, 8, 20, 6, 3]], [[14, 4, 13, 24, 21], [25, 1, 9, 7, 22], [12, 5, 18, 15, 23], [2, 10, 16, 19, 17], [11, 8, 20, 6, 3]], [1, 2, 3]));
+        }
+
+        function testSuite7() {
+            console.log(isValidGuestPassword(["12345678","12345679","12345670","23456789","23456780"]));
+            console.log(isValidGuestPassword(["qwerty","12345233","adwqegtf","111111111111", "asdasdd"]));
+            console.log(isValidGuestPassword(["zxcvbnmq","12345679","asd4fg32","dsafg432","23456780"]));
+            console.log(isValidGuestPassword(["ab123456","bcgh4567","c3d451gf","bcgl4567","c3d4n3gf"]));
+        } 
+        
+        function testSuite8() {
+            console.log(countNumbersBeautiful(1, 20));
+            console.log(countNumbersBeautiful(8, 12));
+            console.log(countNumbersBeautiful(11, 20));
+            console.log(countNumbersBeautiful(43, 123));
+            console.log(countNumbersBeautiful(111, 222));
+            console.log(countNumbersBeautiful(2324, 2353465));
+            console.log(countNumbersBeautiful(123543656, 76757567677));
         }
     </script>
 </body>

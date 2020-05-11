@@ -27,7 +27,7 @@ public class MinValue {
         for (int j = 0; j < array.length; j++) {
             System.out.print(array[j] + "\t");
         }
-        // find max value in array
+        // find min value in array
         int min  = array[0];
         int index = 1;
         for (int j = 0; j < array.length; j++) {

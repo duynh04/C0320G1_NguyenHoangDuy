@@ -4,13 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class ArrayException {
-    public ArrayException(int x) {
-
-    }
     public static void main(String[] args) {
-//        var a = 8;
-//        ArrayException();
-        ArrayException  a = new ArrayException();
         ArrayExample arrExample = new ArrayExample();
 
         int[] arr = arrExample.createRandom();

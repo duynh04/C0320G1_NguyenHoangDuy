@@ -1,6 +1,8 @@
 package P4Inheritance.thuchanh.shape;
 
-public class Rectangle extends Shape {
+import P5InterfaceAndAbstract.baitap.resize.Resizeable;
+
+public class Rectangle extends Shape implements Resizeable {
     private double width;
     private double height;
     public Rectangle() {
@@ -42,5 +44,20 @@ public class Rectangle extends Shape {
     }
     public double getPerimeter() {
         return 2 * (width + height);
+    }
+
+    @Override
+    public String toString() {
+        return "Rectangle{" +
+                "width=" + width +
+                ", height=" + height +
+                ", with" + super.toString() +
+                '}';
+    }
+
+    @Override
+    public void resize(double percent) {
+        setHeight(height * percent / 100);
+        setWidth(width * percent / 100);
     }
 }

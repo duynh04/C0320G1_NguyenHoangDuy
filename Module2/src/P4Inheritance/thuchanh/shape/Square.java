@@ -1,5 +1,7 @@
 package P4Inheritance.thuchanh.shape;
 
+import P5InterfaceAndAbstract.baitap.resize.Resizeable;
+
 public class Square extends Rectangle{
     public Square() {
     }
@@ -13,21 +15,12 @@ public class Square extends Rectangle{
     }
 
     public double getSide() {
-        return getWidth();
+        return super.getWidth();
     }
 
     public void setSide(double side) {
-        setWidth(side);
-        setLength(side);
-    }
-
-    @Override
-    public void setWidth(double width) {
-        setSide(width);
-    }
-
-    public void setLength(double length) {
-        setSide(length);
+        super.setWidth(side);
+        super.setHeight(side);
     }
 
     @Override
@@ -36,5 +29,10 @@ public class Square extends Rectangle{
                 + getSide()
                 + ", which is a subclass of "
                 + super.toString();
+    }
+
+    @Override
+    public void resize(double percent) {
+        super.resize(percent);
     }
 }

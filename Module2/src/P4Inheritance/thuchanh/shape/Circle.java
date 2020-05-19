@@ -1,6 +1,8 @@
 package P4Inheritance.thuchanh.shape;
 
-public class Circle extends Shape {
+import P5InterfaceAndAbstract.baitap.resize.Resizeable;
+
+public class Circle extends Shape implements Resizeable {
     private double radius;
     public Circle() {
         super();
@@ -32,5 +34,10 @@ public class Circle extends Shape {
     @Override
     public String toString() {
         return "A Circle with radius = " + radius + ", which subclass of " + super.toString();
+    }
+
+    @Override
+    public void resize(double percent) {
+        setRadius(radius * percent / 100);
     }
 }

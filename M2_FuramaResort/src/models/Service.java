@@ -41,7 +41,7 @@ public abstract class Service {
         return area;
     }
 
-    public void setArea(float area) {
+    public void setArea(double area) {
         this.area = area;
     }
 
@@ -49,7 +49,7 @@ public abstract class Service {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

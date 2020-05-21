@@ -1,5 +1,8 @@
 package commons;
 import com.opencsv.*;
+import com.opencsv.bean.ColumnPositionMappingStrategy;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvException;
 import models.*;
 
@@ -58,24 +61,35 @@ public class CsvFile {
      * @param headerContent header content
      */
     private static void createHeader(String fileName, String[] headerContent) {
-        List<String[]> temp = new LinkedList<>();
-        temp.add(headerContent);
-        write(fileName, temp);
+//        List<String[]> temp = new LinkedList<>();
+//        temp.add(headerContent);
+        write(fileName, headerContent);
     }
 
     /**
      *  write all line to csv file
      * @param fileName file name of csv
-     * @param content a array of content written data.
+     * @param data a array of content written data.
      */
-    private static void write(String fileName, List<String[]> content) {
+    private static void write(String fileName, String[] data) {
         try {
-            FileWriter writer = new FileWriter(PATH + fileName);
+            FileWriter writer = new FileWriter(PATH + fileName, true);
             CSVWriter csvWriter = new CSVWriter(writer);
-            csvWriter.writeAll(content);
+            csvWriter.writeNext(data);
             csvWriter.close();
         } catch (IOException e) {
             System.out.println("Error when write data into csv file");
+        }
+    }
+
+    /**
+     *  write many lines into csv file
+     * @param fileName file name
+     * @param data list data
+     */
+    public static void write(String fileName, List<String[]> data) {
+        for (String[] dat: data ) {
+            write(fileName,dat);
         }
     }
 
@@ -84,28 +98,25 @@ public class CsvFile {
      * @param service written data
      */
     public static void write(Service service) {
-        List<String[]> originData = null;
+//        List<String[]> originData = null;
         String[] newData = service.gatherInfo();
         String fileName = "";
         if(service instanceof Room) {
-            originData = readAllFile(ROOM_CSV);
+//            originData = readAllFile(ROOM_CSV);
             fileName = ROOM_CSV;
         } else if (service instanceof House) {
-            originData = readAllFile(HOUSE_CSV);
+//            originData = readAllFile(HOUSE_CSV);
             fileName = HOUSE_CSV;
         } else if (service instanceof Villa) {
-            originData = readAllFile(VILLA_CSV);
+//            originData = readAllFile(VILLA_CSV);
             fileName = VILLA_CSV;
         }
-        if (originData != null) {
-            originData.add(newData);
-            write(fileName, originData);
-//            for (String[] data : originData) {
-//                System.out.println(Arrays.toString(data));
-//                write(fileName, data);
-//            }
-        }
+//        if (originData != null) {
+//            originData.add(newData);
+            write(fileName, newData);
+//        }
     }
+
 
     /**
      * read all csv file
@@ -127,5 +138,40 @@ public class CsvFile {
         return lst;
     }
 
+    public static List<Villa> read(Villa service) {
+        String[] columns = {};
+        String fileName = "";
+        ColumnPositionMappingStrategy<Villa> strategy = new ColumnPositionMappingStrategy<>();
+        strategy.setType(Villa.class);
+//        if (service instanceof House) {
+////            strategy.setType(House.class);
+//            columns = HOUSE_HEADER;
+//            fileName = HOUSE_CSV;
+//        } else if (service instanceof Villa) {
+//            strategy.setType(Villa.class);
+            columns = VILLA_HEADER;
+            fileName = VILLA_CSV;
+//        } else if (service instanceof Room) {
+////            strategy.setType(Room.class);
+//            columns = ROOM_HEADER;
+//            fileName = ROOM_CSV;
+//        }
+        strategy.setColumnMapping(columns);
+        try {
+            FileReader reader = new FileReader(PATH + fileName);
+            CsvToBean<Villa> csvToBean = new CsvToBeanBuilder<Villa>(reader)
+                    .withMappingStrategy(strategy)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
+            List<Villa> lst = csvToBean.parse();
+            for (Villa dat : lst) {
+                System.out.println(dat);
+            }
+            return lst;
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
 

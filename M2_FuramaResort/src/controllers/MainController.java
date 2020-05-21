@@ -1,14 +1,15 @@
 package controllers;
 
+import commons.CsvFile;
+import services.impl.*;
+
 import java.util.Scanner;
 
 public class MainController {
     static Scanner input = new Scanner(System.in);
-    public static void main(String[] args) {
-        while (true) {
-            displayMainMenu();
-        }
-    }
+    static HouseServiceImpl houseServiceImpl = new HouseServiceImpl();
+    static VillaServiceImpl villaServiceImpl = new VillaServiceImpl();
+    static RoomServiceImpl roomServiceImpl = new RoomServiceImpl();
     public static void displayMainMenu() {
         System.out.println(
                 "1. Add New Services\n" +
@@ -19,12 +20,14 @@ public class MainController {
                 "6. Show Information of Employee\n" +
                 "7. Exit");
         System.out.print("Select your number: ");
-        int number = input.nextInt();
-        switch (number) {
+        int choice = input.nextInt();
+        switch (choice) {
             case 1:
                 addNewService();
+                break;
             case 2:
                 showService();
+                break;
             case 3:
             case 4:
             case 5:
@@ -37,16 +40,16 @@ public class MainController {
     private static void showService() {
         System.out.println(
                 "1. Show all Villa\n" +
-                        "2. Show all House\n" +
-                        "3. Show all Room\n" +
-                        "4. Show All Name Villa Not Duplicate\n" +
-                        "5. Show All Name House Not Duplicate\n" +
-                        "6. Show All Name Room Not Duplicate\n" +
-                        "7. Back To Menu\n" +
-                        "8. Exit");
+                "2. Show all House\n" +
+                "3. Show all Room\n" +
+                "4. Show All Name Villa Not Duplicate\n" +
+                "5. Show All Name House Not Duplicate\n" +
+                "6. Show All Name Room Not Duplicate\n" +
+                "7. Back To Menu\n" +
+                "8. Exit");
         System.out.print("Select your number: ");
-        int number = input.nextInt();
-        switch (number) {
+        int choice = input.nextInt();
+        switch (choice) {
             case 1:
             case 2:
             case 3:
@@ -68,11 +71,17 @@ public class MainController {
                 "4. Back to Menu\n" +
                 "5. Exit");
         System.out.print("Select your number: ");
-        int number = input.nextInt();
-        switch (number) {
+        int choice = input.nextInt();
+        switch (choice) {
             case 1:
+                CsvFile.write(villaServiceImpl.add());
+                break;
             case 2:
+                CsvFile.write(houseServiceImpl.add());
+                break;
             case 3:
+                CsvFile.write(roomServiceImpl.add());
+                break;
             case 4:
                 return;
             case 5:

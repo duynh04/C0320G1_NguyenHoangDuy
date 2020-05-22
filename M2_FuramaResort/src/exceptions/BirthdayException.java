@@ -13,13 +13,12 @@ public class BirthdayException extends UserException{
         super(message);
     }
 
-    public static String check(String input) throws BirthdayException {
+    public static void check(String input) throws BirthdayException {
         final String birthdayRegex = "^((01|[0-2][2-9]|[1-3][01])\\/(0[13578]|1[02])|([0-2][1-9]|[1-3]0)\\/(11|0[469])|([0-2][1-9]|20|10)\\/(02))\\/((19\\d{2})|([2-9]\\d{3}))$";
         if(!Validation.validate(birthdayRegex, input)) {
-            throw new BirthdayException("Wrong fomat date: dd/MM/yyyy and year must be > 1900");
+            throw new BirthdayException("Wrong format date: dd/MM/yyyy and year must be > 1900");
         }
         checkAge(input);
-        return input;
     }
 
     private static void checkAge(String age) throws BirthdayException {

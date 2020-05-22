@@ -2,16 +2,22 @@ package controllers;
 
 import commons.CsvFile;
 import models.*;
+import commons.IData;
+import services.IPerson;
+import services.IService;
 import services.impl.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
 public class MainController {
     static Scanner input = new Scanner(System.in);
-    static HouseServiceImpl houseServiceImpl = new HouseServiceImpl();
-    static VillaServiceImpl villaServiceImpl = new VillaServiceImpl();
-    static RoomServiceImpl roomServiceImpl = new RoomServiceImpl();
+    static IService houseServiceImpl = new HouseServiceImpl();
+    static IService villaServiceImpl = new VillaServiceImpl();
+    static IService roomServiceImpl = new RoomServiceImpl();
+    static IPerson customerAddImpl = new CustomerAddImpl();
     public static void displayMainMenu() {
         System.out.println("------------------------------------------------------------");
         System.out.println(
@@ -32,7 +38,12 @@ public class MainController {
                 showService();
                 break;
             case 3:
+                addNewCustomer();
+                break;
             case 4:
+                System.out.println("doooo");
+                showInfoCustomer();
+                break;
             case 5:
                 showBooking();
                 break;
@@ -40,6 +51,19 @@ public class MainController {
             case 7:
                 System.exit(0);
         }
+    }
+
+    private static void showInfoCustomer() {
+        List<IData> customerList =  CsvFile.read(new Customer());
+        customerList.sort(new NameComparator());
+        for (IData customer : customerList) {
+            Customer customer1 = (Customer) customer;
+            customer1.showInfo();
+        }
+    }
+
+    private static void addNewCustomer() {
+        CsvFile.write(customerAddImpl.add());
     }
 
     private static void showBooking() {
@@ -81,13 +105,13 @@ public class MainController {
         switch (choice) {
             case 1:
                 showAll(CsvFile.read(new Villa()));
-                break;
+                return;
             case 2:
                 showAll(CsvFile.read(new House()));
-                break;
+                return;
             case 3:
                 showAll(CsvFile.read(new Room()));
-                break;
+                return;
             case 4:
             case 5:
             case 6:
@@ -99,8 +123,8 @@ public class MainController {
         }
     }
 
-    private static void showAll(List<Service> service) {
-        for (Service s: service ) {
+    private static void showAll(List<IData> service) {
+        for (IData s: service) {
             s.showInfo();
         }
     }
@@ -118,13 +142,13 @@ public class MainController {
         switch (choice) {
             case 1:
                 CsvFile.write(villaServiceImpl.add());
-                break;
+                return;
             case 2:
                 CsvFile.write(houseServiceImpl.add());
-                break;
+                return;
             case 3:
                 CsvFile.write(roomServiceImpl.add());
-                break;
+                return;
             case 4:
                 return;
             case 5:

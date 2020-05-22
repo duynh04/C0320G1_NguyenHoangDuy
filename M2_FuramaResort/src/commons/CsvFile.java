@@ -2,7 +2,6 @@ package commons;
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvException;
 import models.*;
-import services.IPerson;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,21 +17,10 @@ public class CsvFile {
     private static final String[] VILLA_HEADER = {"Id", "Name Service", "Area", "Price", "Max People", "Type Rent", "Room Standard", "Facility", "Storey", "Pool Area"};
     private static final String[] HOUSE_HEADER = {"Id", "Name Service", "Area", "Price", "Max People", "Type Rent", "Room Standard", "Facility", "Storey"};
     private static final String[] ROOM_HEADER = {"Id", " Name Service", "Area", "Price", "Max People", "Type Rent", "Free Service"};
-    private static final String[] CUSTOMER_HEADER = {" id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address"};
-    private static final String[] BOOKING_HEADER = {" id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address", "idService", "nameService", "areaUse", "rentalCost", "maxNumberOfPeople", "typeRent",};
-    public static void main(String[] args) {
-        try {
-            FileWriter wr = new FileWriter(PATH + "Test.csv");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Service room = new Room("1", "room-vip", 20.5f, 1000, 2, "1", "Massage");
-        Service house = new House("2", "House", 50f, 2000, 10, "2", "4", "Gym", 3);
-        Service villa = new Villa("3", "VIlla", 80f, 5000, 20, "4", "5", "Gym-Swimming pool", 3, 50);
-        CsvFile.write(villa);
-        CsvFile.write(house);
-        CsvFile.write(room);
-    }
+    private static final String[] CUSTOMER_HEADER = {"Id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address"};
+    private static final String[] BOOKING_HEADER = {"Id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address", "idService", "nameService", "areaUse", "rentalCost", "maxNumberOfPeople", "typeRent",};
+
+
     // static block to create csv file
     static {
         if(createFile(VILLA_CSV))
@@ -103,8 +91,9 @@ public class CsvFile {
      * Write data into csv file
      * @param service written data
      */
-    public static void write(Service service) {
-//        List<String[]> originData = null;
+    public static void write(IData service) {
+        //        List<String[]> originData = null;
+
         String[] newData = service.gatherInfo();
         String fileName = "";
         if(service instanceof Room) {
@@ -116,6 +105,8 @@ public class CsvFile {
         } else if (service instanceof Villa) {
 //            originData = readAllFile(VILLA_CSV);
             fileName = VILLA_CSV;
+        } else if(service instanceof Customer) {
+            fileName = CUSTOMER_CSV;
         }
 //        if (originData != null) {
 //            originData.add(newData);
@@ -136,23 +127,22 @@ public class CsvFile {
             CSVReader csvReader = new CSVReader(new FileReader(PATH + fileName));
             lst =  csvReader.readAll();
             lst.remove(0);
-            if (lst == null) {
-                System.out.println("this is null");
-            }
         } catch (CsvException | IOException e) {
             System.out.println(e.getMessage());
         }
         return lst;
     }
-    public static List<Service> read(Service service) {
+    public static List<IData> read(IData service) {
         List<String[]> list = null;
-        List<Service> info = new ArrayList<>();
+        List<IData> info = new ArrayList<>();
         if (service instanceof Room) {
             list = readAllFile(ROOM_CSV);
         } else if (service instanceof House) {
             list = readAllFile(HOUSE_CSV);
         } else if (service instanceof Villa) {
             list = readAllFile(VILLA_CSV);
+        } else if(service instanceof Customer) {
+            list = readAllFile(CUSTOMER_CSV);
         }
         // transfer string to
         if(list != null) {

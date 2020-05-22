@@ -1,9 +1,10 @@
 package models;
 
+import exceptions.BirthdayException;
 import services.IPerson;
 
-public class Customer implements IPerson{
-    private String customer;
+public class Customer extends Person{
+    private String customerName;
     private String idCard;
     private String birthday;
     private String gender;
@@ -16,8 +17,8 @@ public class Customer implements IPerson{
     public Customer() {
     }
 
-    public Customer(String customer, String idCard, String birthday, String gender, String phoneNumber, String email, String customerType, String address, Service service) {
-        this.customer = customer;
+    public Customer(String customerName, String idCard, String birthday, String gender, String phoneNumber, String email, String customerType, String address, Service service) {
+        this.customerName = customerName;
         this.idCard = idCard;
         this.birthday = birthday;
         this.gender = gender;
@@ -28,12 +29,12 @@ public class Customer implements IPerson{
         this.service = service;
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getBirthday() {
@@ -99,10 +100,11 @@ public class Customer implements IPerson{
     public void setService(Service service) {
         this.service = service;
     }
+
     public String[] gatherInfo() {
         int NUM_OF_FIELD = 9;
         String[] data = new String[NUM_OF_FIELD];
-        data[1] = customer;
+        data[1] = customerName;
         data[2] = idCard;
         data[3] = birthday;
         data[4] = gender;
@@ -115,7 +117,7 @@ public class Customer implements IPerson{
 
     public Customer splitInfo(String[] data) {
         Customer customer = new Customer();
-        customer.setCustomer(data[1]);
+        customer.setCustomerName(data[1]);
         customer.setIdCard(data[2]);
         customer.setBirthday(data[3]);
         customer.setGender(data[4]);
@@ -124,5 +126,18 @@ public class Customer implements IPerson{
         customer.setCustomerType(data[7]);
         customer.setAddress(data[8]);
         return customer;
+    }
+
+    @Override
+    public void showInfo() {
+        System.out.printf("Name: %s, ID: %s, Birthday: %s, Gender; %s, Phone: %s, Email: %s, Type: %s, Address: %s\n",
+                customerName,
+                idCard,
+                birthday,
+                gender,
+                phoneNumber,
+                email,
+                customerType,
+                address);
     }
 }

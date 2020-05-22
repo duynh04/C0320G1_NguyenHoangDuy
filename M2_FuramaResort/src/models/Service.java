@@ -1,15 +1,17 @@
 package models;
 
-public abstract class Service {
+import commons.IData;
+
+public abstract class Service implements IData {
     private String id;
     private String typeName;
     private double area;
     private double price;
     private int maxPeople;
     private String rentType;
-    public abstract void showInfo();
-    public abstract String[] gatherInfo();
-    public abstract Service splitInfo(String[] data);
+//    public abstract void showInfo();
+//    public abstract String[] gatherInfo();
+//    public abstract Service splitInfo(String[] data);
 
     public Service() {}
 

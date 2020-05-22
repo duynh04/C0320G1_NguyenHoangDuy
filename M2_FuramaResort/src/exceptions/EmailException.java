@@ -7,11 +7,10 @@ public class EmailException extends UserException{
         super(message);
     }
 
-    public static String check(String input) throws EmailException {
+    public static void check(String input) throws EmailException {
         final String emailRegex = "^([-\\w.])+[a-zA-Z\\d]@(\\w+\\.)+(\\w+)$";
         if(!Validation.validate(emailRegex, input)) {
             throw new EmailException("Email is invalid.");
         }
-        return input;
     }
 }

@@ -26,7 +26,7 @@ public class Main {
 //        List<Service> lst = CsvFile.read(new Room());
         while (true) {
             displayMainMenu();
-            break;
+//            break;
         }
 //        Scanner in = new Scanner(System.in);
 //        String u = "";

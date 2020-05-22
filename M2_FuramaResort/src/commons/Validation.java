@@ -1,5 +1,7 @@
 package commons;
 
+import exceptions.*;
+
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,10 +30,43 @@ public class Validation {
             testString = scanner.nextLine();
             if (regex.equals(""))
                 return testString;
-            if(testString.matches(regex)) {
+//            if(testString.matches(regex)) {
+            if (validate(regex,testString)) {
                 return testString;
             } else {
                 System.out.println(warningStr);
+            }
+        }
+    }
+
+    public static String check(String type, String inputStr) {
+        String testString = "";
+        while (true) {
+            System.out.print(inputStr + ": ");
+            testString = scanner.nextLine();
+            try {
+                switch (type) {
+                    case "Name":
+                        NameException.check(testString);
+                        break;
+                    case "Email":
+                        EmailException.check(testString);
+                        break;
+                    case "Birthday":
+                        BirthdayException.check(testString);
+                        break;
+                    case "IdCard":
+                        IdCardException.check(testString);
+                        break;
+                    case "Gender":
+                        testString = GenderException.check(testString);
+                        break;
+                    default:
+                        return testString;
+                }
+                return testString;
+            } catch (UserException e) {
+                 System.out.println(e.getMessage());
             }
         }
     }

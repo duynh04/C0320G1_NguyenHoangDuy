@@ -8,7 +8,7 @@ public class NameException extends UserException {
         super(message);
     }
 
-    public static String check(String input) throws NameException {
+    public static void check(String input) throws NameException {
         final String outerSpaceRegex = "^\\s+([A-Za-z]+\\s*)+\\s*$";
         final String nameRegex = "^([A-Z][a-z]+\\s?)+$";
         // check outer space
@@ -20,8 +20,6 @@ public class NameException extends UserException {
             input = input.trim();
             if(!Validation.validate(nameRegex, input)) {
                 throw new NameException("Not valid Name, please try again.!");
-            } else {
-                return input;
             }
         }
     }

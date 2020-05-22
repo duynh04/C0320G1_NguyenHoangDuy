@@ -1,23 +1,25 @@
 package commons;
 import com.opencsv.*;
-import com.opencsv.bean.ColumnPositionMappingStrategy;
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvException;
 import models.*;
+import services.IPerson;
 
 import java.io.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CsvFile {
     private static final String PATH = "src\\data\\";
+    private static final String CUSTOMER_CSV = "Customer.csv";
     private static final String ROOM_CSV = "Room.csv";
     private static final String VILLA_CSV = "Villa.csv";
     private static final String HOUSE_CSV = "House.csv";
+    private static final String BOOKING_CSV = "Booking.csv";
     private static final String[] VILLA_HEADER = {"Id", "Name Service", "Area", "Price", "Max People", "Type Rent", "Room Standard", "Facility", "Storey", "Pool Area"};
     private static final String[] HOUSE_HEADER = {"Id", "Name Service", "Area", "Price", "Max People", "Type Rent", "Room Standard", "Facility", "Storey"};
     private static final String[] ROOM_HEADER = {"Id", " Name Service", "Area", "Price", "Max People", "Type Rent", "Free Service"};
+    private static final String[] CUSTOMER_HEADER = {" id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address"};
+    private static final String[] BOOKING_HEADER = {" id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address", "idService", "nameService", "areaUse", "rentalCost", "maxNumberOfPeople", "typeRent",};
     public static void main(String[] args) {
         try {
             FileWriter wr = new FileWriter(PATH + "Test.csv");
@@ -39,6 +41,10 @@ public class CsvFile {
             createHeader(HOUSE_CSV, HOUSE_HEADER);
         if(createFile(ROOM_CSV))
             createHeader(ROOM_CSV, ROOM_HEADER);
+        if(createFile(CUSTOMER_CSV))
+            createHeader(CUSTOMER_CSV, CUSTOMER_HEADER);
+        if(createFile(BOOKING_CSV))
+            createHeader(BOOKING_CSV, BOOKING_HEADER);
     }
     /**
      * create a csv file if it is not exist
@@ -129,6 +135,7 @@ public class CsvFile {
 //            FileReader reader = new FileReader(PATH + fileName);
             CSVReader csvReader = new CSVReader(new FileReader(PATH + fileName));
             lst =  csvReader.readAll();
+            lst.remove(0);
             if (lst == null) {
                 System.out.println("this is null");
             }
@@ -137,41 +144,60 @@ public class CsvFile {
         }
         return lst;
     }
-
-    public static List<Villa> read(Villa service) {
-        String[] columns = {};
-        String fileName = "";
-        ColumnPositionMappingStrategy<Villa> strategy = new ColumnPositionMappingStrategy<>();
-        strategy.setType(Villa.class);
+    public static List<Service> read(Service service) {
+        List<String[]> list = null;
+        List<Service> info = new ArrayList<>();
+        if (service instanceof Room) {
+            list = readAllFile(ROOM_CSV);
+        } else if (service instanceof House) {
+            list = readAllFile(HOUSE_CSV);
+        } else if (service instanceof Villa) {
+            list = readAllFile(VILLA_CSV);
+        }
+        // transfer string to
+        if(list != null) {
+            for (String[] data : list) {
+                if(data != null) {
+                    info.add(service.splitInfo(data));
+                }
+            }
+        }
+        return info;
+    }
+//    public static List<Service> read(Service service) {
+//        String[] columns = {};
+//        String fileName = "";
+//        ColumnPositionMappingStrategy<Service> strategy = new ColumnPositionMappingStrategy<>();
+////        strategy.setType(Villa.class);
 //        if (service instanceof House) {
-////            strategy.setType(House.class);
+//            strategy.setType(House.class);
 //            columns = HOUSE_HEADER;
 //            fileName = HOUSE_CSV;
 //        } else if (service instanceof Villa) {
 //            strategy.setType(Villa.class);
-            columns = VILLA_HEADER;
-            fileName = VILLA_CSV;
+//            columns = VILLA_HEADER;
+//            fileName = VILLA_CSV;
 //        } else if (service instanceof Room) {
-////            strategy.setType(Room.class);
+//            strategy.setType(Room.class);
 //            columns = ROOM_HEADER;
 //            fileName = ROOM_CSV;
 //        }
-        strategy.setColumnMapping(columns);
-        try {
-            FileReader reader = new FileReader(PATH + fileName);
-            CsvToBean<Villa> csvToBean = new CsvToBeanBuilder<Villa>(reader)
-                    .withMappingStrategy(strategy)
-                    .withIgnoreLeadingWhiteSpace(true)
-                    .build();
-            List<Villa> lst = csvToBean.parse();
-            for (Villa dat : lst) {
-                System.out.println(dat);
-            }
-            return lst;
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
+//        strategy.setColumnMapping(columns);
+//        try {
+//            FileReader reader = new FileReader(PATH + fileName);
+//            CsvToBean<Service> csvToBean = new CsvToBeanBuilder<Service>(reader)
+//                    .withMappingStrategy(strategy)
+//                    .withIgnoreLeadingWhiteSpace(true)
+//                    .build();
+//            List<Service> lst = csvToBean.parse();
+//            for (Service dat : lst) {
+//                dat.showInfo();
+//            }
+//            return lst;
+//        } catch (FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return null;
+//    }
 }
 

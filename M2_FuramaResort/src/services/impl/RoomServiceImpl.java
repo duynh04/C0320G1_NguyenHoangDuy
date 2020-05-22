@@ -13,7 +13,7 @@ public class RoomServiceImpl implements IService {
         room.setTypeName(Validation.check(Validation.SERVICE_NAME_REGEX,"Input Service Name", "Invalid Service Name"));
         room.setArea(Double.parseDouble(Validation.check(Validation.AREA_REGEX, "Input area usage", "Invalid Area")));
         room.setPrice(Double.parseDouble(Validation.check(Validation.POSITIVE_NUMBER_REGEX, "Input Price Service", "Invalid Price")));
-        room.setMaxPeople(Integer.parseInt(Validation.check(Validation.POSITIVE_NUMBER_REGEX, "Input Max Persons", "Invalid Number")));
+room.setMaxPeople(Integer.parseInt(Validation.check(Validation.MAX_PEOPLE_REGEX, "Input Max Persons", "Invalid Number")));
         room.setRentType(Validation.check("Input Type of Rent"));
         room.setFreeService(Validation.check("Input Free Service"));
         return room;

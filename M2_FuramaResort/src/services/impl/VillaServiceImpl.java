@@ -12,7 +12,7 @@ public class VillaServiceImpl implements IService {
         villa.setTypeName(Validation.check(Validation.SERVICE_NAME_REGEX,"Input Service Name", "Invalid Service Name"));
         villa.setArea(Double.parseDouble(Validation.check(Validation.AREA_REGEX, "Input area usage", "Invalid Area")));
         villa.setPrice(Double.parseDouble(Validation.check(Validation.POSITIVE_NUMBER_REGEX, "Input Price Service", "Invalid Price")));
-        villa.setMaxPeople(Integer.parseInt(Validation.check(Validation.POSITIVE_NUMBER_REGEX, "Input Max Persons", "Invalid Number")));
+        villa.setMaxPeople(Integer.parseInt(Validation.check(Validation.MAX_PEOPLE_REGEX, "Input Max Persons", "Invalid Number")));
         villa.setRentType(Validation.check("Input Type of Rent"));
         villa.setRoomStandard(Validation.check("Input Room Standard"));
         villa.setFacilities(Validation.check("Description Convenient"));

@@ -50,7 +50,7 @@ public class Villa extends Service {
 
     @Override
     public void showInfo() {
-        System.out.printf("Service Type: %s\nStandard: %d star(s)\nArea: %.2f m2\nPrice: %.2f $\nMax: %d person(s)\nFloor : %s storey(s)",
+        System.out.printf("Service Type: %s, Standard: %s star(s), Area: %.2f m2, Price: %.2f $, Max: %d person(s), Floor : %s storey(s)\n",
                 super.getTypeName(),
                 roomStandard,
                 super.getArea(),
@@ -74,5 +74,21 @@ public class Villa extends Service {
         data[8] = Integer.toString(getStorey());
         data[9] = Double.toString(getSwimmingPoolArea());
         return data;
+    }
+
+    @Override
+    public Villa splitInfo(String[] data) {
+        Villa villa = new Villa();
+        villa.setId(data[0]);
+        villa.setTypeName(data[1]);
+        villa.setArea(Double.parseDouble(data[2]));
+        villa.setPrice(Double.parseDouble(data[3]));
+        villa.setMaxPeople(Integer.parseInt(data[4]));
+        villa.setRentType(data[5]);
+        villa.setRoomStandard(data[6]);
+        villa.setFacilities(data[7]);
+        villa.setStorey(Integer.parseInt(data[8]));
+        villa.setSwimmingPoolArea(Double.parseDouble(data[9]));
+        return villa;
     }
 }

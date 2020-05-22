@@ -40,7 +40,7 @@ public class House extends Service {
 
     @Override
     public void showInfo() {
-        System.out.printf("Service Type: %s\nStandard: %s star(s)\nArea: %.2f m2\nPrice: %.2f $\nMax: %d person(s)\nFloor : %s storey(s)",
+        System.out.printf("Service Type: %s, Standard: %s star(s), Area: %.2f m2, Price: %.2f $, Max: %d person(s), Floor : %s storey(s)\n",
                 super.getTypeName(),
                 roomStandard,
                 super.getArea(),
@@ -63,5 +63,19 @@ public class House extends Service {
         data[7] = getFacilities();
         data[8] = Integer.toString(getStorey());
         return data;
+    }
+    @Override
+    public House splitInfo(String[] data) {
+        House house = new House();
+        house.setId(data[0]);
+        house.setTypeName(data[1]);
+        house.setArea(Double.parseDouble(data[2]));
+        house.setPrice(Double.parseDouble(data[3]));
+        house.setMaxPeople(Integer.parseInt(data[4]));
+        house.setRentType(data[5]);
+        house.setRoomStandard(data[6]);
+        house.setFacilities(data[7]);
+        house.setStorey(Integer.parseInt(data[8]));
+        return house;
     }
 }

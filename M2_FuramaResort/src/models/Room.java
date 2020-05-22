@@ -20,7 +20,7 @@ public class Room extends Service {
 
     @Override
     public void showInfo() {
-        System.out.printf("Service Type: %s\nArea: %.2f m2\nPrice: %.2f $\nMax: %d person(s)\nFree service: %s",
+        System.out.printf("Service Type: %s, Area: %.2f m2, Price: %.2f $, Max: %d person(s), Free service: %s\n",
                             super.getTypeName(),
                             super.getArea(),
                             super.getPrice(),
@@ -40,5 +40,17 @@ public class Room extends Service {
         data[5] = super.getRentType();
         data[6] = getFreeService();
         return data;
+    }
+    @Override
+    public Room splitInfo(String[] data) {
+        Room room = new Room();
+        room.setId(data[0]);
+        room.setTypeName(data[1]);
+        room.setArea(Double.parseDouble(data[2]));
+        room.setPrice(Double.parseDouble(data[3]));
+        room.setMaxPeople(Integer.parseInt(data[4]));
+        room.setRentType(data[5]);
+        room.setFreeService(data[6]);
+        return room;
     }
 }

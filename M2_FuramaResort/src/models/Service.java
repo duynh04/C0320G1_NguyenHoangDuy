@@ -9,6 +9,7 @@ public abstract class Service {
     private String rentType;
     public abstract void showInfo();
     public abstract String[] gatherInfo();
+    public abstract Service splitInfo(String[] data);
 
     public Service() {}
 

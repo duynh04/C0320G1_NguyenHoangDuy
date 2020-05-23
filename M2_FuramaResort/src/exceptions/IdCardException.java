@@ -8,9 +8,9 @@ public class IdCardException extends UserException {
     }
 
     public static void check(String input) throws IdCardException {
-        final String idCardRegex = "^\\d{9}$";
+        final String idCardRegex = "^(\\d{3}\\s?){3}$";
         if(!Validation.validate(idCardRegex, input)) {
-            throw new IdCardException("ID Card must be formatted XXXXXXXXX");
+            throw new IdCardException("ID Card must be formatted XXX XXX XXX");
         }
     }
 }

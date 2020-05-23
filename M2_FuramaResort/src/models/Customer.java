@@ -114,7 +114,6 @@ public class Customer extends Person{
     public String[] gatherInfo() {
         int NUM_OF_FIELD = 9;
         String[] data = new String[NUM_OF_FIELD];
-        data[0] = id;
         data[1] = customerName;
         data[2] = idCard;
         data[3] = birthday;

@@ -92,28 +92,29 @@ public class CsvFile {
      * @param service written data
      */
     public static <T extends IData> void write(T service) {
-        //        List<String[]> originData = null;
-
+        LinkedList<String[]> originData = null;
         String[] newData = service.gatherInfo();
         String fileName = "";
         if(service instanceof Room) {
-//            originData = readAllFile(ROOM_CSV);
             fileName = ROOM_CSV;
         } else if (service instanceof House) {
-//            originData = readAllFile(HOUSE_CSV);
             fileName = HOUSE_CSV;
         } else if (service instanceof Villa) {
-//            originData = readAllFile(VILLA_CSV);
             fileName = VILLA_CSV;
         } else if(service instanceof Customer) {
             fileName = CUSTOMER_CSV;
         } else if(service instanceof Booking) {
             fileName = BOOKING_CSV;
         }
-//        if (originData != null) {
-//            originData.add(newData);
+        // set ID
+        originData = (LinkedList<String[]>)readAllFile(fileName);
+        if (originData.size() == 0) {
+            newData[0] = "1";
+        } else {
+            newData[0] = String.valueOf(Integer.parseInt(originData.get(originData.size() - 1)[0]) + 1);
+
+        }
             write(fileName, newData);
-//        }
     }
 
 

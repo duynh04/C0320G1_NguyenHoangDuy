@@ -10,7 +10,7 @@ public class HouseServiceImpl implements IService {
     @Override
     public Service add() {
         House house = new House();
-        house.setId(Validation.check("Input Id Service"));
+        //house.setId(Validation.check("Input Id Service"));
         house.setTypeName(Validation.check(Validation.SERVICE_NAME_REGEX,"Input Service Name", "Invalid Service Name"));
         house.setArea(Double.parseDouble(Validation.check(Validation.AREA_REGEX, "Input area usage", "Invalid Area")));
         house.setPrice(Double.parseDouble(Validation.check(Validation.POSITIVE_NUMBER_REGEX, "Input Price Service", "Invalid Price")));

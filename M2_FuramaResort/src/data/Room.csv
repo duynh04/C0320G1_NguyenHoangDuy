@@ -1,4 +1,4 @@
-Id, Name Service,Area,Price,Max People,Type Rent,Free Service
-9449,Room,30,400,5,trt,an
-"23482314","Room","30.0","700.0","4","Month","karaoke"
-"1","room-vip","20.5","1000.0","2","1","Massage"
+"Id"," Name Service","Area","Price","Max People","Type Rent","Free Service"
+"1","Romm","40.0","80.0","2","days","food"
+"2","Prettyroom","30.0","100.0","3","day","food, drink"
+"3","Room","40.0","500.0","3","Vip","Karaoke"

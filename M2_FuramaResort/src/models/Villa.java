@@ -63,7 +63,7 @@ public class Villa extends Service {
     public String[] gatherInfo() {
         int NUM_OF_FIELD = 10;
         String[] data = new String[NUM_OF_FIELD];
-        data[0] = super.getId();
+        //data[0] = super.getId();
         data[1] = super.getTypeName();
         data[2] = Double.toString(super.getArea());
         data[3] = Double.toString(super.getPrice());

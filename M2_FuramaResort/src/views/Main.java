@@ -9,7 +9,10 @@ import exceptions.UserException;
 import models.Room;
 import models.Service;
 import models.Villa;
+import sun.misc.UUDecoder;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -19,7 +22,19 @@ import java.util.*;
 import static controllers.MainController.displayMainMenu;
 import static java.lang.System.*;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
+//        String source = "VLRO";
+//        byte[] bytes = source.getBytes(StandardCharsets.UTF_8);
+//        String source1 = "VLLX";
+//        byte[] bytes1 = source1.getBytes(StandardCharsets.UTF_8);
+//        String source2 = "VLHO";
+//        byte[] bytes2 = source2.getBytes(StandardCharsets.UTF_8);
+//        UUID uuid = UUID.nameUUIDFromBytes(bytes);
+//        UUID uuid1 =UUID.nameUUIDFromBytes(bytes1);
+//        UUID uuid2=UUID.nameUUIDFromBytes(bytes2);
+//        out.println(uuid.toString());
+//        out.println(uuid1.toString());
+//        out.println(uuid2.toString());
         displayMainMenu();
 //         Collection<IData> lst = CsvFile.read(new Villa(), true);
 //         TreeSet<IData> tree = new TreeSet<>(lst);

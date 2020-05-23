@@ -2,7 +2,6 @@ package services.impl;
 
 import commons.IData;
 import models.Customer;
-import sun.util.resources.cldr.chr.CalendarData_chr_US;
 
 import java.util.Comparator;
 
@@ -10,7 +9,6 @@ public class BirthdayComparator implements Comparator<IData> {
 
     @Override
     public int compare(IData o1, IData o2) {
-        System.out.println(" start compare");
         if(o1 instanceof Customer && o2 instanceof Customer) {
             Customer o11 = (Customer)o1;
             Customer o22 = (Customer)o2;

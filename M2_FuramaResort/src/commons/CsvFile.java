@@ -17,7 +17,8 @@ public class CsvFile {
     private static final String[] HOUSE_HEADER = {"Id", "Name Service", "Area", "Price", "Max People", "Type Rent", "Room Standard", "Facility", "Storey"};
     private static final String[] ROOM_HEADER = {"Id", " Name Service", "Area", "Price", "Max People", "Type Rent", "Free Service"};
     private static final String[] CUSTOMER_HEADER = {"Id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address"};
-    private static final String[] BOOKING_HEADER = {"Id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address", "idService", "nameService", "areaUse", "rentalCost", "maxNumberOfPeople", "typeRent",};
+//    private static final String[] BOOKING_HEADER = {"Id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address", "idService", "nameService", "areaUse", "rentalCost", "maxNumberOfPeople", "typeRent",};
+    private static final String[] BOOKING_HEADER = {"Id", "CustomerId", "ServiceId"};
 
 
     // static block to create csv file
@@ -106,6 +107,8 @@ public class CsvFile {
             fileName = VILLA_CSV;
         } else if(service instanceof Customer) {
             fileName = CUSTOMER_CSV;
+        } else if(service instanceof Booking) {
+            fileName = BOOKING_CSV;
         }
 //        if (originData != null) {
 //            originData.add(newData);

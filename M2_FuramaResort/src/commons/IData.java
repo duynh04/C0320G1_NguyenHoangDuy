@@ -5,6 +5,8 @@ import java.util.Comparator;
 
 public interface IData {
     String[] gatherInfo();
-    IData splitInfo(String[] data);
-    void showInfo();
+    default IData splitInfo(String[] data) {
+        return null;
+    }
+    default void showInfo() {}
 }

@@ -1,1 +1,2 @@
-"Id"," nameCustomer","idCard"," birthday"," gender"," phoneNumber"," email"," typeCustomer"," address","idService","nameService","areaUse","rentalCost","maxNumberOfPeople","typeRent"
+"Id","CustomerId","ServiceId"
+,"13","10"

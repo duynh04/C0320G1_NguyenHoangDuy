@@ -20,6 +20,7 @@ import static controllers.MainController.displayMainMenu;
 import static java.lang.System.*;
 public class Main {
     public static void main(String[] args) {
+        displayMainMenu();
 //         Collection<IData> lst = CsvFile.read(new Villa(), true);
 //         TreeSet<IData> tree = new TreeSet<>(lst);
 //        for (IData service: tree) {
@@ -36,10 +37,10 @@ public class Main {
 //        for (Integer key : set) {
 //            System.out.println(key + " " + map.get(key));
 //        }
-        while (true) {
-            displayMainMenu();
-//            break;
-        }
+//        while (true) {
+//            displayMainMenu();
+////            break;
+//        }
     }
 }
 //        Scanner in = new Scanner(System.in);

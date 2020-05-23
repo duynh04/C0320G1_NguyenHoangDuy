@@ -2,11 +2,8 @@ package exceptions;
 
 import commons.Validation;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 public class BirthdayException extends UserException{
     public BirthdayException(String message) {

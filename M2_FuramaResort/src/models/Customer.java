@@ -4,6 +4,7 @@ import exceptions.BirthdayException;
 import services.IPerson;
 
 public class Customer extends Person{
+    private String id;
     private String customerName;
     private String idCard;
     private String birthday;
@@ -17,7 +18,8 @@ public class Customer extends Person{
     public Customer() {
     }
 
-    public Customer(String customerName, String idCard, String birthday, String gender, String phoneNumber, String email, String customerType, String address, Service service) {
+    public Customer(String id, String customerName, String idCard, String birthday, String gender, String phoneNumber, String email, String customerType, String address, Service service) {
+        this.id = id;
         this.customerName = customerName;
         this.idCard = idCard;
         this.birthday = birthday;
@@ -27,6 +29,14 @@ public class Customer extends Person{
         this.customerType = customerType;
         this.address = address;
         this.service = service;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCustomerName() {
@@ -104,6 +114,7 @@ public class Customer extends Person{
     public String[] gatherInfo() {
         int NUM_OF_FIELD = 9;
         String[] data = new String[NUM_OF_FIELD];
+        data[0] = id;
         data[1] = customerName;
         data[2] = idCard;
         data[3] = birthday;
@@ -117,6 +128,7 @@ public class Customer extends Person{
 
     public Customer splitInfo(String[] data) {
         Customer customer = new Customer();
+        customer.setId(data[0]);
         customer.setCustomerName(data[1]);
         customer.setIdCard(data[2]);
         customer.setBirthday(data[3]);

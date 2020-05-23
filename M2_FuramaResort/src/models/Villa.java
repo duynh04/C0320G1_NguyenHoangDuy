@@ -91,4 +91,9 @@ public class Villa extends Service {
         villa.setSwimmingPoolArea(Double.parseDouble(data[9]));
         return villa;
     }
+
+//    @Override
+//    public int compareTo(Service o) {
+//        return super.getTypeName().compareTo(o.getTypeName());
+//    }
 }

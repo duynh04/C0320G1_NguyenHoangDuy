@@ -1,9 +1,7 @@
 package services.impl;
 
 import commons.IData;
-import exceptions.BirthdayException;
 import models.Customer;
-import models.Person;
 
 import java.util.Comparator;
 

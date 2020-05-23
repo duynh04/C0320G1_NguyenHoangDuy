@@ -41,7 +41,6 @@ public class MainController {
                 addNewCustomer();
                 break;
             case 4:
-                System.out.println("doooo");
                 showInfoCustomer();
                 break;
             case 5:
@@ -54,11 +53,15 @@ public class MainController {
     }
 
     private static void showInfoCustomer() {
-        List<IData> customerList =  CsvFile.read(new Customer());
-        customerList.sort(new NameComparator());
+        int index = 1;
+        Collection<IData> customerList =  CsvFile.read(new Customer(), true);
+        ArrayList<IData> customerListTemp = (ArrayList<IData>) customerList;
+        customerListTemp.sort(new NameComparator());
         for (IData customer : customerList) {
             Customer customer1 = (Customer) customer;
+            System.out.print(index + ". ");
             customer1.showInfo();
+            index++;
         }
     }
 
@@ -104,15 +107,17 @@ public class MainController {
         int choice = input.nextInt();
         switch (choice) {
             case 1:
-                showAll(CsvFile.read(new Villa()));
+                showAll(CsvFile.read(new Villa(), true));
                 return;
             case 2:
-                showAll(CsvFile.read(new House()));
+                showAll(CsvFile.read(new House(), true));
                 return;
             case 3:
-                showAll(CsvFile.read(new Room()));
+                showAll(CsvFile.read(new Room(), true));
                 return;
             case 4:
+                showAll(CsvFile.read(new Villa(), false));
+                return;
             case 5:
             case 6:
             case 7:
@@ -123,9 +128,12 @@ public class MainController {
         }
     }
 
-    private static void showAll(List<IData> service) {
+    private static void showAll(Collection<IData> service) {
+        int index = 1;
         for (IData s: service) {
+            System.out.print(index + ". ");
             s.showInfo();
+            index++;
         }
     }
 

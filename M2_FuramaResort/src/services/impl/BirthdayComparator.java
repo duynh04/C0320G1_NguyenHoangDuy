@@ -8,13 +8,6 @@ import java.util.Comparator;
 
 public class BirthdayComparator implements Comparator<IData> {
 
-//    @Override
-//    public int compare(Customer o1, Customer o2) {
-//        String[] o1Date = o1.getBirthday().split("/");
-//        String[] o2Date = o2.getBirthday().split("/");
-//        return Integer.parseInt(o1Date[2]) - Integer.parseInt(o2Date[2]);
-//    }
-
     @Override
     public int compare(IData o1, IData o2) {
         System.out.println(" start compare");

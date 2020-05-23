@@ -53,4 +53,9 @@ public class Room extends Service {
         room.setFreeService(data[6]);
         return room;
     }
+
+//    @Override
+//    public int compareTo(Service o) {
+//        return super.getTypeName().compareTo(o.getTypeName());
+//    }
 }

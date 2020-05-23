@@ -23,6 +23,10 @@ public class BirthdayException extends UserException{
 
     private static void checkAge(String age) throws BirthdayException {
         String[] date = age.split("/");
+        if (!((Integer.parseInt(date[2]) % 4 == 0 && Integer.parseInt(date[2]) % 100 != 0) || Integer.parseInt(date[2]) % 400 == 0)) {
+            if (Integer.parseInt(date[1]) == 2 && Integer.parseInt(date[0]) == 29)
+                throw new BirthdayException("Customer birthday is invalid due to the 29th of february of the normal year.");
+        }
         LocalDate birthDay = LocalDate.of(Integer.parseInt(date[2]),Integer.parseInt(date[1]), Integer.parseInt(date[0])); //specify year, month, date directly
         LocalDate now = LocalDate.now(); //gets localDate
         Period diff = Period.between(birthDay, now); //difference between the dates is calculated

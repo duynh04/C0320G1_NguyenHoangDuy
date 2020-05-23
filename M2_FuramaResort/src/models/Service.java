@@ -2,7 +2,7 @@ package models;
 
 import commons.IData;
 
-public abstract class Service implements IData {
+public abstract class Service implements IData, Comparable<Service> {
     private String id;
     private String typeName;
     private double area;
@@ -70,5 +70,10 @@ public abstract class Service implements IData {
 
     public void setRentType(String rentType) {
         this.rentType = rentType;
+    }
+
+    @Override
+    public int compareTo(Service o) {
+        return getTypeName().compareTo(o.getTypeName());
     }
 }

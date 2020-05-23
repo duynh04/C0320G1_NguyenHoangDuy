@@ -4,8 +4,7 @@ import com.opencsv.exceptions.CsvException;
 import models.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CsvFile {
     private static final String PATH = "src\\data\\";
@@ -91,7 +90,7 @@ public class CsvFile {
      * Write data into csv file
      * @param service written data
      */
-    public static void write(IData service) {
+    public static <T extends IData> void write(T service) {
         //        List<String[]> originData = null;
 
         String[] newData = service.gatherInfo();
@@ -132,9 +131,14 @@ public class CsvFile {
         }
         return lst;
     }
-    public static List<IData> read(IData service) {
+    @SuppressWarnings("unchecked")
+    public static <T extends IData> Collection<T> read(T service, boolean duplicate) {
         List<String[]> list = null;
-        List<IData> info = new ArrayList<>();
+        Collection<T> info = null;
+        if (!duplicate)
+            info = new TreeSet<>();
+        else
+            info = new ArrayList<>();
         if (service instanceof Room) {
             list = readAllFile(ROOM_CSV);
         } else if (service instanceof House) {
@@ -148,46 +152,11 @@ public class CsvFile {
         if(list != null) {
             for (String[] data : list) {
                 if(data != null) {
-                    info.add(service.splitInfo(data));
+                    info.add((T) service.splitInfo(data));
                 }
             }
         }
         return info;
     }
-//    public static List<Service> read(Service service) {
-//        String[] columns = {};
-//        String fileName = "";
-//        ColumnPositionMappingStrategy<Service> strategy = new ColumnPositionMappingStrategy<>();
-////        strategy.setType(Villa.class);
-//        if (service instanceof House) {
-//            strategy.setType(House.class);
-//            columns = HOUSE_HEADER;
-//            fileName = HOUSE_CSV;
-//        } else if (service instanceof Villa) {
-//            strategy.setType(Villa.class);
-//            columns = VILLA_HEADER;
-//            fileName = VILLA_CSV;
-//        } else if (service instanceof Room) {
-//            strategy.setType(Room.class);
-//            columns = ROOM_HEADER;
-//            fileName = ROOM_CSV;
-//        }
-//        strategy.setColumnMapping(columns);
-//        try {
-//            FileReader reader = new FileReader(PATH + fileName);
-//            CsvToBean<Service> csvToBean = new CsvToBeanBuilder<Service>(reader)
-//                    .withMappingStrategy(strategy)
-//                    .withIgnoreLeadingWhiteSpace(true)
-//                    .build();
-//            List<Service> lst = csvToBean.parse();
-//            for (Service dat : lst) {
-//                dat.showInfo();
-//            }
-//            return lst;
-//        } catch (FileNotFoundException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        return null;
-//    }
 }
 

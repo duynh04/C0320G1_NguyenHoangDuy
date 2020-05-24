@@ -7,5 +7,5 @@ import java.util.Collection;
 
 
 public interface IBooking {
-    Booking add(Collection<IData> customerList, Collection<IData> serviceList);
+    Booking add(IData service);
 }

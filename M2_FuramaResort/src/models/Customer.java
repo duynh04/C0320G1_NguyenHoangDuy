@@ -1,7 +1,5 @@
 package models;
 
-import exceptions.BirthdayException;
-import services.IPerson;
 
 public class Customer extends Person{
     private String id;

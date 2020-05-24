@@ -78,9 +78,4 @@ public class House extends Service {
         house.setStorey(Integer.parseInt(data[8]));
         return house;
     }
-
-//    @Override
-//    public int compareTo(Service o) {
-//        return this.getTypeName().compareTo(o.getTypeName());
-//    }
 }

@@ -13,10 +13,12 @@ public class CsvFile {
     private static final String VILLA_CSV = "Villa.csv";
     private static final String HOUSE_CSV = "House.csv";
     private static final String BOOKING_CSV = "Booking.csv";
+    private static final String EMPLOYEE_CSV = "Employee.csv";
     private static final String[] VILLA_HEADER = {"Id", "Name Service", "Area", "Price", "Max People", "Type Rent", "Room Standard", "Facility", "Storey", "Pool Area"};
     private static final String[] HOUSE_HEADER = {"Id", "Name Service", "Area", "Price", "Max People", "Type Rent", "Room Standard", "Facility", "Storey"};
     private static final String[] ROOM_HEADER = {"Id", " Name Service", "Area", "Price", "Max People", "Type Rent", "Free Service"};
-    private static final String[] CUSTOMER_HEADER = {"Id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address"};
+    private static final String[] CUSTOMER_HEADER = {"Id", "Customer Name", "Id Card", "Birthday", "Gender", "Phone Number", "Email", "Type Customer", "Address"};
+    private static final String[] EMPOLYEE_HEADER = {"Id", "Employee Name", "Age", "Address"};
 //    private static final String[] BOOKING_HEADER = {"Id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address", "idService", "nameService", "areaUse", "rentalCost", "maxNumberOfPeople", "typeRent",};
     private static final String[] BOOKING_HEADER = {"Id", "CustomerId", "ServiceId"};
 
@@ -33,6 +35,8 @@ public class CsvFile {
             createHeader(CUSTOMER_CSV, CUSTOMER_HEADER);
         if(createFile(BOOKING_CSV))
             createHeader(BOOKING_CSV, BOOKING_HEADER);
+        if(createFile(EMPLOYEE_CSV))
+            createHeader(EMPLOYEE_CSV, EMPOLYEE_HEADER);
     }
     /**
      * create a csv file if it is not exist
@@ -55,8 +59,6 @@ public class CsvFile {
      * @param headerContent header content
      */
     private static void createHeader(String fileName, String[] headerContent) {
-//        List<String[]> temp = new LinkedList<>();
-//        temp.add(headerContent);
         write(fileName, headerContent);
     }
 
@@ -92,26 +94,36 @@ public class CsvFile {
      * @param service written data
      */
     public static <T extends IData> void write(T service) {
-        LinkedList<String[]> originData = null;
+        LinkedList<String[]> originData;
         String[] newData = service.gatherInfo();
         String fileName = "";
+        String uniqueCode = "";
         if(service instanceof Room) {
             fileName = ROOM_CSV;
+            uniqueCode = "RO";
         } else if (service instanceof House) {
             fileName = HOUSE_CSV;
+            uniqueCode = "HO";
         } else if (service instanceof Villa) {
             fileName = VILLA_CSV;
+            uniqueCode = "VL";
         } else if(service instanceof Customer) {
             fileName = CUSTOMER_CSV;
+            uniqueCode = "CUS";
         } else if(service instanceof Booking) {
             fileName = BOOKING_CSV;
+            uniqueCode = "BO";
+        } else if(service instanceof Employee) {
+            fileName = EMPLOYEE_CSV;
+            uniqueCode = "EM";
         }
         // set ID
         originData = (LinkedList<String[]>)readAllFile(fileName);
         if (originData.size() == 0) {
-            newData[0] = "1";
+            newData[0] = uniqueCode + "1";
         } else {
-            newData[0] = String.valueOf(Integer.parseInt(originData.get(originData.size() - 1)[0]) + 1);
+            String getID = originData.get(originData.size() - 1)[0].replaceAll("\\D+", "");
+            newData[0] = uniqueCode + (Integer.parseInt(getID) + 1);
 
         }
             write(fileName, newData);
@@ -126,7 +138,6 @@ public class CsvFile {
     private static List<String[]> readAllFile(String fileName) {
         List<String[]> lst = null;
         try {
-//            FileReader reader = new FileReader(PATH + fileName);
             CSVReader csvReader = new CSVReader(new FileReader(PATH + fileName));
             lst =  csvReader.readAll();
             lst.remove(0);
@@ -138,7 +149,7 @@ public class CsvFile {
     @SuppressWarnings("unchecked")
     public static <T extends IData> Collection<T> read(T service, boolean duplicate) {
         List<String[]> list = null;
-        Collection<T> info = null;
+        Collection<T> info;
         if (!duplicate)
             info = new TreeSet<>();
         else
@@ -151,6 +162,8 @@ public class CsvFile {
             list = readAllFile(VILLA_CSV);
         } else if(service instanceof Customer) {
             list = readAllFile(CUSTOMER_CSV);
+        } else if(service instanceof Employee) {
+            list = readAllFile(EMPLOYEE_CSV);
         }
         // transfer string to
         if(list != null) {

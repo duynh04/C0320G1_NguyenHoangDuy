@@ -1,12 +1,9 @@
 package controllers;
 
-import com.sun.scenario.effect.impl.sw.java.JSWColorAdjustPeer;
 import commons.CsvFile;
 import models.*;
 import commons.IData;
-import services.IBooking;
-import services.IPerson;
-import services.IService;
+import services.*;
 import services.impl.*;
 
 import java.util.*;
@@ -17,7 +14,10 @@ public class MainController {
     static IService villaServiceImpl = new VillaServiceImpl();
     static IService roomServiceImpl = new RoomServiceImpl();
     static IPerson customerAddImpl = new CustomerAddImpl();
+    static IPerson employeeAddImpl = new EmployeeAddImpl();
     static IBooking bookingAddImpl = new BookingAddImpl();
+    static IBookingCinema bookingCinemaImpl = new BookingCinemaImpl();
+    static IFilingCabinet filingCabinetImpl = new FilingCabinetService();
     public static void displayMainMenu() {
         while(true) {
             System.out.println("------------------------------------------------------------");
@@ -27,7 +27,10 @@ public class MainController {
                     "4. Show Information of Customer\n" +
                     "5. Add New Booking\n" +
                     "6. Show Information of Employee\n" +
-                    "7. Exit");
+                    "7. Add booking cinema 4D\n" +
+                    "8. Show booking cinema 4D\n" +
+                    "9. Search Filing Cabinets of Employee\n" +
+                    "10. Exit");
             System.out.print("Select your number: ");
             int choice = input.nextInt();
             switch (choice) {
@@ -47,11 +50,61 @@ public class MainController {
                     showBooking();
                     break;
                 case 6:
+                    showEmployee();
+                    break;
                 case 7:
+                    addBookingCinema();
+                    break;
+                case 8:
+                    showBookingCinema();
+                    break;
+                case 9:
+                    findEmployee();
+                    break;
+                case 10:
                     System.exit(0);
             }
         }
     }
+
+    private static void findEmployee() {
+        System.out.println("------------------------------------------------------------");
+        System.out.print("Input the employee's ID: ");
+        int choice = input.nextInt();
+        Employee employee = filingCabinetImpl.findEmployee(String.valueOf(choice));
+        if (employee != null)
+            System.out.println(employee);
+        else
+            System.out.println("Employee is not found!!");
+    }
+
+    private static void showBookingCinema() {
+        for (Customer customer: bookingCinemaImpl.getAllBookingCinema()) {
+            customer.showInfo();
+        }
+    }
+
+    private static void addBookingCinema() {
+        int index = 0;
+        Collection<Customer> customerList = CsvFile.read(new Customer(), true);
+        System.out.println("Select Customer to booking ticket:");
+        for (Customer customer: customerList) {
+            index++;
+            System.out.print(index + ". ");
+            customer.showInfo();
+        }
+        int id = input.nextInt();
+         bookingCinemaImpl.bookingNewTicket((Customer)customerList.toArray()[id - 1]);
+    }
+
+    private static void showEmployee() {
+        Map<Integer, Person> employeeMap = employeeAddImpl.toMap();
+        Set<Integer> employeeSet = employeeMap.keySet();
+        for (Integer k: employeeSet) {
+            System.out.println(k + ". " + employeeMap.get(k));
+        }
+    }
+
     private static void showBooking() {
         while (true) {
             System.out.println("------------------------------------------------------------");
@@ -82,9 +135,7 @@ public class MainController {
     }
     private static void addNewBooking(IData service) {
         System.out.println("------------------------------------------------------------");
-        Collection<IData> customerList = CsvFile.read(new Customer(), true);
-        Collection<IData> serviceList = CsvFile.read(service, true);
-        CsvFile.write(bookingAddImpl.add(customerList, serviceList));
+        CsvFile.write(bookingAddImpl.add(service));
     }
 
     private static void showService() {
@@ -166,13 +217,13 @@ public class MainController {
 
     private static void showInfoCustomer() {
         int index = 1;
-        Collection<IData> customerList =  CsvFile.read(new Customer(), true);
-        ArrayList<IData> customerListTemp = (ArrayList<IData>) customerList;
+        Collection<Customer> customerList =  CsvFile.read(new Customer(), true);
+        ArrayList<Customer> customerListTemp = (ArrayList<Customer>) customerList;
         customerListTemp.sort(new NameComparator());
-        for (IData customer : customerList) {
-            Customer customer1 = (Customer) customer;
+        for (Customer customer : customerList) {
+            //Customer customer1 = (Customer) customer;
             System.out.print(index + ". ");
-            customer1.showInfo();
+            customer.showInfo();
             index++;
         }
     }

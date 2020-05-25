@@ -73,7 +73,7 @@ public class MainController {
         while (true) {
             try {
                 System.out.print("Input the employee's ID: ");
-                choice = input.nextInt();
+                choice = Integer.parseInt(input.nextLine());
                 break;
             } catch (Exception e) {
                 System.out.println("Wrong selection, try again.");
@@ -104,7 +104,7 @@ public class MainController {
             System.out.print(index + ". ");
             customer.showInfo();
         }
-        int id = input.nextInt();
+        int id = selectOption();
         bookingCinemaImpl.bookingNewTicket((Customer)customerList.toArray()[id - 1]);
     }
 

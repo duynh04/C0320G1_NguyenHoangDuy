@@ -18,7 +18,7 @@ public class CsvFile {
     private static final String[] HOUSE_HEADER = {"Id", "Name Service", "Area", "Price", "Max People", "Type Rent", "Room Standard", "Facility", "Storey"};
     private static final String[] ROOM_HEADER = {"Id", " Name Service", "Area", "Price", "Max People", "Type Rent", "Free Service"};
     private static final String[] CUSTOMER_HEADER = {"Id", "Customer Name", "Id Card", "Birthday", "Gender", "Phone Number", "Email", "Type Customer", "Address"};
-    private static final String[] EMPOLYEE_HEADER = {"Id", "Employee Name", "Age", "Address"};
+    private static final String[] EMPLOYEE_HEADER = {"Id", "Employee Name", "Age", "Address"};
 //    private static final String[] BOOKING_HEADER = {"Id", " nameCustomer", "idCard", " birthday", " gender", " phoneNumber", " email", " typeCustomer", " address", "idService", "nameService", "areaUse", "rentalCost", "maxNumberOfPeople", "typeRent",};
     private static final String[] BOOKING_HEADER = {"Id", "CustomerId", "ServiceId"};
 
@@ -36,7 +36,7 @@ public class CsvFile {
         if(createFile(BOOKING_CSV))
             createHeader(BOOKING_CSV, BOOKING_HEADER);
         if(createFile(EMPLOYEE_CSV))
-            createHeader(EMPLOYEE_CSV, EMPOLYEE_HEADER);
+            createHeader(EMPLOYEE_CSV, EMPLOYEE_HEADER);
     }
     /**
      * create a csv file if it is not exist

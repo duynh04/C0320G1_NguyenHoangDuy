@@ -13,6 +13,7 @@ public class BookingAddImpl implements IBooking {
     @Override
     public Booking add(IData service) {
         int index = 1;
+        int id;
         Customer customer;
         Service tempService = null;
         Booking booking = new Booking();
@@ -21,24 +22,41 @@ public class BookingAddImpl implements IBooking {
         ArrayList<IData> serviceList = (ArrayList<IData>) CsvFile.read(service, true);
 
         // select a customer
-        System.out.println("Select Customer:");
         for (Customer data: customerList) {
             System.out.print(index + ". ");
             data.showInfo();
             index++;
         }
+        while (true) {
+            try {
+                System.out.println("Select Customer:");
+                id = input.nextInt();
+                customer = customerList.get(id - 1);
+                break;
+            } catch (Exception e) {
+                System.out.println("Customer is not in range. Try again.");
+                input.nextLine();
+            }
+        }
 
         //select a service
         index = 1;
-        int id = input.nextInt();
-        customer = customerList.get(id - 1);
-        System.out.println("Select Service: ");
         for (IData data: serviceList) {
             System.out.print(index + ". ");
             data.showInfo();
             index++;
         }
-        id = input.nextInt();
+        while (true) {
+            try {
+                System.out.println("Select Service: ");
+                id = input.nextInt();
+                customer = customerList.get(id - 1);
+                break;
+            } catch (Exception e) {
+                System.out.println("Service is not in range. Try again.");
+                input.nextLine();
+            }
+        }
         if (serviceList.get(0) instanceof Room) {
             tempService = (Room)serviceList.get(id - 1);
         } else if (serviceList.get(0) instanceof House) {

@@ -31,8 +31,7 @@ public class MainController {
                     "8. Show booking cinema 4D\n" +
                     "9. Search Filing Cabinets of Employee\n" +
                     "10. Exit");
-            System.out.print("Select your number: ");
-            int choice = input.nextInt();
+            int choice = selectOption();
             switch (choice) {
                 case 1:
                     addNewService();
@@ -63,14 +62,24 @@ public class MainController {
                     break;
                 case 10:
                     System.exit(0);
+                default:
             }
         }
     }
 
     private static void findEmployee() {
         System.out.println("------------------------------------------------------------");
-        System.out.print("Input the employee's ID: ");
-        int choice = input.nextInt();
+        int choice;
+        while (true) {
+            try {
+                System.out.print("Input the employee's ID: ");
+                choice = input.nextInt();
+                break;
+            } catch (Exception e) {
+                System.out.println("Wrong selection, try again.");
+                input.nextLine();
+            }
+        }
         Employee employee = filingCabinetImpl.findEmployee(String.valueOf(choice));
         if (employee != null)
             System.out.println(employee);
@@ -79,7 +88,9 @@ public class MainController {
     }
 
     private static void showBookingCinema() {
-        for (Customer customer: bookingCinemaImpl.getAllBookingCinema()) {
+        Queue<Customer> queue = bookingCinemaImpl.getAllBookingCinema();
+        Customer customer;
+        while((customer = queue.poll()) != null) {
             customer.showInfo();
         }
     }
@@ -94,7 +105,7 @@ public class MainController {
             customer.showInfo();
         }
         int id = input.nextInt();
-         bookingCinemaImpl.bookingNewTicket((Customer)customerList.toArray()[id - 1]);
+        bookingCinemaImpl.bookingNewTicket((Customer)customerList.toArray()[id - 1]);
     }
 
     private static void showEmployee() {
@@ -113,8 +124,7 @@ public class MainController {
                             "3. Booking Room\n" +
                             "4. Back To Menu\n" +
                             "5. Exit");
-            System.out.print("Select your number: ");
-            int choice = input.nextInt();
+            int choice = selectOption();
             switch (choice) {
                 case 1:
                     addNewBooking(new Villa());
@@ -129,13 +139,15 @@ public class MainController {
                     return;
                 case 5:
                     System.exit(0);
-
+                default:
             }
         }
     }
     private static void addNewBooking(IData service) {
         System.out.println("------------------------------------------------------------");
         CsvFile.write(bookingAddImpl.add(service));
+        System.out.print("Press Enter to continue...");
+        input.nextLine();
     }
 
     private static void showService() {
@@ -149,8 +161,7 @@ public class MainController {
                             "6. Show All Name Room Not Duplicate\n" +
                             "7. Back To Menu\n" +
                             "8. Exit");
-            System.out.print("Select your number: ");
-            int choice = input.nextInt();
+            int choice = selectOption();
             switch (choice) {
                 case 1:
                     showAll(CsvFile.read(new Villa(), true));
@@ -174,6 +185,7 @@ public class MainController {
                     return;
                 case 8:
                     System.exit(0);
+                default:
             }
         }
     }
@@ -186,8 +198,7 @@ public class MainController {
                             "3. Add New Room\n" +
                             "4. Back to Menu\n" +
                             "5. Exit");
-            System.out.print("Select your number: ");
-            int choice = input.nextInt();
+            int choice = selectOption();
             switch (choice) {
                 case 1:
                     CsvFile.write(villaServiceImpl.add());
@@ -202,7 +213,10 @@ public class MainController {
                     return;
                 case 5:
                     System.exit(0);
+                default:
             }
+            System.out.print("Press Enter to continue...");
+            input.nextLine();
         }
     }
 
@@ -213,6 +227,8 @@ public class MainController {
             s.showInfo();
             index++;
         }
+        System.out.print("Press Enter to continue...");
+        input.nextLine();
     }
 
     private static void showInfoCustomer() {
@@ -221,7 +237,6 @@ public class MainController {
         ArrayList<Customer> customerListTemp = (ArrayList<Customer>) customerList;
         customerListTemp.sort(new NameComparator());
         for (Customer customer : customerList) {
-            //Customer customer1 = (Customer) customer;
             System.out.print(index + ". ");
             customer.showInfo();
             index++;
@@ -232,5 +247,19 @@ public class MainController {
         CsvFile.write(customerAddImpl.add());
     }
 
+    private static int selectOption() {
+        int choice;
+        while (true) {
+            try {
+                System.out.print("Select your number: ");
+                choice = Integer.parseInt(input.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Wrong selection, try again.");
+                input.nextLine();
+            }
+        }
+        return choice;
+    }
 
 }

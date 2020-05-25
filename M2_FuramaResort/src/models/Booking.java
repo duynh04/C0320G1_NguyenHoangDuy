@@ -2,35 +2,24 @@ package models;
 
 import commons.IData;
 
-
 public class Booking implements IData {
-    private String customer;
-    private String service;
+    private Customer customer;
     public Booking() {
     }
 
-    public String getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(String customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
-    public String getService() {
-        return service;
-    }
-
-    public void setService(String service) {
-        this.service = service;
-    }
-
     @Override
     public String[] gatherInfo() {
         int NUM_OF_FIELD = 3;
         String[] data = new String[NUM_OF_FIELD];
-        data[1] = customer;
-        data[2] = service;
+        data[1] = customer.getId();
+        data[2] = customer.getService().getId();
         return data;
     }
 }

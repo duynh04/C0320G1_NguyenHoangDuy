@@ -10,9 +10,9 @@ public class Validation {
     public static final String SERVICE_NAME_REGEX = "^[A-Z][a-z]+$";
     public static final String AREA_REGEX = "^([3-9]\\d)(\\.\\d+)?$|^([1-9][0-9]{2,})(\\.\\d+)?$";
     public static final String POSITIVE_NUMBER_REGEX = "^\\d+$";
-    public static final String MAX_PEOPLE_REGEX = "^[01][1-9]|10$";
+    public static final String MAX_PEOPLE_REGEX = "^(0?[1-9]|1\\d)$";
     public static final String ID_SERVICE = "^SV(VL|HO|RO)-\\d{4}$";
-    public static final String[] ATTACH_SERVICE = {"massage", "karaoke", "food", "drink", "car"};
+    public static final String ATTACH_SERVICE = "^(massage[\\s]?|karaoke[\\s]?|food[\\s]?|drink[\\s]?|car[\\s]?|^no need$)+$";
     private static final Scanner scanner = new Scanner(System.in);
 
     /**
@@ -39,7 +39,7 @@ public class Validation {
     }
 
     public static String check(String type, String inputStr) {
-        String testString = "";
+        String testString;
         while (true) {
             System.out.print(inputStr + ": ");
             testString = scanner.nextLine();
@@ -81,11 +81,4 @@ public class Validation {
     public static boolean validate(String regex, String input) {
         return validate(regex, 0, input);
     }
-//    public static boolean validate(String input, String type) {
-//        switch (type) {
-//            case "Name":
-//                break;
-//        }
-//        return true;
-//    }
 }

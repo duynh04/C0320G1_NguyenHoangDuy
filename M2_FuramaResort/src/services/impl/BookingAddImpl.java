@@ -13,22 +13,25 @@ public class BookingAddImpl implements IBooking {
     @Override
     public Booking add(IData service) {
         int index = 1;
-        String idCustomer = "";
-        String idService;
+        Customer customer;
         Service tempService = null;
         Booking booking = new Booking();
+        // get customer and service list
         ArrayList<Customer> customerList = ((ArrayList<Customer>) (CsvFile.read(new Customer(), true)));
         ArrayList<IData> serviceList = (ArrayList<IData>) CsvFile.read(service, true);
+
+        // select a customer
         System.out.println("Select Customer:");
         for (Customer data: customerList) {
             System.out.print(index + ". ");
             data.showInfo();
             index++;
         }
+
+        //select a service
         index = 1;
         int id = input.nextInt();
-//        Customer tempCustomer = tempCustomerList.get(id - 1);
-        idCustomer = customerList.get(id - 1).getId();
+        customer = customerList.get(id - 1);
         System.out.println("Select Service: ");
         for (IData data: serviceList) {
             System.out.print(index + ". ");
@@ -43,9 +46,10 @@ public class BookingAddImpl implements IBooking {
         } else if (serviceList.get(0) instanceof Villa) {
             tempService = (Villa)serviceList.get(id - 1);
         }
-        idService = tempService.getId();
-        booking.setCustomer(idCustomer);
-        booking.setService(idService);
+
+        // save to booking.
+        customer.setService(tempService);
+        booking.setCustomer(customer);
         return booking;
     }
 }

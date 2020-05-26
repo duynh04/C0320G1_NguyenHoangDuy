@@ -15,9 +15,9 @@ public class HouseServiceImpl implements IService {
         house.setArea(Double.parseDouble(Validation.check(Validation.AREA_REGEX, "Input area usage", "Invalid Area")));
         house.setPrice(Double.parseDouble(Validation.check(Validation.POSITIVE_NUMBER_REGEX, "Input Price Service", "Invalid Price")));
         house.setMaxPeople(Integer.parseInt(Validation.check(Validation.MAX_PEOPLE_REGEX, "Input Max Persons", "Invalid Number")));
-        house.setRentType(Validation.check("Input Type of Rent"));
-        house.setRoomStandard(Validation.check("Input Room Standard"));
-        house.setFacilities(Validation.check("Description Convenient"));
+        house.setRentType(Validation.check(Validation.SERVICE_NAME_REGEX,"Input Type of Rent", " Invalid, try again."));
+        house.setRoomStandard(Validation.check(Validation.SERVICE_NAME_REGEX,"Input Room Standard", " Invalid, try again."));
+        house.setFacilities(Validation.check(Validation.ATTACH_SERVICE, "Description Convenient", "There is no such a service."));
         house.setStorey(Integer.parseInt(Validation.check(Validation.POSITIVE_NUMBER_REGEX, "Input Number of Floor", "Invalid Number")));
         return house;
     }

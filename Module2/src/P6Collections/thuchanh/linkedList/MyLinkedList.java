@@ -4,6 +4,9 @@ public class MyLinkedList<T> {
     private Node<T> head;
     private  int numNodes;
 
+    public MyLinkedList() {
+    }
+
     public MyLinkedList(T data) {
         head = new Node<>(data);
     }

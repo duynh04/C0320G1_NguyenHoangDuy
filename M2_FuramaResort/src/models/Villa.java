@@ -14,6 +14,7 @@ public class Villa extends Service {
         this.facilities = facilities;
         this.storey = storey;
         this.swimmingPoolArea = swimmingPoolArea;
+
     }
 
     public String getRoomStandard() {

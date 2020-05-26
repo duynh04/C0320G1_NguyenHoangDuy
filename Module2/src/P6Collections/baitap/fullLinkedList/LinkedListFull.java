@@ -2,7 +2,7 @@ package P6Collections.baitap.fullLinkedList;
 
 
 public class LinkedListFull<T> implements Cloneable {
-    private Node<T> head;
+    public Node<T> head;
     private int size;
     public LinkedListFull() {
         size = 0;
@@ -56,6 +56,7 @@ public class LinkedListFull<T> implements Cloneable {
             head = null;
         size--;
     }
+
     public void remove(int position) {
         Node<T> current = head;
         Node<T> holder = null;
@@ -115,10 +116,18 @@ public class LinkedListFull<T> implements Cloneable {
         return current;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public LinkedListFull<T> clone() throws CloneNotSupportedException {
         LinkedListFull<T> cloned = (LinkedListFull<T>) super.clone();
-        cloned.head = (Node<T>) head.clone();
+        Node<T> temp = head;
+        Node<T> temp1 = temp.clone();
+        cloned.head = temp1;
+        while(temp.next != null) {
+            temp1.next =  temp.next.clone();
+            temp = temp.next;
+            temp1 = temp1.next;
+        }
         return cloned;
     }
 
@@ -144,8 +153,11 @@ class Node<E> implements Cloneable{
         this.data = data;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Node<E> clone() throws CloneNotSupportedException {
         return (Node<E>)super.clone();
     }
+
+
 }

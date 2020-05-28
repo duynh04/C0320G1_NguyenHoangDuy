@@ -8,11 +8,14 @@ public class Room extends Service {
     public Room(String id, String typeName, double area, double price, int maxPeople, String rentType, String freeService) {
         super(id, typeName, area, price, maxPeople, rentType);
         this.freeService = freeService;
+
     }
 
     public String getFreeService() {
+        
         return freeService;
     }
+
 
     public void setFreeService(String freeService) {
         this.freeService = freeService;
@@ -32,7 +35,7 @@ public class Room extends Service {
     public String[] gatherInfo() {
         int NUM_OF_FIELD = 7;
         String[] data = new String[NUM_OF_FIELD];
-        //data[0] = super.getId();
+        //data[0] = id;
         data[1] = super.getTypeName();
         data[2] = Double.toString(super.getArea());
         data[3] = Double.toString(super.getPrice());

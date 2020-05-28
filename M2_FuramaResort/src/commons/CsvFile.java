@@ -129,7 +129,6 @@ public class CsvFile {
             write(fileName, newData);
     }
 
-
     /**
      * read all csv file
      * @param fileName csv file

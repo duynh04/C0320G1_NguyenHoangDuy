@@ -16,6 +16,11 @@
 <p>
     <a href="${pageContext.request.contextPath}/customers?action=create">Create new customer</a>
 </p>
+<p>
+    <c:if test='${requestScope["message"] != null}'>
+        <span class="message">${requestScope["message"]}</span>
+    </c:if>
+</p>
 <table border="1">
     <tr>
         <td>Name</td>

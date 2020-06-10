@@ -165,6 +165,8 @@ public class CustomersServlet extends HttpServlet {
 //        request.setAttribute("message", "New customer was created");
         try {
 //            dispatcher.forward(request, response);
+            response.setHeader("message", "Created");
+//            response.sendRedirect("/customers?message=Created");
             response.sendRedirect("/customers");
         } catch (IOException e) {
             e.printStackTrace();
@@ -181,8 +183,10 @@ public class CustomersServlet extends HttpServlet {
 
     private void listCustomers(HttpServletRequest request, HttpServletResponse response) {
         List<Customer> customers = this.customerService.findAll();
+//        String message = request.getParameter("message");
+        String  message = response.getHeader("message");
         request.setAttribute("customers", customers);
-
+        request.setAttribute("message", message);
         RequestDispatcher dispatcher = request.getRequestDispatcher("mvcModel/customer/list.jsp");
         try {
             dispatcher.forward(request, response);

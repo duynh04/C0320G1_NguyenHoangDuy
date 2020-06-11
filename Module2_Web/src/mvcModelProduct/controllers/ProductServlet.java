@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
@@ -109,6 +110,7 @@ public class ProductServlet extends HttpServlet {
             this.productService.editProduct(id, product);
             request.setAttribute("product", product);
             request.setAttribute("message", "Product information was updated");
+
             dispatcher = request.getRequestDispatcher(PATH + "edit.jsp");
         }
         try {
@@ -124,12 +126,13 @@ public class ProductServlet extends HttpServlet {
         int index = productService.getIndex();
         Product product = new Product(++index, name, price);
         this.productService.addProduct(product);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("mvcModel/customer/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("mvcModel/customer/list.jsp");
 //        request.setAttribute("message", "New customer was created");
         try {
-//            dispatcher.forward(request, response);
-            response.sendRedirect("/products?message=Created");
-        } catch (IOException e) {
+            PrintWriter writer = response.getWriter();
+            writer.println("<font color='red'><b>New product is created.</b></font>");
+            dispatcher.include(request, response);
+        } catch (IOException | ServletException e) {
             e.printStackTrace();
         }
     }

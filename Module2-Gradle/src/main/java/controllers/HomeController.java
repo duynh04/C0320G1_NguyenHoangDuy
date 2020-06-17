@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Controller
+@RequestMapping("/home")
 public class HomeController {
     private static Pattern pattern;
 

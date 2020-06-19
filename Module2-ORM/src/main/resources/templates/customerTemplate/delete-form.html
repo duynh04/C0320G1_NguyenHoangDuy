@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/layout :: head"></head>
+<body>
+<h3>Remove customer</h3>
+<p>
+    <a th:href="@{/customers}" class="btn btn-primary">
+        Back to customer list
+    </a>
+</p>
+<div class="mx-4 w-25">
+    <form action="#" th:action="@{/customers/delete}" th:object="${customer}" method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <div>
+                <label for="firstName">First Name</label>
+                <input readonly id="firstName" class="form-control" type="text" th:field="*{firstName}"/>
+            </div>
+            <div>
+                <label for="lastName">Last Name</label>
+                <input readonly id="lastName" class="form-control" type="text" th:field="*{lastName}"/>
+            </div>
+            <div>
+                <label for="email">Email Address</label>
+                <input readonly id="email" class="form-control" type="text" th:field="*{email}"/>
+            </div>
+            <div>
+                <label for="province">Province</label>
+                <input readonly id="province" class="form-control" type="text" th:field="*{province.name}"/>
+            </div>
+            <input type="submit" value="Delete" class="btn btn-danger"/>
+        </div>
+    </form>
+</div>
+<th:block th:replace="layouts/layout :: css-script"/>
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</body>
+</html>

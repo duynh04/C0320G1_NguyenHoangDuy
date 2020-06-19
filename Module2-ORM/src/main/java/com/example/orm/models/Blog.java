@@ -18,7 +18,6 @@ public class Blog {
     @Column(name = "blog_title")
     private String title;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "blog_datecreated")
     private LocalDateTime dateCreated;
 

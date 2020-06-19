@@ -1,16 +1,11 @@
-package com.example.orm.Services;
+package com.example.orm.services;
 
-import com.example.orm.Services.filter.BlogSpecifications;
-import com.example.orm.Services.filter.FilterBlog;
+import com.example.orm.dtos.FilterBlog;
 import com.example.orm.models.Blog;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.util.Streamable;
-import org.springframework.lang.Nullable;
-
-import java.util.List;
 
 public interface BlogService {
 

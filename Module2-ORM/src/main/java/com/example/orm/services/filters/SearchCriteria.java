@@ -1,4 +1,4 @@
-package com.example.orm.Services.filter;
+package com.example.orm.services.filters;
 
 public class SearchCriteria {
     private String key;

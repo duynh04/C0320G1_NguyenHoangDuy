@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/layout :: head"> </head>
+<body class="mx-4 w-25">
+    <h3>Add blog</h3>
+    <p>
+        <a th:href="@{/blogs}" class="btn btn-primary">
+            Back to blog list
+        </a>
+    </p>
+    <div>
+        <form action="#" th:action="@{/blogs/save}" th:object="${blog}" method="POST" novalidate="novalidate">
+            <div class="form-group">
+                <input type="hidden" th:field="*{id}"/>
+                <div>
+                    <label>Title</label>
+                    <input class="form-control" type="text" th:field="*{title}"/>
+                </div>
+                <div>
+                    <label>Author</label>
+                    <input class="form-control" type="text" th:field="*{author}"/>
+                </div>
+                <div>
+                    <label>Description</label>
+                    <textarea class="form-control" th:field="*{description}"></textarea>
+                </div>
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+<th:block th:replace="layouts/layout :: css-script"/>
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</body>
+</html>

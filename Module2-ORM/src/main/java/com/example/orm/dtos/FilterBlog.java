@@ -1,13 +1,11 @@
-package com.example.orm.Services.filter;
+package com.example.orm.dtos;
 
 public class FilterBlog {
     private String author;
     private String title;
-    private String operation;
 
     public FilterBlog() {
     }
-
     public FilterBlog(String author, String title) {
         this.author = author;
         this.title = title;

@@ -9,10 +9,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
-
+@Repository
 public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificationExecutor<Blog> {
 
     @Transactional
@@ -20,8 +21,6 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
     @Query("update Blog b set b.status = :status where b.id = :id")
     void updateByIdAndStatus(long id, Boolean status);
 
-
     Page<Blog> findByAuthorStartingWith(String author, Pageable pageable);
 
-    //Page<Blog> findAll(Specification<Blog> spec, Pageable pageable);
 }

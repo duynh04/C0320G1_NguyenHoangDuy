@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/layout :: head"></head>
+<body class="mx-3 w-20">
+<h3>PROVINCE MANAGEMENT</h3>
+<p>
+    <a th:href="@{/provinces/create}" class="btn btn-primary">
+        Add new province
+    </a>
+</p>
+<p class="text-success" th:text="${success}?:_"> </p>
+<div>
+    <form th:object="${filter}">
+        <div class="form-row align-items-center">
+            <div class="col-sm-3 my-1">
+                <input id="provinceName" class="form-control" type="text" th:field="*{name}" placeholder="province...">
+            </div>
+            <div class="col-auto my-1">
+                <input class="btn btn-outline-primary" type="submit" value="Search">
+            </div>
+        </div>
+    </form>
+</div>
+<table class="table">
+    <thead class="thead-dark ">
+    <tr>
+        <th>Name</th>
+        <th>Zip Code</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="province : ${provinces}">
+        <td th:text="${province.name}"></td>
+        <td th:text="${province.zipCode}"></td>
+        <td><a th:href="@{/provinces/edit/__${province.id}__}">edit</a></td>
+        <td><a th:href="@{/provinces/delete/__${province.id}__}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a  th:href="@{'/provinces' + ${'?page=' + __${provinces.number}__}
+                            + ${(filter.name != null)? '&name=':''} + ${filter.name?: ''}}"
+        th:if="${provinces.hasPrevious()}">Previous</a>
+    <span th:text="${provinces.number + 1}"></span>/<span th:text="${provinces.totalPages}"></span>
+    <a  th:href="@{'/provinces' + ${'?page=' + __${provinces.number + 2}__}
+                            + ${(filter.name != null)? '&name=' : ''} + ${filter.name?: ''}}"
+        th:if="${provinces.hasNext()}">Next</a>
+</div>
+<th:block th:replace="layouts/layout :: css-script"/>
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</body>
+</html>

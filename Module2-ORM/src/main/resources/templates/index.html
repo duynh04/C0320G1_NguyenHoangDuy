@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/layout :: head"> </head>
+<body>
+
+<h1>Application</h1>
+
+<a href="/blogs" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+    BLOG
+</a>
+<a href="/customers" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+    CUSTOMER
+</a>
+<a href="/provinces" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+    PROVINCE
+</a>
+<th:block th:replace="layouts/layout :: css-script"/>
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</body>
+</html>

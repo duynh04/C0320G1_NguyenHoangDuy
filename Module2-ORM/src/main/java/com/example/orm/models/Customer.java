@@ -1,42 +1,53 @@
 package com.example.orm.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.orm.validators.NameConstraint;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "customers")
 public class Customer {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String name;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_id")
+    private long id;
+
+    @Column(name = "customer_firstname")
+    @NameConstraint(message = "Name must be between 2 and 30 characters")
+    private String firstName;
+
+    @Column(name = "customer_lastname")
+    private String lastName;
+
+    @Column(name = "customer_email")
     private String email;
-    private String address;
+
+
+    @Column(name = "customer_status")
+    private Boolean status;
+
+    @ManyToOne
+    @JoinColumn(name = "province_id")
+    private Province province;
 
     public Customer() {
     }
 
-    public Customer(String name, String email, String address) {
-        this.name = name;
+    public Customer(long id, String firstName, String lastName, String email,  Province province) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.address = address;
+        this.province = province;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail(){
@@ -47,18 +58,42 @@ public class Customer {
         this.email = email;
     }
 
-    public String getAddress(){
-        return  address;
+    public Province getProvince() {
+        return province;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setProvince(Province province) {
+        this.province = province;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
         return String.format(
                 "Customer[id=%d, Name='%s', Email='%s', Address='%s']",
-                id, name, email, address);
+                id, firstName, email, province.getName());
     }
 }

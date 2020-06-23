@@ -1,5 +1,6 @@
 package com.example.orm.dtos;
 
+
 public class FilterBlog {
     private String author;
     private String title;

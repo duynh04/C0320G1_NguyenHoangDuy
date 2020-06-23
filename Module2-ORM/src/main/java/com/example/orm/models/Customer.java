@@ -3,6 +3,7 @@ package com.example.orm.models;
 import com.example.orm.validators.NameConstraint;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "customers")
@@ -17,6 +18,7 @@ public class Customer {
     @NameConstraint(message = "Name must be between 2 and 30 characters")
     private String firstName;
 
+    @NameConstraint(message = "Name must be between 2 and 30 characters")
     @Column(name = "customer_lastname")
     private String lastName;
 

@@ -3,6 +3,7 @@ package com.example.orm.controllers;
 import com.example.orm.dtos.FilterCustomer;
 import com.example.orm.models.*;
 import com.example.orm.services.*;
+import com.example.orm.validators.Impl.CustomerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+//@SessionAttributes("mycounter")
 @RequestMapping("customers")
 public class CustomerController {
 
@@ -46,6 +48,8 @@ public class CustomerController {
     }
     @PostMapping("/save")
     public String saveCustomer(@Valid @ModelAttribute Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        CustomerValidator vali = new CustomerValidator();
+        vali.validate(customer, bindingResult);
         if (bindingResult.hasErrors()) {
             return "customerTemplate/create-form";
         }

@@ -14,7 +14,13 @@
 <a href="/provinces" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
     PROVINCE
 </a>
-<th:block th:replace="layouts/layout :: css-script"/>
+<a href="/products" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+    PRODUCT
+</a>
+<a href="/contracts" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+    CONTRACT
+</a>
+<!--<th:block th:replace="layouts/layout :: css-script"/>-->
 <footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
 </body>
 </html>

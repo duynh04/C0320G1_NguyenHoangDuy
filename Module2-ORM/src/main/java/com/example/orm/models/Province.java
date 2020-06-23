@@ -17,7 +17,7 @@ public class Province {
     @Column(name = "province_zipcode", columnDefinition = "nvarchar(10)")
     private String zipCode;
 
-    @OneToMany(targetEntity = Customer.class)
+    @OneToMany(mappedBy = "province")
     private List<Customer> customers;
 
 

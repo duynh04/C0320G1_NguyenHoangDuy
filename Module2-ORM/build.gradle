@@ -24,6 +24,7 @@ dependencies {
     // https://mvnrepository.com/artifact/javax.enterprise/cdi-api
     compile group: 'javax.enterprise', name: 'cdi-api', version: '2.0'
 //    runtime("org.springframework.boot:spring-boot-devtools")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 
 test {

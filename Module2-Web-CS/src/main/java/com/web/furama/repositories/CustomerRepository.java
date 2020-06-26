@@ -13,6 +13,8 @@ import javax.transaction.Transactional;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Page<Customer> findByName(String name, Pageable pageable);
 
+    Customer getCustomerByEmail(String email);
+
     @Transactional
     @Modifying
     @Query(value="update Customer c set c.status = false where c.id = :id")

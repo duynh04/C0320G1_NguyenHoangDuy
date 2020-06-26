@@ -4,9 +4,7 @@ import com.web.furama.models.Customer;
 import com.web.furama.searches.FilterCustomer;
 import com.web.furama.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -40,7 +38,7 @@ public class CustomerController {
     }
     @GetMapping("/create")
     public ModelAndView showCreateForm() {
-        return new ModelAndView("customerTemplates/create-form", "customer", new Customer());
+        return new ModelAndView("login", "customer", new Customer());
     }
     @PostMapping("/save")
     public String saveCustomer(@Valid @ModelAttribute Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
@@ -50,7 +48,7 @@ public class CustomerController {
 //            return "customerTemplate/create-form";
 //        }
         redirectAttributes.addFlashAttribute("success", "Create new customer successfully!");
-        customerService.saveCustomer(customer);
+//        customerService.saveCustomer(customer);
         return "redirect:/customers";
     }
 }

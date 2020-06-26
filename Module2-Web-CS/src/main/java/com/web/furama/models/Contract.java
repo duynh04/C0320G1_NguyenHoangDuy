@@ -1,5 +1,8 @@
 package com.web.furama.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -7,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "contracts")
+@Setter
+@Getter
 public class Contract {
 
     @Id
@@ -38,70 +43,5 @@ public class Contract {
     @JoinTable(name = "contract_detail")
     private List<AttachService> attachServices;
 
-    public Contract() {
-    }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
-
-    public double getDeposit() {
-        return deposit;
-    }
-
-    public void setDeposit(double deposit) {
-        this.deposit = deposit;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Service getService() {
-        return service;
-    }
-
-    public void setService(Service service) {
-        this.service = service;
-    }
-
-    public List<AttachService> getAttachServices() {
-        return attachServices;
-    }
-
-    public void setAttachServices(List<AttachService> attachServices) {
-        this.attachServices = attachServices;
-    }
 }

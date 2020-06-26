@@ -1,7 +1,12 @@
 package com.web.furama.services.impl;
 
+import com.web.furama.dtos.AccountRegister;
+import com.web.furama.models.Account;
+import com.web.furama.models.Authority;
 import com.web.furama.models.Customer;
+import com.web.furama.repositories.AccountRepository;
 import com.web.furama.repositories.CustomerRepository;
+import com.web.furama.services.AccountService;
 import com.web.furama.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,9 +22,17 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private AccountService accountService;
+
     @Override
     public Customer findCustomerById(long id) {
         return customerRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Customer findCustomerByEmail(String email) {
+        return customerRepository.getCustomerByEmail(email);
     }
 
     @Override
@@ -33,9 +46,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void saveCustomer(Customer customer) {
+    public void register(AccountRegister accountRegister) {
+        Account account = new Account();
+        account.setUserName(accountRegister.getUserName());
+        account.setPassword(accountRegister.getPassword());
+
+        Customer customer = new Customer();
+        customer.setEmail(accountRegister.getEmail());
         customer.setStatus(true);
         customerRepository.save(customer);
+        account.setCustomer(customer);
+        accountService.saveNewAccount(account);
     }
 
     @Override

@@ -1,14 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:fragment="head">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/login.css}" rel="stylesheet"/>
+    <link th:href="@{/css/layout.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Furama Hotel</title>
 </head>
 <body>
-<footer th:fragment="footer (year)">
-    Furama &copy; [[${year}]] Created by <a href="https://www.facebook.com/nhduy154">Nguyen Hoang Duy</a>
-</footer>
+<div th:fragment="header1">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-column flex-md-row bd-navbar" >
+            <a href="#" class="navbar-brand">
+                <!-- Logo Image -->
+                <img src="https://furamavietnam.com/wp-content/uploads/2018/10/logo.png" width="45" alt="" class="d-inline-block align-middle mr-2">
+                <!-- Logo Text -->
+                <span class="text-primary font-weight-light">Furama</span>
+            </a>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Home</a>
+                    </li>
+                    <li >
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"  id="dropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Service
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" th:href="@{/service/room}">Room</a>
+                                <a class="dropdown-item" th:href="@{/service/house}">House</a>
+                                <a class="dropdown-item" th:href="@{/service/villa}">Villa</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link disabled" href="#">Review</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link disabled" href="#">Contact</a>
+                    </li>
+                </ul>
+                <div class="my-2 my-lg-0">
+                    <a class="btn btn-primary mr-sm-2" th:href="@{/account/register}">Register</a>
+                    <a class="btn btn-primary my-2 my-sm-0" th:href="@{/account/signin}">Sign in</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<footer th:fragment="footer (year)"></footer>
+<th:block th:fragment="custome-script">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script  th:src="@{/js/scroll.js}"></script>
+</th:block>
 </body>
 </html>

@@ -16,7 +16,7 @@ public class CustomerValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors, "email", "email.empty");
+        ValidationUtils.rejectIfEmpty(errors, "email", "email.empty1");
         Customer customer = (Customer)target;
         String EMAIL_REGEX = "^([-\\w.])+[a-zA-Z\\d]@(\\w+\\.)+(\\w+)$";
         if (!customer.getEmail().matches(EMAIL_REGEX)) {

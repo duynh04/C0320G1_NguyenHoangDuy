@@ -2,25 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="layouts/layout :: head"> </head>
 <body>
+<a th:href="@{/(lang=en)}">EN</a>
+<a th:href="@{/(lang=vi)}">VN</a>
+<h1 th:text="#{app}"></h1>
 
-<h1>Application</h1>
-
-<a href="/blogs" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
-    BLOG
-</a>
-<a href="/customers" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
-    CUSTOMER
-</a>
-<a href="/provinces" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
-    PROVINCE
-</a>
-<a href="/products" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
-    PRODUCT
-</a>
-<a href="/contracts" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
-    CONTRACT
-</a>
-<!--<th:block th:replace="layouts/layout :: css-script"/>-->
+<a th:text="#{blog}" href="/blogs" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"> </a>
+<a th:text="#{cus}" href="/customers" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"> </a>
+<a th:text="#{prov}" href="/provinces" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"> </a>
+<a th:text="#{prod}" href="/products" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"> </a>
+<a th:text="#{contr}" href="/contracts" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false"></a>
 <footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
 </body>
 </html>

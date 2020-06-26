@@ -1,10 +1,17 @@
 package com.example.orm.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "attachservices")
+@Getter
+@Setter
+@NoArgsConstructor
 public class AttachService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,30 +24,4 @@ public class AttachService {
     //@JoinTable(name = "contract_service")
     private Set<Contract> contracts;
 
-    public AttachService() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public Set<Contract> getContracts() {
-        return contracts;
-    }
-
-    public void setContracts(Set<Contract> contracts) {
-        this.contracts = contracts;
-    }
 }

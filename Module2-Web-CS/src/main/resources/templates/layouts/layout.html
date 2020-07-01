@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/login.css}" rel="stylesheet"/>
-    <link th:href="@{/css/layout.css}" rel="stylesheet"/>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/userCss.css" rel="stylesheet"/>
+    <link href="/css/layout.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Furama Hotel</title>
 </head>
@@ -30,11 +31,14 @@
                                 Service
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" th:href="@{/service/room}">Room</a>
-                                <a class="dropdown-item" th:href="@{/service/house}">House</a>
-                                <a class="dropdown-item" th:href="@{/service/villa}">Villa</a>
+                                <a class="dropdown-item" th:href="@{/facility/room}">Room</a>
+                                <a class="dropdown-item" th:href="@{/facility/house}">House</a>
+                                <a class="dropdown-item" th:href="@{/facility/villa}">Villa</a>
                             </div>
                         </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/contracts}">Reservation</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link disabled" href="#">Review</a>
@@ -44,8 +48,18 @@
                     </li>
                 </ul>
                 <div class="my-2 my-lg-0">
-                    <a class="btn btn-primary mr-sm-2" th:href="@{/account/register}">Register</a>
-                    <a class="btn btn-primary my-2 my-sm-0" th:href="@{/account/signin}">Sign in</a>
+                    <div class="nav-item dropdown">
+                        <a sec:authentication="principal.username" sec:authorize="isAuthenticated()" class="nav-link dropdown-toggle text-primary"  id="dropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </a>
+                        <div  class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+                            <a class="dropdown-item" th:href="@{/customers/view}">Information</a>
+                            <a class="dropdown-item" th:href="@{/contracts/view}">Booking</a>
+                        </div>
+                    </div>
+                    <div>
+                        <a sec:authorize="!isAuthenticated()" class="btn btn-primary mr-sm-2" th:href="@{/account/register}">Register</a>
+                        <a sec:authorize="!isAuthenticated()" class="btn btn-primary my-2 my-sm-0" th:href="@{/account/login}">Sign in</a>
+                        <a sec:authorize="isAuthenticated()" class="btn btn-primary my-2 my-sm-0" th:href="@{/account/logout}">Log out</a>
+                    </div>
                 </div>
             </div>
         </nav>

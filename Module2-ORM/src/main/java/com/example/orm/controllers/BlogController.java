@@ -20,6 +20,8 @@ public class BlogController {
     @Autowired
     BlogService blogService;
 
+
+
     @GetMapping("")
     public ModelAndView getHome(@ModelAttribute FilterBlog filterBlog, @PageableDefault(value = 2) Pageable pageable) {
         Specification<Blog> specs = blogService.getFilter(filterBlog);

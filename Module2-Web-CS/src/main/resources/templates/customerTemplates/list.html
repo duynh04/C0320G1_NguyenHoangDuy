@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/admin-layout :: head"></head>
+<body>
+<nav th:replace="layouts/admin-layout :: admin-nav-bar"></nav>
+<div class="container-fluid">
+    <div class="row">
+        <nav th:replace="layouts/admin-layout :: admin-nav"></nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>Customers</h2>
+            <form th:object="${filter}">
+                <div class="form-row align-items-center">
+                    <div class="col-sm-3 my-1">
+                        <label for="firstName" class="sr-only">Name</label>
+                        <input id="firstName" class="form-control" type="text" th:field="*{name}" placeholder="firstName...">
+                    </div>
+                    <div class="col-sm-3 my-1">
+                        <label class="sr-only" for="customerType">Customer Type</label>
+                        <input id="customerType" class="form-control" type="text" th:field="*{customerType}" placeholder="customerType">
+                    </div>
+                    <div class="col-sm-3 my-1">
+                        <label for="from" class="sr-only">From</label>
+                        <input id="from" class="form-control" type="date" th:field="*{from}" th:placeholder="${#temporals.createNow()}">
+                    </div>
+                    <div class="col-sm-3 my-1">
+                        <label class="sr-only" for="to">To</label>
+                        <input id="to" class="form-control" type="date" th:field="*{to}" th:placeholder="${#temporals.createNow()}">
+                    </div>
+                    <div class="col-auto my-1">
+                        <input class="btn btn-outline-primary" type="submit" value="Search">
+                    </div>
+                </div>
+            </form>
+            <p class="text-success" th:if="${message}">Delete Successfully!</p>
+<!--            <a class="btn btn-primary" th:href="@{/admin/customercreate}">Add new Customer</a>-->
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>ID Card</th>
+                        <th>Birthday</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="customer,stat : ${customers}">
+                        <td th:text="${stat.count}"></td>
+                        <td th:text="${customer.code}"></td>
+                        <td th:text="${customer.name}"></td>
+                        <td th:text="${customer.email}"></td>
+                        <td th:text="${customer.idCard}"></td>
+                        <td th:text="${customer.birthday}"></td>
+                        <td th:text="${customer.customerType.name}"></td>
+                        <td class="text-success" th:if="${customer.status}" th:text="Available"></td>
+                        <td class="text-danger" th:unless="${customer.status}" th:text="Unavailable"></td>
+                        <td>
+                            <a th:href="@{/customers/edit/__${customer.id}__}">Edit | </a>
+                            <a class="text-danger" th:href="@{/customers/delete/__${customer.id}__}">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination">
+                <li class="page-item" >
+                    <a class="page-link" th:href="@{'/admin/customer' + ${'?page=' + __${customers.number}__}
+                            + ${(filter.name != null)? '&firstname=' : ''} + ${filter.name?: ''}
+                            + ${(filter.from != null)? '&from=' : ''} + ${filter.from?: ''}
+                            + ${(filter.to != null)? '&to=' : ''} + ${filter.to?: ''}
+                            + ${(filter.customerType != null)? '&province=':''} + ${filter.customerType?: ''}}"
+                       th:if="${customers.hasPrevious()}">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" th:text="|${customers.number + 1} / ${customers.totalPages}|"></a></li>
+                <li class="page-item" >
+                    <a class="page-link" th:href="@{'/admin/customer' + ${'?page=' + __${customers.number + 2}__}
+                            + ${(filter.name != null)? '&firstname=' : ''} + ${filter.name?: ''}
+                            + ${(filter.from != null)? '&from=' : ''} + ${filter.from?: ''}
+                            + ${(filter.to != null)? '&to=' : ''} + ${filter.to?: ''}
+                            + ${(filter.customerType != null)? '&province=':''} + ${filter.customerType?: ''}}"
+                       th:if="${customers.hasNext()}">Next</a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,54 +1,76 @@
 package com.web.furama.controllers;
 
+import com.web.furama.dtos.AccountRegister;
+import com.web.furama.dtos.CustomerDto;
+import com.web.furama.models.Account;
 import com.web.furama.models.Customer;
+import com.web.furama.models.CustomerType;
 import com.web.furama.searches.FilterCustomer;
+import com.web.furama.services.AccountService;
 import com.web.furama.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.List;
 
 @Controller
-@RequestMapping("customers")
+//@RequestMapping("")
 public class CustomerController {
 
     @Autowired
     CustomerService customerService;
-    @GetMapping("")
-    public ModelAndView getHome(@ModelAttribute FilterCustomer filterCustomer, @PageableDefault(value = 2) Pageable pageable) {
-//        Specification<Customer> specs = customerService.getFilter(filterCustomer);
-        ModelAndView modelAndView = new ModelAndView("customerTemplate/home");
-//        if(specs != null) {
-//            modelAndView.addObject("customers", customerService.findCustomerByCriteria(specs, pageable));
-//        } else {
-//            Page<Customer> pageCustomer = customerService.findAllCustomers(pageable);
-//            modelAndView.addObject("customers", pageCustomer);
-//        }
-        modelAndView.addObject("filter", filterCustomer);
+
+    @Autowired
+    AccountService accountService;
+
+    @GetMapping("customers/view")
+    public ModelAndView getInformation(Principal principal) {
+        Account account = accountService.getAccountByUserName(principal.getName());
+        ModelAndView modelAndView = new ModelAndView("customerTemplates/edit");
+        modelAndView.addObject("customer", account.getCustomer());
         return modelAndView;
     }
-    @GetMapping("/create")
-    public ModelAndView showCreateForm() {
-        return new ModelAndView("login", "customer", new Customer());
-    }
-    @PostMapping("/save")
-    public String saveCustomer(@Valid @ModelAttribute Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-//        CustomerValidator vali = new CustomerValidator();
-//        vali.validate(customer, bindingResult);
-//        if (bindingResult.hasErrors()) {
-//            return "customerTemplate/create-form";
-//        }
-        redirectAttributes.addFlashAttribute("success", "Create new customer successfully!");
+
+    @PostMapping("customers/save")
+    public String saveCustomer(@Valid @ModelAttribute("customer") CustomerDto customerDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "customerTemplates/create";
+        }
+//        model.addAttribute("message", true);
 //        customerService.saveCustomer(customer);
-        return "redirect:/customers";
+        return "customerTemplates/create";
+    }
+    @GetMapping({"customers/edit/{id}"})
+    public ModelAndView showUpdateForm(@PathVariable long id) {
+        return new ModelAndView("customerTemplates/edit", "customer", customerService.findCustomerById(id));
+    }
+    @PostMapping("customers/edit")
+    public String editCustomer(@Valid @ModelAttribute Customer customer, BindingResult bindingResult, Model model) {
+        if (!bindingResult.hasErrors()) {
+            customerService.updateCustomer(customer);
+            model.addAttribute("message", true);
+        }
+        return "customerTemplates/edit";
+    }
+    @GetMapping("customers/delete/{id}")
+    public String showDeleteForm(@PathVariable long id, RedirectAttributes redirectAttributes) {
+        customerService.deleteCustomer(id);
+        redirectAttributes.addFlashAttribute("message", true);
+        return "redirect:/admin/customer";
+    }
+
+
+    @ModelAttribute("customerTypes")
+    public List<CustomerType> getCustomerTypes() {
+        return  customerService.getCustomerTypes();
     }
 }

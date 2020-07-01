@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/admin-layout :: head"></head>
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Furama</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <nav th:replace="layouts/admin-layout :: admin-nav"></nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>Add New Facility</h2>
+            <a th:href="@{/admin}">Return Admin Home</a>
+            <p class="text-success" th:if="${message}">Add new facility successfully!</p>
+            <div class="container">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card">
+                        <p class="card-header text-primary">Create New Service</p>
+                        <div class="card-body">
+                            <form th:action="@{/admin/savefacility}" th:object="${facility}" method="post" novalidate="novalidate">
+                                <!--                    name-->
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Name</span>
+                                    </div>
+                                    <input type="text" th:field="*{name}" class="form-control"  placeholder="Name">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                                <!--                    Price-->
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Price</span>
+                                    </div>
+                                    <input type="text" th:field="*{price}" class="form-control" placeholder="Price">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+                                <!--                   Area -->
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Area</span>
+                                    </div>
+                                    <input type="text" th:field="*{area}" class="form-control" placeholder="area password">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></p>
+                                <!--                     Floor-->
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Floor</span>
+                                    </div>
+                                    <input type="text" th:field="*{floor}" class="form-control" placeholder="floor">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('floor')}" th:errors="*{floor}"></p>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Max People</span>
+                                    </div>
+                                    <input type="text" th:field="*{maxPerson}" class="form-control" placeholder="maxPerson">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('maxPerson')}" th:errors="*{maxPerson}"></p>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Type</span>
+                                    </div>
+                                    <select th:field="*{facilityType.id}"  class="form-control">
+                                        <option th:each="item: ${facilityTypes}" th:text="${item.name}" th:value="${item.id}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Add" class="btn float-right btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

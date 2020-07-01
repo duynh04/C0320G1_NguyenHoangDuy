@@ -1,20 +1,37 @@
 /* Made with love by Mutiullah Samim*/
 
 
-
 .container{
     height: auto;
     align-content: center;
 }
-
+td {
+    color: black;
+}
 .card{
     height: auto;
     margin-top: auto;
     margin-bottom: auto;
-    width: 400px;
+    width: 410px;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+.card1{
+    color: white;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 700px;
     background-color: rgba(0,0,0,0.5) !important;
 }
 
+.card2{
+    color: white;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 800px;
+    background-color: rgba(0,0,0,0.5) !important;
+}
 .social_icon span{
     font-size: 60px;
     margin-left: 10px;
@@ -37,7 +54,7 @@
 }
 
 .input-group-prepend span{
-    width: 50px;
+    width: auto;
     background-color: #FFC312;
     color: black;
     border:0 !important;

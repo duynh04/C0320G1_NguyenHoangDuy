@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -20,13 +19,13 @@ public class Contract {
     private long id;
 
     @Column(name = "contract_start_date")
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column(name = "contract_end_date")
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
-    @Column(name = "contract_deposit")
-    private double deposit;
+    @Column(name = "contract_price")
+    private double price;
 
     @Column(name = "contract_status")
     private boolean status;
@@ -36,12 +35,12 @@ public class Contract {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "service_id")
-    private Service service;
+    @JoinColumn(name = "facility_id")
+    private Facility facility;
 
     @ManyToMany
     @JoinTable(name = "contract_detail")
-    private List<AttachService> attachServices;
+    private List<AttachFacility> attachFacilities;
 
 
 }

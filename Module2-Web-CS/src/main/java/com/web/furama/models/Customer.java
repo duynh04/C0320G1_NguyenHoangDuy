@@ -1,6 +1,7 @@
 package com.web.furama.models;
 
 
+import com.web.furama.validations.UniqueEmail;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +24,7 @@ public class Customer {
     private long id;
 
     @Column(name = "customer_code", length = 10, nullable = true)
-    @Size(min = 2, max = 30, message = "The name is too long")
+    @Pattern(regexp = "^KH-\\d{4}$")
     private String code;
 
     @Column(name = "customer_name", columnDefinition = "nvarchar(30)", nullable = true)
@@ -38,14 +39,15 @@ public class Customer {
     private String phoneNumber;
 
     @Column(name = "customer_email")
+    @Pattern(regexp = "^([-\\w.])+[a-zA-Z\\d]@(\\w+\\.)+(\\w+)$", message = "Email is wrong format")
     private String email;
 
     @Column(name = "customer_birthday")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
     @Column(name = "customer_address")
-    @Pattern(regexp = "^\\w+$", message = "Invalid address")
+//    @Pattern(regexp = "^\\w+$", message = "Invalid address")
     private String address;
 
     @Column(name = "customer_status")

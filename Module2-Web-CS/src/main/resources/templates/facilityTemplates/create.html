@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/layout :: head"></head>
+<header>
+    <div th:replace="layouts/layout :: header1"></div>
+</header>
+<body>
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <p class="card-header text-primary">Create New Service</p>
+            <div class="card-body">
+                <form th:action="@{/facility/save}" th:object="${facility}" method="post" novalidate="novalidate">
+                    <!--                    name-->
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Name</span>
+                        </div>
+                        <input type="text" th:field="*{name}" class="form-control"  placeholder="Name">
+                    </div>
+                    <p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    <!--                    Price-->
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Price</span>
+                        </div>
+                        <input type="text" th:field="*{price}" class="form-control" placeholder="Price">
+                    </div>
+                    <p class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+                    <!--                   Area -->
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Area</span>
+                        </div>
+                        <input type="text" th:field="*{area}" class="form-control" placeholder="area password">
+                    </div>
+                    <p class="text-danger" th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></p>
+                    <!--                     Floor-->
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Floor</span>
+                        </div>
+                        <input type="text" th:field="*{floor}" class="form-control" placeholder="floor">
+                    </div>
+                    <p class="text-danger" th:if="${#fields.hasErrors('floor')}" th:errors="*{floor}"></p>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Max People</span>
+                        </div>
+                        <input type="text" th:field="*{maxPerson}" class="form-control" placeholder="maxPerson">
+                    </div>
+                    <p class="text-danger" th:if="${#fields.hasErrors('maxPerson')}" th:errors="*{maxPerson}"></p>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Type</span>
+                        </div>
+                        <select th:field="*{facilityType.id}"  class="form-control">
+                            <option th:each="item: ${facilityTypes}" th:text="${item.name}" th:value="${item.id}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Add" class="btn float-right btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:replace="layouts/layout :: custome-script"></script>
+</body>
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</html>

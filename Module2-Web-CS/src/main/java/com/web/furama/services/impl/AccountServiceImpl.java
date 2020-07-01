@@ -6,6 +6,7 @@ import com.web.furama.models.Authority;
 import com.web.furama.repositories.AccountRepository;
 import com.web.furama.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,14 +30,18 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void saveNewAccount(Account account) {
-        account.setAuthority(new Authority(1));
+        BCryptPasswordEncoder encoder= new BCryptPasswordEncoder();
+        String rawPassword= account.getPassword();
+        String encodedPassword= encoder.encode(rawPassword);
+        account.setPassword(encodedPassword);
         account.setStatus(true);
+        account.setAuthority(new Authority(1));
         accountRepository.save(account);
     }
 
     @Override
     public void deleteAccount(long id) {
-//        accountRepository.
+        accountRepository.updateAccount(id);
     }
 
     @Override

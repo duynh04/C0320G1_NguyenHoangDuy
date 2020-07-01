@@ -19,4 +19,11 @@ public class CustomerType {
 
     @Column(name = "customer_type_name", length = 10)
     private String name;
+
+    public CustomerType() {
+    }
+    public CustomerType(long id) {
+        this.id = id;
+    }
+
 }

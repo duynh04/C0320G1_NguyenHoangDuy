@@ -7,6 +7,7 @@ import com.example.orm.services.filters.SearchCriteria;
 import com.example.orm.models.Blog;
 import com.example.orm.repositories.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

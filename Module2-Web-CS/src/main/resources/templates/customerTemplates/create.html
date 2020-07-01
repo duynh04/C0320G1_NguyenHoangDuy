@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/admin-layout :: head"></head>
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Furama</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <nav th:replace="layouts/admin-layout :: admin-nav"></nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>Add New Customer</h2>
+            <a th:href="@{/admin}">Return Admin Home</a>
+            <p class="text-success" th:if="${message}">Add new Customer successfully!</p>
+            <div class="container">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card">
+                        <p class="card-header text-primary">Create New Customer</p>
+                        <div class="card-body">
+                            <form th:action="@{/customers/save}" th:object="${customer}" method="get" novalidate="novalidate">
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Name</span>
+                                    </div>
+                                    <input type="text" th:field="*{name}" class="form-control"  placeholder="First Name">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">ID Card</span>
+                                    </div>
+                                    <input type="text" th:field="*{idCard}" class="form-control" placeholder="ID Card">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></p>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Phone Number</span>
+                                    </div>
+                                    <input type="text" th:field="*{phoneNumber}" class="form-control" placeholder="(+84)">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Address</span>
+                                    </div>
+                                    <input type="text" th:field="*{address}" class="form-control" placeholder="address">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Birthday</span>
+                                    </div>
+                                    <input type="date" th:field="*{birthday}" class="form-control">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></p>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Code</span>
+                                    </div>
+                                    <input type="text" th:field="*{code}" class="form-control" placeholder="KH-XXXX">
+                                </div>
+                                <p class="text-danger" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></p>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Type</span>
+                                    </div>
+                                    <select th:field="*{customerType.id}"  class="form-control">
+                                        <option th:each="item: ${customerTypes}" th:text="${item.name}" th:value="${item.id}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Next" class="btn float-right btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -15,10 +15,7 @@ public class CustomerSpecification implements Specification<Customer> {
 
     @Override
     public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-        if(criteria.getOperation().equalsIgnoreCase("=")) {
-            return criteriaBuilder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
-        } else if(criteria.getOperation().equalsIgnoreCase("join")) {
-            //test
+        if(criteria.getOperation().equalsIgnoreCase("like")) {
             return criteriaBuilder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
         }
         return null;

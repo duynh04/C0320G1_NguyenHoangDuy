@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="layouts/layout :: head"> </head>
-<header>
-    <div th:replace="layouts/layout :: header1"></div>
-</header>
+<!--<header>-->
+<!--    <div th:replace="layouts/layout :: header1"></div>-->
+<!--</header>-->
 <body class="mx-4 w-25">
     <h3>Add customer</h3>
     <p>
@@ -14,32 +14,77 @@
     <div>
         <form action="#" th:action="@{/customers/save}" th:object="${customer}" method="POST" novalidate="novalidate">
             <div class="form-group">
-                <div>
-                    <label for="firstName">First Name</label>
-                    <input id="firstName" class="form-control" type="text" th:field="*{firstName}"/>
-                    <p class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Name</span>
+                    </div>
+                    <input type="text" th:field="*{name}" class="form-control"  placeholder="First Name">
                 </div>
-                <div>
-                    <label for="lastName">Last Name</label>
-                    <input id="lastName" class="form-control" type="text" th:field="*{lastName}"/>
-                    <p class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+                <p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Gender</span>
+                    </div>
+                    <input type="radio" th:field="*{gender}" value="Male" th:text="Male" />
+                    <input type="radio" th:field="*{gender}" value="Female" th:text="Female" />
                 </div>
-                <div>
-                    <label for="email">Email address</label>
-                    <input id="email" class="form-control" type="text" th:field="*{email}" placeholder="name@example.com"/>
-                    <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                <p class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">ID Card</span>
+                    </div>
+                    <input type="text" th:field="*{idCard}" class="form-control" placeholder="ID Card">
                 </div>
-                <div>
-                    <label for="province">Province</label>
-                    <select th:field="*{province.id}"  class="form-control" id="province">
-                        <option th:each="province: ${provinces}" th:text="${province.name}" th:value="${province.id}"></option>
+                <p class="text-danger" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Phone Number</span>
+                    </div>
+                    <input type="text" th:field="*{email}" class="form-control" placeholder="abc@abc.com">
+                </div>
+                <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Phone Number</span>
+                    </div>
+                    <input type="text" th:field="*{phoneNumber}" class="form-control" placeholder="(+84)">
+                </div>
+                <p class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Address</span>
+                    </div>
+                    <input type="text" th:field="*{address}" class="form-control" placeholder="address">
+                </div>
+                <p class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Birthday</span>
+                    </div>
+                    <input type="date" th:field="*{birthday}" class="form-control">
+                </div>
+                <p class="text-danger" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Code</span>
+                    </div>
+                    <input type="text" th:field="*{code}" class="form-control" placeholder="KH-XXXX">
+                </div>
+                <p class="text-danger" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Type</span>
+                    </div>
+                    <select th:field="*{customerType.id}"  class="form-control">
+                        <option th:each="item: ${customerTypes}" th:text="${item.name}" th:value="${item.id}"></option>
                     </select>
                 </div>
-                <input type="submit" value="Save" class="btn btn-primary"/>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn float-right btn-primary">
+                </div>
             </div>
         </form>
     </div>
-<!--<th:block th:replace="layouts/layout :: css-script"/>-->
-<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
 </body>
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
 </html>

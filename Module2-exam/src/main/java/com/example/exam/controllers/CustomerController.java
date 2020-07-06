@@ -1,9 +1,10 @@
-package com.example.orm.controllers;
+package com.example.exam.controllers;
 
-import com.example.orm.dtos.FilterCustomer;
-import com.example.orm.models.*;
-import com.example.orm.services.*;
-import com.example.orm.validators.Impl.CustomerValidator;
+import com.example.exam.dtos.CustomerDto;
+import com.example.exam.dtos.FilterCustomer;
+import com.example.exam.models.Customer;
+import com.example.exam.models.CustomerType;
+import com.example.exam.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,24 +20,21 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-//@SessionAttributes("mycounter")
 @RequestMapping("customers")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
 
-    @Autowired
-    private ProvinceService provinceService;
 
     @GetMapping("")
-    public ModelAndView getHome(@ModelAttribute FilterCustomer filterCustomer, @PageableDefault(value = 2) Pageable pageable) {
+    public ModelAndView getHome(@ModelAttribute FilterCustomer filterCustomer,@RequestParam(value = "page", required = false, defaultValue = "1") int page ) {
         Specification<Customer> specs = customerService.getFilter(filterCustomer);
-        ModelAndView modelAndView = new ModelAndView("customerTemplate/home");
+        ModelAndView modelAndView = new ModelAndView("customerTemplates/home");
         if(specs != null) {
-            modelAndView.addObject("customers", customerService.findCustomerByCriteria(specs, pageable));
+            modelAndView.addObject("customers", customerService.findCustomerByCriteria(specs, page));
         } else {
-            Page<Customer> pageCustomer = customerService.findAllCustomers(pageable);
+            Page<Customer> pageCustomer = customerService.findAllCustomers(page);
             modelAndView.addObject("customers", pageCustomer);
         }
         modelAndView.addObject("filter", filterCustomer);
@@ -44,14 +42,13 @@ public class CustomerController {
     }
     @GetMapping("/create")
     public ModelAndView showCreateForm() {
-        return new ModelAndView("customerTemplate/create-form", "customer", new Customer());
+        return new ModelAndView("customerTemplates/create-form", "customer", new CustomerDto());
     }
     @PostMapping("/save")
-    public String saveCustomer(@Valid @ModelAttribute Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        CustomerValidator vali = new CustomerValidator();
-        vali.validate(customer, bindingResult);
+    public String saveCustomer(@Valid @ModelAttribute("customer") CustomerDto customer, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        new CustomerDto().validate(customer, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "customerTemplate/create-form";
+            return "customerTemplates/create-form";
         }
         redirectAttributes.addFlashAttribute("success", "Create new customer successfully!");
         customerService.saveCustomer(customer);
@@ -60,17 +57,22 @@ public class CustomerController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView showUpdateForm(@PathVariable long id) {
-        return new ModelAndView("customerTemplate/edit-form", "customer", customerService.findCustomerById(id));
+        return new ModelAndView("customerTemplates/edit-form", "customer", customerService.findCustomerById(id));
     }
     @PostMapping("/edit")
-    public String editCustomer(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes) {
+    public String editCustomer(@Valid @ModelAttribute Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+//        CustomerDto customerDto = new CustomerDto();
+//        customerDto.validate(customer, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "customerTemplates/edit-form";
+        }
         customerService.updateCustomer(customer);
         redirectAttributes.addFlashAttribute("success", "Update customer successfully!");
         return "redirect:/customers";
     }
     @GetMapping("/delete/{id}")
     public ModelAndView showDeleteForm(@PathVariable long id) {
-        return new ModelAndView("customerTemplate/delete-form", "customer", customerService.findCustomerById(id));
+        return new ModelAndView("customerTemplates/delete-form", "customer", customerService.findCustomerById(id));
     }
 
     @PostMapping("/delete")
@@ -79,8 +81,8 @@ public class CustomerController {
         redirectAttributes.addFlashAttribute("success", "Delete successfully!");
         return "redirect:/customers";
     }
-    @ModelAttribute(value = "provinces")
-    public List<Province> getProvince() {
-        return provinceService.findAddProvinces();
+    @ModelAttribute(value = "customerTypes")
+    public List<CustomerType> getProvince() {
+        return customerService.getCustomerTypes();
     }
 }

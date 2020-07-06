@@ -2,26 +2,20 @@ package com.web.furama.controllers;
 
 import com.web.furama.dtos.ContractDto;
 import com.web.furama.dtos.CustomerDto;
-import com.web.furama.models.AttachFacility;
-import com.web.furama.models.Contract;
-import com.web.furama.models.Customer;
-import com.web.furama.models.Facility;
+import com.web.furama.models.*;
 import com.web.furama.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
 
 @Controller
-//@RequestMapping("contracts")
+@RequestMapping("contracts")
 public class ContractController {
 
     @Autowired
@@ -40,31 +34,39 @@ public class ContractController {
         return contractService.getAllAttachFacilities();
     }
 
-    @GetMapping("contracts")
+    @GetMapping("")
     public ModelAndView showFacilityForm(){
         return new ModelAndView("contractTemplates/facility-create", "contract", new ContractDto());
     }
 
-    @PostMapping("contracts/attach")
+    @PostMapping("/attach")
     public ModelAndView showAttachFacilityForm(@ModelAttribute("contract") ContractDto contractDto){
         return new ModelAndView("contractTemplates/attach-create", "contract", contractDto);
     }
 
-    @PostMapping("contracts/detail")
+    @PostMapping("/detail")
     public ModelAndView showDetailForm(@ModelAttribute("contract") ContractDto contractDto){
         return new ModelAndView("contractTemplates/detail-create", "contract", contractDto);
     }
 
-    @PostMapping("contracts/info")
+    @PostMapping("/info")
     public ModelAndView showInfoForm(@ModelAttribute("contract") ContractDto contractDto){
         contractService.getContractInfo(contractDto);
         return new ModelAndView("contractTemplates/info-create", "contract", contractDto);
     }
 
-    @PostMapping("contracts/save")
+    @PostMapping("/save")
     public ModelAndView addNewContract(@ModelAttribute("contract") ContractDto contractDto, Principal principal){
         Customer customer =  accountService.getAccountByUserName(principal.getName()).getCustomer();
         contractService.makeContract(contractDto, customer);
         return new ModelAndView("contractTemplates/info-create", "contract", contractDto);
+    }
+
+    @GetMapping("/view")
+    public ModelAndView showContracts(Principal principal) {
+        Customer customer = accountService.getAccountByUserName(principal.getName()).getCustomer();
+        ModelAndView modelAndView = new ModelAndView("contractTemplates/view");
+        modelAndView.addObject("contracts", customer.getContracts());
+        return modelAndView;
     }
 }

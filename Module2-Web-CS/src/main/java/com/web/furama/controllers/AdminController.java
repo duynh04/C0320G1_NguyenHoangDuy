@@ -72,6 +72,10 @@ public class AdminController {
         return new ModelAndView("facilityTemplates/list", "facilities", facilityService.getAllFacilities(page));
     }
 
+    @GetMapping("error")
+    public String getErrorPage() {
+        return "error403";
+    }
 //    @GetMapping("facilitycreate")
 //    public ModelAndView showFacilitiesCreateForm() {
 //        return new ModelAndView("facilityTemplates/create1", "facility", new Facility());

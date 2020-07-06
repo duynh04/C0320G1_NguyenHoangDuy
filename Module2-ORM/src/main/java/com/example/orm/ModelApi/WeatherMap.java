@@ -1,9 +1,9 @@
-﻿package com.example.orm;
+package com.example.orm.ModelApi;
 
 public class WeatherMap {
     private Coord coord;
 
-    private Weather weather;
+    private Weather[] weather;
 
     private String base;
 
@@ -34,11 +34,11 @@ public class WeatherMap {
         this.coord = coord;
     }
 
-    public Weather getWeather() {
+    public Weather[] getWeather() {
         return weather;
     }
 
-    public void setWeather(Weather weather) {
+    public void setWeather(Weather[] weather) {
         this.weather = weather;
     }
 
@@ -132,6 +132,6 @@ public class WeatherMap {
 
     @Override
     public String toString() {
-        return this.main.getTemp() + "/" + this.weather.getDescription();
+        return this.main.getTemp() + "/" + this.weather[0].getDescription();
     }
 }

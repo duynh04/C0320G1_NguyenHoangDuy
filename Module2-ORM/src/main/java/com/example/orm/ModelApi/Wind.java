@@ -1,4 +1,4 @@
-﻿package com.example.orm;
+package com.example.orm.ModelApi;
 public class Wind {
     private double speed;
     private double deg;

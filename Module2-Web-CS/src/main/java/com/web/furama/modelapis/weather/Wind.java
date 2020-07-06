@@ -1,4 +1,4 @@
-package com.example.orm.ModelApi;
+package com.web.furama.modelapis.weather;
 public class Wind {
     private double speed;
     private double deg;

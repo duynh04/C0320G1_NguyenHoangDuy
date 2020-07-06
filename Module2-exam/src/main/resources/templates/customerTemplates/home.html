@@ -5,9 +5,6 @@
     <div th:replace="layouts/layout :: header1"></div>
 </header>
 <body class="mx-3 w-20">
-<div class="container">
-    <h1 class="text-primary">CUSTOMER MANAGEMENT</h3>
-</div>
 <p>
     <a th:href="@{/customers/create}" class="btn btn-primary">
         Add new customer
@@ -18,12 +15,12 @@
     <form th:object="${filter}">
         <div class="form-row align-items-center">
             <div class="col-sm-3 my-1">
-                <label for="firstName" class="sr-only">First Name: </label>
-                <input id="firstName" class="form-control" type="text" th:field="*{firstName}" placeholder="firstName...">
+                <label for="firstName" class="sr-only"> Name: </label>
+                <input id="firstName" class="form-control" type="text" th:field="*{name}" placeholder="Name...">
             </div>
             <div class="col-sm-3 my-1">
-                <label class="sr-only" for="province">Province: </label>
-                <input id="province" class="form-control" type="text" th:field="*{province}" placeholder="province...">
+                <label class="sr-only" for="province">Code: </label>
+                <input id="province" class="form-control" type="text" th:field="*{code}" placeholder="Code...">
             </div>
             <div class="col-auto my-1">
                 <input class="btn btn-outline-primary" type="submit" value="Search">
@@ -34,41 +31,47 @@
 <table class="table">
     <thead class="thead-dark ">
     <tr>
-        <th>FirstName</th>
-        <th>LastName</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Gender</th>
         <th>Email</th>
-        <th>Province</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Phone Number</th>
+        <th>Birthday</th>
+        <th>Type</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="customer : ${customers}" th:if="${customer.status} == true">
-        <td th:text="${customer.firstName}"></td>
-        <td th:text="${customer.lastName}"></td>
+        <td th:text="${customer.code}"></td>
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.gender}"></td>
         <td th:text="${customer.email}"></td>
-        <td th:text="${customer.province.name}"></td>
-        <td><a th:href="@{/customers/edit/__${customer.id}__}">edit</a></td>
-        <td><a th:href="@{/customers/delete/__${customer.id}__}">delete</a></td>
+        <td th:text="${customer.phoneNumber}"></td>
+        <td th:text="${customer.birthday}"></td>
+        <td th:text="${customer.customerType.name}"></td>
+        <td>
+            <a th:href="@{/customers/edit/__${customer.id}__}">Edit | </a>
+            <a class="text-danger" th:href="@{/customers/delete/__${customer.id}__}">Delete</a>
+        </td>
     </tr>
     </tbody>
 </table>
 <ul class="pagination">
     <li class="page-item" >
         <a class="page-link" th:href="@{'/customers' + ${'?page=' + __${customers.number}__}
-                            + ${(filter.firstName != null)? '&firstname=' : ''} + ${filter.firstName?: ''}
-                            + ${(filter.province != null)? '&province=':''} + ${filter.province?: ''}}"
+                            + ${(filter.name != null)? '&name=' : ''} + ${filter.name?: ''}
+                            + ${(filter.code != null)? '&code=':''} + ${filter.code?: ''}}"
            th:if="${customers.hasPrevious()}">Previous</a>
     </li>
     <li class="page-item"><a class="page-link" th:text="|${customers.number + 1} / ${customers.totalPages}|"></a></li>
     <li class="page-item" >
         <a class="page-link" th:href="@{'/customers' + ${'?page=' + __${customers.number + 2}__}
-                            + ${(filter.firstName != null)? '&firstname=' : ''} + ${filter.firstName?: ''}
-                            + ${(filter.province != null)? '&province=':''} + ${filter.province?: ''}}"
+                            + ${(filter.name != null)? '&name=' : ''} + ${filter.name?: ''}
+                            + ${(filter.code != null)? '&code=':''} + ${filter.code?: ''}}"
            th:if="${customers.hasNext()}">Next</a>
     </li>
 </ul>
-<!--<th:block th:replace="layouts/layout :: css-script"/>-->
-<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
 </body>
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
 </html>

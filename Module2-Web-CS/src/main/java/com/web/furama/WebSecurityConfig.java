@@ -40,7 +40,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()
-                .logout().logoutUrl("/account/logout");
+                .logout().logoutUrl("/account/logout")
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/admin/error");
     }
 
     private SecurityExpressionHandler<FilterInvocation> webExpressionHandler() {

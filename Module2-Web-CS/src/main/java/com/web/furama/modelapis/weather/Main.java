@@ -1,60 +1,60 @@
-package com.example.orm.ModelApi;
+package com.web.furama.modelapis.weather;
 
 public class Main {
 
-    private double temp;
+    private float temp;
 
-    private double feels_like;
-    private double temp_min;
-    private double temp_max;
-    private double pressure;
-    private double humidity;
+    private float feels_like;
+    private float temp_min;
+    private float temp_max;
+    private float pressure;
+    private float humidity;
 
-    public double getTemp() {
+    public float getTemp() {
         return temp;
     }
 
-    public void setTemp(double temp) {
+    public void setTemp(float temp) {
         this.temp = temp;
     }
 
-    public double getFeels_like() {
+    public float getFeels_like() {
         return feels_like;
     }
 
-    public void setFeels_like(double feels_like) {
+    public void setFeels_like(float feels_like) {
         this.feels_like = feels_like;
     }
 
-    public double getTemp_min() {
+    public float getTemp_min() {
         return temp_min;
     }
 
-    public void setTemp_min(double temp_min) {
+    public void setTemp_min(float temp_min) {
         this.temp_min = temp_min;
     }
 
-    public double getTemp_max() {
+    public float getTemp_max() {
         return temp_max;
     }
 
-    public void setTemp_max(double temp_max) {
+    public void setTemp_max(float temp_max) {
         this.temp_max = temp_max;
     }
 
-    public double getPressure() {
+    public float getPressure() {
         return pressure;
     }
 
-    public void setPressure(double pressure) {
+    public void setPressure(float pressure) {
         this.pressure = pressure;
     }
 
-    public double getHumidity() {
+    public float getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(double humidity) {
+    public void setHumidity(float humidity) {
         this.humidity = humidity;
     }
 }

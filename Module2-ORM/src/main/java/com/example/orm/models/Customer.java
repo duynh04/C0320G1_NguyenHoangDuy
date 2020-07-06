@@ -25,7 +25,6 @@ public class Customer {
     @Column(name = "customer_email")
     private String email;
 
-
     @Column(name = "customer_status")
     private Boolean status;
 

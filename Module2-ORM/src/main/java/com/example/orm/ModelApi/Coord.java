@@ -1,4 +1,4 @@
-﻿package com.example.orm;
+package com.example.orm.ModelApi;
 public class Coord {
 
     private double lon;

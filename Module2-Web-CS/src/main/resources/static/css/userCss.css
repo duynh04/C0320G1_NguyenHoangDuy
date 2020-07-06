@@ -5,8 +5,14 @@
     height: auto;
     align-content: center;
 }
+h2 {
+    color: blue;
+}
+th {
+    color: royalblue;
+}
 td {
-    color: black;
+    color: yellow;
 }
 .card{
     height: auto;

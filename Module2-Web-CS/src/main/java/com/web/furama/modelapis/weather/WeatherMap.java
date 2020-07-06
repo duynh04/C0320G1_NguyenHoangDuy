@@ -1,4 +1,6 @@
-package com.example.orm.ModelApi;
+package com.web.furama.modelapis.weather;
+
+import javax.print.DocFlavor;
 
 public class WeatherMap {
     private Coord coord;
@@ -132,6 +134,7 @@ public class WeatherMap {
 
     @Override
     public String toString() {
-        return this.main.getTemp() + "/" + this.weather[0].getDescription();
+        String data = String.format("Weather: %.2f \u2103 - %s", main.getTemp(), weather[0].getDescription());
+        return data;
     }
 }

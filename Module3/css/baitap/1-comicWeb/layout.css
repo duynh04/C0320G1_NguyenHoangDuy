@@ -1,0 +1,64 @@
+body {
+    margin: 0px;
+}
+.logo { 
+    grid-column: 1 / span 3;
+    /* grid-row: 1 / span 1; */
+    /* background-image: url(//st.truyenchon.com/data/logos/logo-nettruyen.png);
+    background-size: 40% 40%;
+    background-repeat: no-repeat; */
+}
+.banner { 
+    grid-column: 4 / -1;
+    /* grid-row: 1/ span 1; */
+    /* height: 20%; */
+    background-color: #2196F3;
+}
+.header { 
+    height: auto;
+    grid-column: 1 / -1; 
+    /* grid-row: 2 / span 1; */
+    background-color: #21f344;
+}
+.left { 
+    grid-column: 1 / span 2; 
+    height: 100%;
+    width: auto;
+    /* grid-row: span 4; */
+    background-color: wheat;
+}
+
+a {
+    margin: 20px;
+}
+
+.content { 
+    grid-column: 3 / -1; 
+    /* grid-row: span 4; */
+    height: 100%;
+    background-color: mediumpurple;
+}
+
+.footer { 
+    grid-column: 1 / -1; 
+    /* grid-row: 4 / span 1; */
+    background-color: royalblue;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 113px);
+  /* grid-template-rows: 10% 80% 10%; */
+}
+
+.grid-container > div {
+  text-align: center;
+  padding: 10px;
+  font-size: 30px;
+}
+
+.grid-content {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 40px;
+    /* background-color: #2196F3; */
+}

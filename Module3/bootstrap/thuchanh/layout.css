@@ -1,0 +1,25 @@
+ /* header {
+     position: relative;
+ } */
+ .shopping-mall{
+    position: relative;
+    /* bottom: 0; */
+    font-variant: small-caps;
+ }
+ .shopping-mall>h1{
+     position: absolute;
+     font-family: Impact;
+     font-size: 50px;
+     color: white;
+     letter-spacing: 0.3px;
+     text-shadow: 0 0 2px black;
+     padding-bottom: 0px;
+     border-bottom: 1px dotted gray;
+     bottom: 25px;
+ }
+ .shopping-mall>h5{
+     position: absolute;
+     margin-top: 5px;
+     letter-spacing: 0.5px;
+     bottom: 0px;
+ } 

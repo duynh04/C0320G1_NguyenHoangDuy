@@ -1,6 +1,6 @@
- /* header {
-     position: relative;
- } */
+/* header { */
+/*      position: relative; */
+/*  } */
  .shopping-mall{
     position: relative;
     /* bottom: 0; */
@@ -23,3 +23,8 @@
      letter-spacing: 0.5px;
      bottom: 0px;
  } 
+
+ /* .card img { */
+ /*    height: 150px; */
+ /*    max-width: 95%; */
+ /* } */

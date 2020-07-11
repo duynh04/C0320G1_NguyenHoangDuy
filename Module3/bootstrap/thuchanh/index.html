@@ -1,97 +1,215 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="layout.css">
-  </head>
+</head>
+
 <body>
-<div class="container-fluid" style = "height: auto">
-    <header class="row">
-        <div class = "col-md-8 shopping-mall">
-            <h1>Online shopping mall</h1>
-            <h5>The center point of the professional programming</h5>
-        </div>
-        <div class="col-md-4">
-            <img src="//demo.codegym.vn/web/15/layout-bootstrap/images/header-object.png" alt="">
-        </div>
-     </header>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-         <div class="nav navbar-nav mr-auto">
-            <div class="nav-item active">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    Trang chủ
-                </a>
-            </div> 
-            <div class="nav-item active">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-list-alt"></i>
-                Giới thiệu
-                </a>
-            </div> 
-            <div class="nav-item active">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-phone"></i>
-                Liên hệ
-                </a>
-            </div> 
-            <div class="nav-item active">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-envelope"></i>
-                Góp ý
-                </a>
-            </div> 
-            <div class="nav-item active">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-question"></i>
-                Hỏi đáp
-                </a>
-            </div> 
-            <div class="nav-item active">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-user"></i>
-                    Tài khoản
-                </a>
+    <div class="container-fluid" style="height: auto">
+        <header class="row">
+            <div class="col-md-8 shopping-mall">
+                <h1>Online shopping mall</h1>
+                <h5>The center point of the professional programming</h5>
             </div>
-         </div>
-        <div class="navbar-nav navbar-right">
-            <div class="nav-item active">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-language"></i>
-                    Change language
-            </div> 
-        </div> 
+            <div class="col-md-4">
+                <img src="//demo.codegym.vn/web/15/layout-bootstrap/images/header-object.png" alt="">
+            </div>
+        </header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="nav navbar-nav mr-auto">
+                <div class="nav-item active">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Trang chủ
+                    </a>
+                </div>
+                <div class="nav-item active">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-list-alt"></i>
+                        Giới thiệu
+                    </a>
+                </div>
+                <div class="nav-item active">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-phone"></i>
+                        Liên hệ
+                    </a>
+                </div>
+                <div class="nav-item active">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        Góp ý
+                    </a>
+                </div>
+                <div class="nav-item active">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-question"></i>
+                        Hỏi đáp
+                    </a>
+                </div>
+                <div class="nav-item active">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        Tài khoản
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-nav navbar-right">
+                <div class="nav-item active">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-language"></i>
+                        Change language
+                    </a>
+                </div>
+            </div>
         </nav>
-        <div class = "row">
+        <div class="row">
             <article class="col-md-9">
-               <div class="d-flex flex-row bd-highlight mb-3">
-                <div class="p-2 bd-highlight">Flex item 1</div>
-                <div class="p-2 bd-highlight">Flex item 2</div>
-                <div class="p-2 bd-highlight">Flex item 3</div>
-               </div> 
+                <div class="d-flex justify-content-around align-items-center m-3">
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header">Nokia</div>
+                        <img class="card-img-top" src="https://demo.codegym.vn/web/15/layout-bootstrap/images/computer.png"></img>
+                        <div class="card-footer">
+                            <p class="card-text">$ 100.25</p>
+                        </div>
+                    </div>
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header">Nokia</div>
+                        <img class="card-img-top" src="https://demo.codegym.vn/web/15/layout-bootstrap/images/computer.png"></img>
+                        <div class="card-footer">
+                            <p class="card-text">$ 100.25</p>
+                        </div>
+                    </div>
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header">Nokia</div>
+                        <img class="card-img-top" src="https://demo.codegym.vn/web/15/layout-bootstrap/images/computer.png"></img>
+                        <div class="card-footer">
+                            <p class="card-text">$ 100.25</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-around align-items-center m-3">
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header">Nokia</div>
+                        <img class="card-img-top" src="https://demo.codegym.vn/web/15/layout-bootstrap/images/computer.png"></img>
+                        <div class="card-footer">
+                            <p class="card-text">$ 100.25</p>
+                        </div>
+                    </div>
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header">Nokia</div>
+                        <img class="card-img-top"
+                            src="https://demo.codegym.vn/web/15/layout-bootstrap/images/computer.png"></img>
+                        <div class="card-footer">
+                            <p class="card-text">$ 100.25</p>
+                        </div>
+                    </div>
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header">Nokia</div>
+                        <img class="card-img-top"
+                            src="https://demo.codegym.vn/web/15/layout-bootstrap/images/computer.png"></img>
+                        <div class="card-footer">
+                            <p class="card-text">$ 100.25</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-around align-items-center m-3">
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header">Nokia</div>
+                        <img class="card-img-top"
+                            src="https://demo.codegym.vn/web/15/layout-bootstrap/images/computer.png"></img>
+                        <div class="card-footer">
+                            <p class="card-text">$ 100.25</p>
+                        </div>
+                    </div>
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header">Nokia</div>
+                        <img class="card-img-top"
+                            src="https://demo.codegym.vn/web/15/layout-bootstrap/images/computer.png"></img>
+                        <div class="card-footer">
+                            <p class="card-text">$ 100.25</p>
+                        </div>
+                    </div>
+                    <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header">Nokia</div>
+                        <img class="card-img-top"
+                            src="https://demo.codegym.vn/web/15/layout-bootstrap/images/computer.png"></img>
+                        <div class="card-footer">
+                            <p class="card-text">$ 100.25</p>
+                        </div>
+                    </div>
+                </div>
             </article>
             <aside class="col-md-3">
-                
+                <div class="d-flex flex-column justify-content-around align-items-center m-3">
+                    <div class="card text-center" style="width:280px">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img src="https://demo.codegym.vn/web/15/layout-bootstrap/images/shoppingcart.gif" class="card-img m-4">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <p class="card-text">100 items</p>
+                                    <p class="card-text">$ 56.8</p>
+                                    <p class="card-text"><a href="#">Xem giỏ hàng</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card text-center" style="width:280px">
+                        <div class="card-body">
+                            <form>
+                                <input placeholder="Keywords" class="form-control">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 280px">
+                        <div class="card-header">
+                        <i class="fas fa-list"></i>
+                            Chủng Loại
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Điện thoại di động</li>
+                          <li class="list-group-item">Máy tính xách tay</li>
+                          <li class="list-group-item">Máy tính để bàn</li>
+                          <li class="list-group-item">Quạt máy</li>
+                          <li class="list-group-item">Tủ lạnh</li>
+                          <li class="list-group-item">Tivi</li>
+                        </ul>
+                      </div>
+                </div> 
             </aside>
         </div>
-         <div>
-             <p>CodeGym &copy; 2017</p>
-         </div>
-     </footer>
- </div>
+        <div class="card text-center">
+            <p>CodeGym &copy; 2017</p>
+        </div>
+        </footer>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>

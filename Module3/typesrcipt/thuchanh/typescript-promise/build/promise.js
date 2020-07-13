@@ -19,8 +19,13 @@ function jsonHttpGet(url) {
 var data = jsonHttpGet("https://api.github.com/users/NguHoaDuy/repos");
 data
     .then(function (result) {
-    // console.log(value);
-    var val = result;
-    val.forEach(function (value) { return console.log("Url: " + value.url); });
+    // console.log(result[0]);
+    // let val = result as Item[];
+    //  result.forEach((value) => console.log(`Url: ${value.url}`));
+    for (var index in result) {
+        console.log("---------------------------------------");
+        console.log("id: " + result[index].node_id);
+        console.log("url: " + result[index].url);
+    }
 })
     .catch(function (error) { return console.error("MyError:", error); });

@@ -328,11 +328,11 @@ $(document).ready(() => {
       player = new Player(arr);
     },
   });
-  $("#playBtn").on("click", play.play);
+  $("#playBtn").click(player.play);
 });
 // // Bind our player controls.
-// playBtn.addEventListener('click', function () {
-//     player.play();
+// playBtn.addEventListener("click", function () {
+//   player.play();
 // });
 pauseBtn.addEventListener("click", function () {
   player.pause();

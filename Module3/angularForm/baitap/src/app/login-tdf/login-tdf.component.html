@@ -3,15 +3,19 @@
     <div class="form-group row">
         <label class="col">
             Email
-            <input #spy type="email" name="email" [(ngModel)]="login.email" class="form-control" required>
+            <input #email="ngModel" type="email" name="email" [(ngModel)]="login.email" class="form-control" required
+                emailPattern>
         </label>
     </div>
-    <!-- <p>{{login.email}}</p> -->
-    <p>{{spy.className}}</p>
-    <!-- <div class="alert alert-danger" role="alert"
-        *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
-        Invalid email!
-    </div> -->
+    <div class="alert alert-danger" role="alert" *ngIf="email.invalid && (email.touched || email.dirty)">
+        <small *ngIf="email.errors.notMatch">
+            Email Invalid!
+        </small>
+        <small *ngIf="email.errors.required">
+            Email Required!
+        </small>
+    </div>
+    <!-- <p>{{spy.className}}</p> -->
     <div class="form-group row">
         <label class="col">
             Password
@@ -25,7 +29,10 @@
         Invalid password!
     </div> -->
     <div class="form-group">
-        <button class="btn btn-info" type="submit" [disabled]="!loginForm.valid">Submit</button>
+        <button class="btn btn-info" type="submit" [disabled]="!loginForm.form.valid">Submit</button>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info" type="submit" (click)="dis(loginForm)">Submit</button>
     </div>
 </form>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators, FormArray, FormGroup } from "@angular/forms";
 import { PasswordValidator, EmailValidator } from "../shared/validator";
+import { PhoneValidator } from './../shared/validator';
 @Component({
   selector: "app-register-rf",
   templateUrl: "./register-rf.component.html",
@@ -17,11 +18,11 @@ export class RegisterRfComponent implements OnInit {
       { validators: PasswordValidator }
     ),
     country: [''],
-    age: ['', [Validators.min(0), Validators.max(100)]],
+    age: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
     gender: [''],
-    phones: this.fb.array([this.fb.control('', [Validators.pattern(/^\+84\d{9,10}$/)])]),
+    phones: this.fb.array([this.fb.control('')], PhoneValidator),
   });
-
+  // [Validators.pattern(/^\+84\d{9,10}$/)]
   constructor(private fb: FormBuilder) { }
 
   get age() {
@@ -37,12 +38,17 @@ export class RegisterRfComponent implements OnInit {
     return this.registerForm.get('phones') as FormArray;
   }
   addPhone() {
-    this.phones.push(this.fb.control('', [Validators.pattern(/^\+84\d{9,10}$/)]));
+    this.phones.push(this.fb.control(''));
   }
-  ngOnInit() { }
+  ngOnInit() {
+    console.info("Init");
+  }
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.registerForm.value);
+  }
+  dis(f: any) {
+    // console.log(f);
   }
 }

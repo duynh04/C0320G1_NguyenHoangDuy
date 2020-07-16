@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginDTO } from './login-dto';
+import { LoginDTO } from '../dto/login-dto';
 
 @Component({
   selector: 'app-login-tdf',
@@ -15,6 +15,9 @@ export class LoginTdfComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.login);
+    // console.log(this.login);
+  }
+  dis(f: any) {
+    console.log(f);
   }
 }

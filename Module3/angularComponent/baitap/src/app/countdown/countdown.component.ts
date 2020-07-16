@@ -17,6 +17,7 @@ import {
 export class CountdownComponent implements OnChanges, OnInit, OnDestroy {
   private intervalId = 0;
   message = "";
+  @Input()
   remainingTime: number;
 
   @Input()

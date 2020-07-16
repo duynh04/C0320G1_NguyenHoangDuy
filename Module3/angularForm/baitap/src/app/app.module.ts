@@ -7,6 +7,7 @@ import { RegisterRfComponent } from "./register-rf/register-rf.component";
 import { LoginRfComponent } from "./login-rf/login-rf.component";
 import { LoginTdfComponent } from "./login-tdf/login-tdf.component";
 import { RegisterTdfComponent } from "./register-tdf/register-tdf.component";
+import { EmailValidatorDirective } from './shared/email-validator.directive';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RegisterTdfComponent } from "./register-tdf/register-tdf.component";
     LoginRfComponent,
     LoginTdfComponent,
     RegisterTdfComponent,
+    EmailValidatorDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
   providers: [],

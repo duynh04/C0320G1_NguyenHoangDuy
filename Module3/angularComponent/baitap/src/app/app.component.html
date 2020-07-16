@@ -1,3 +1,4 @@
 <app-rating-bar [max]="20" (rateChange)="onRateChange($event)"></app-rating-bar>
-<app-countdown seconds="10" (finish)="finishCountdown($event)"></app-countdown>
+<app-countdown [remainingTime]="remainingTime" [seconds]="seconds" (finish)="finishCountdown($event)"></app-countdown>
 <p>{{ countdownMsg }}</p>
+<p>{{ remainingTime }}</p>

@@ -8,6 +8,8 @@ import { Component } from "@angular/core";
 export class AppComponent {
   title = "baitap";
   countdownMsg: string = "";
+  seconds = 20;
+  remainingTime = 20;
 
   finishCountdown(isFinish: boolean) {
     if (isFinish) {

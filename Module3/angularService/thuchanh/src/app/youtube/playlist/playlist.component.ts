@@ -11,10 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PlaylistComponent implements OnInit {
 
-  playlist: Observable<IPlayer[]>;
+  playlist$: Observable<IPlayer[]>;
   selectedId: string;
   ngOnInit() {
-    this.playlist = this.route.paramMap.pipe(switchMap(params => {
+    this.playlist$ = this.route.paramMap.pipe(switchMap(params => {
       this.selectedId = params.get('id');
       return this.youtubeService.getPlaylist();
     }))

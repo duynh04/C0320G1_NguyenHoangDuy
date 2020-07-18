@@ -1,0 +1,66 @@
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-column flex-md-row bd-navbar">
+        <a th:href="/" class="navbar-brand">
+            <!-- Logo Image -->
+            <img src="https://furamavietnam.com/wp-content/uploads/2018/10/logo.png" width="45" alt=""
+                class="d-inline-block align-middle mr-2">
+            <!-- Logo Text -->
+            <span class="text-primary font-weight-light">Furama </span>
+        </a>
+        <div class="navbar-collapse collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">Home</a>
+                </li>
+                <li>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdownMenuLink" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Customer
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a routerLink='/customers' class="dropdown-item">List</a>
+                            <a routerLink='/customers/create' class="dropdown-item">Create</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdownMenuLink" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Employee
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item">List</a>
+                            <a class="dropdown-item">Create</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdownMenuLink" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Service
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item">List</a>
+                            <a class="dropdown-item">Add</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdownMenuLink" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Contract
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item">List</a>
+                            <a class="dropdown-item">Create</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

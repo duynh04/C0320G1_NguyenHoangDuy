@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <p class="card-header text-primary">Create New Customer</p>
+            <div class="card-body">
+                <form>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Name</span>
+                        </div>
+                        <input type="text" th:field="*{name}" class="form-control" placeholder="First Name">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">ID Card</span>
+                        </div>
+                        <input type="text" th:field="*{idCard}" class="form-control" placeholder="ID Card">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Phone Number</span>
+                        </div>
+                        <input type="text" th:field="*{phoneNumber}" class="form-control" placeholder="(+84)">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Address</span>
+                        </div>
+                        <input type="text" th:field="*{address}" class="form-control" placeholder="address">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Birthday</span>
+                        </div>
+                        <input type="date" th:field="*{birthday}" class="form-control">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Code</span>
+                        </div>
+                        <input type="text" th:field="*{code}" class="form-control" placeholder="KH-XXXX">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Type</span>
+                        </div>
+                        <select th:field="*{customerType.id}" class="form-control">
+                            <option th:each="item: ${customerTypes}" th:text="${item.name}" th:value="${item.id}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Next" class="btn float-right btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

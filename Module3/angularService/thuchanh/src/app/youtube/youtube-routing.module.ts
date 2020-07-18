@@ -6,8 +6,8 @@ import { Key } from 'protractor';
 
 
 const routes: Routes = [
-  { path: 'playlist', redirectTo: '/youtube' },
-  { path: 'player/:id', redirectTo: '/youtube/:id' },
+  // { path: 'playlist', redirectTo: '/youtube' },
+  // { path: 'player/:id', redirectTo: '/youtube/:id' },
   {
     path: '', component: PlaylistComponent,
     children: [

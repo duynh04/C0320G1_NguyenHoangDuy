@@ -1,6 +1,8 @@
 <div *ngIf="player$ | async as player; else tmpl">
+    <button (click)="sub()">Subscribe</button>
+    <button (click)="unsub()">unSubscribe</button>
     <h2 [textContent]="player.song">Song name: {{player.song}}</h2>
-    <iframe width="560" height="315" [src]="getSrc()" frameborder="0" allow="autoplay; encrypted-media"
+    <iframe width="560" height="315" [src]="src" frameborder="0" allow="autoplay; encrypted-media"
         allowfullscreen></iframe>
 </div>
 <ng-template #tmpl>

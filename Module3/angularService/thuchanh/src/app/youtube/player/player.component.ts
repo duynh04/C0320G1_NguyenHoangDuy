@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { YoutubeService } from '../youtube.service';
 import { IPlayer } from './../player';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -14,6 +14,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class PlayerComponent implements OnInit {
   src: SafeResourceUrl;
   player$: Observable<IPlayer>;
+  subbb: Subscription;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -28,12 +29,14 @@ export class PlayerComponent implements OnInit {
       })
     );
   }
-  getSrc() {
-    this.player$.subscribe(player => {
+  sub() {
+    this.subbb = this.player$.subscribe(player => {
       const url = 'https://www.youtube.com/embed/' + player.id;
       console.log(player.song);
       this.src = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
     });
-    return this.src;
+  }
+  unsub() {
+    this.subbb.unsubscribe();
   }
 }

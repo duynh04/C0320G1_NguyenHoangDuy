@@ -1,0 +1,8 @@
+<h2>Dictionary detail</h2>
+<div *ngIf="word; else notfound">
+    <p>Từ: {{word.key}}</p>
+    <p>Nghĩa của từ: {{word.meaning}}</p>
+</div>
+<ng-template #notfound>
+    <p>Not Found</p>
+</ng-template>

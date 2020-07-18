@@ -1,0 +1,26 @@
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="card-header">
+        Infomation
+    </div>
+    <div class="row no-gutters">
+        <div class="col-md-4 border border-primary">
+            <img src="https://acalance.com/wp-content/uploads/2014/02/user.png" class="card-img my-md-4"
+                alt="customer image">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <div *ngIf="customer$ | async as customer">
+                    <p class="card-text">Code: {{customer.id}}</p>
+                    <p class="card-text">Name: {{customer.name}}</p>
+                    <p class="card-text">ID Card: {{customer.idCard}}</p>
+                    <p class="card-text">Email: {{customer.email}}</p>
+                    <p class="card-text">Date of Birth: {{customer.birthday}}</p>
+                    <p class="card-text">Phone number: {{customer.phone}}</p>
+                    <p class="card-text">Type: {{customer.type}}</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn btn-dark" (click)='goBack()'>Back to list</button>

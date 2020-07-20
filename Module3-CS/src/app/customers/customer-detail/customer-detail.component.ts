@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { ICustomer } from '../models/customer';
-import { CustomerService } from '../services/customer.service';
+import { CustomerService } from '../customer.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { ICustomer } from '../models/customer';
 
 @Component({
   selector: 'app-customer-detail',
@@ -21,12 +21,11 @@ export class CustomerDetailComponent implements OnInit {
 
   ngOnInit() {
     this.customer$ = this.route.paramMap.pipe(
-      switchMap((param: ParamMap) => this.customerService.getCustomerById(param.get('id')))
+      switchMap((param: ParamMap) => this.customerService.findById(param.get('id')))
     );
   }
 
   goBack() {
-    console.log(this.route);
     this.router.navigate(['/customers'], { relativeTo: this.route })
   }
 }

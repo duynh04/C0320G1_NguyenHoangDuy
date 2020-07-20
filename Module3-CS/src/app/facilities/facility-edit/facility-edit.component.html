@@ -1,0 +1,119 @@
+<div class="container">
+    <!-- <pre>{{ editForm.value | json }} </pre> -->
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <p class="card-header text-primary">Update Facility</p>
+            <div class="card-body">
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Name</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName='name'>
+                    </div>
+                    <div *ngIf="name.touched && name.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="name.hasError('required')">
+                            Required Facility Name
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Area</span>
+                        </div>
+                        <input type="number" step="0.1" min="30" formControlName='area' class="form-control">
+                    </div>
+                    <div *ngIf="area.touched && area.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="area.hasError('required')">
+                            Required Area
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="area.hasError('min')">
+                            The area must be greater than 30 m<sup>2</sup>
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="area.hasError('max')">
+                            The area must be less than 1000 m<sup>2</sup>
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">No. Floor</span>
+                        </div>
+                        <input type="number" min="1" formControlName='floor' class="form-control">
+                    </div>
+                    <div *ngIf="floor.touched && floor.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="floor.hasError('required')">
+                            Required No. Floor
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="floor.hasError('min')">
+                            Number of floors must be greater than 1
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="floor.hasError('max')">
+                            Number of floors must be less than 10
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Max persons</span>
+                        </div>
+                        <input type="number" min="1" formControlName='persons' class="form-control">
+                    </div>
+                    <div *ngIf="persons.touched && persons.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="persons.hasError('required')">
+                            Required Max people
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="persons.hasError('min')">
+                            Max people must be greater than 1
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="persons.hasError('max')">
+                            Max people must be less than 20
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Pricing</span>
+                        </div>
+                        <input type="number" step="0.01" min="0" formControlName='price' class="form-control">
+                    </div>
+                    <div *ngIf="price.touched && price.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="price.hasError('required')">
+                            Required Price
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="price.hasError('min')">
+                            Price must be greater than 1
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Code</span>
+                        </div>
+                        <input readonly type="text" formControlName='id' class="form-control" placeholder="DV-XXXX">
+                    </div>
+                    <div *ngIf="code.touched && code.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="code.hasError('required')">
+                            Required Code!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="code.hasError('pattern')">
+                            Invalid Code!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Type</span>
+                        </div>
+                        <select formControlName='type' class="form-control">
+                            <option *ngFor="let type of types">{{type}}</option>
+                        </select>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-6">
+                            <button class="btn float-left btn-dark" (click)='goBack()'>Back to list</button>
+                        </div>
+                        <div class="col-6">
+                            <input type="submit" [disabled]="!editForm.valid" value="Update"
+                                class="btn float-right btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

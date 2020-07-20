@@ -1,0 +1,80 @@
+<div class="container">
+    <!-- <pre>{{ editForm.value | json }} </pre> -->
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <p class="card-header text-primary">Edit Employee</p>
+            <div class="card-body">
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Name</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName='name' placeholder="Name">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">ID Card</span>
+                        </div>
+                        <input type="text" formControlName='idCard' class="form-control" placeholder="ID Card">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Phone Number</span>
+                        </div>
+                        <input type="text" formControlName='phone' class="form-control" placeholder="(+84)">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">email</span>
+                        </div>
+                        <input type="email" formControlName='email' class="form-control" placeholder="abd@gmail.com">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Birthday</span>
+                        </div>
+                        <input type="date" formControlName='birthday' class="form-control"
+                            value="{{birthday.value | date: 'yyyy-MM-dd'}}">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Code</span>
+                        </div>
+                        <input readonly type="text" formControlName='id' class="form-control" placeholder="NV-XXXX">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Position</span>
+                        </div>
+                        <select formControlName='position' class="form-control">
+                            <option *ngFor="let pos of POSITION">{{pos}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Edu BackGround</span>
+                        </div>
+                        <select formControlName='edu_bg' class="form-control">
+                            <option *ngFor="let item of BACKGROUND">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Salary (USD)</span>
+                        </div>
+                        <input type="number" step="1" min="0" formControlName='salary' class="form-control">
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-6">
+                            <button class="btn float-left btn-dark" (click)='goBack()'>Back to list</button>
+                        </div>
+                        <div class="col-6">
+                            <input type="submit" [disabled]="!editForm.valid" value="Update"
+                                class="btn float-right btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

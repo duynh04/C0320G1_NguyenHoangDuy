@@ -1,28 +1,25 @@
-<div>
-
-    <table class="table table-hover table-striped text-center">
-        <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let customer of customerList$ | async; index as i">
-                <td>{{i + 1}}</td>
-                <td>{{customer.id}}</td>
-                <td>{{customer.name}}</td>
-                <td>{{customer.type}}</td>
-                <td>
-                    <a [routerLink]="['detail',customer.id]" class="text-success">Detail | </a>
-                    <a [routerLink]="['edit',customer.id]" class="text-primary">Edit | </a>
-                    <a class="text-danger">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-</div>
+<table class="table table-hover table-striped text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let customer of customerList$ | async | paginate: { itemsPerPage: 5, currentPage: p } ; index as i">
+            <td>{{(i + 1) + 5 * (p - 1)}}</td>
+            <td>{{customer.id}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.type}}</td>
+            <td>
+                <a [routerLink]="['detail',customer.id]" class="text-success">Detail | </a>
+                <a [routerLink]="['edit',customer.id]" class="text-primary">Edit | </a>
+                <a (click)="del(customer.id)" class="text-danger">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

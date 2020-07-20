@@ -1,0 +1,28 @@
+<div class="card mb-3">
+    <div class="card-header">
+        Infomation
+    </div>
+    <div class="row no-gutters">
+        <div class="col-md-4 border border-primary">
+            <img src="https://acalance.com/wp-content/uploads/2014/02/user.png" class="card-img my-md-4"
+                alt="employee image">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <div *ngIf="employee$ | async as employee">
+                    <p class="card-text">Code: {{employee.id}}</p>
+                    <p class="card-text">Name: {{employee.name}}</p>
+                    <p class="card-text">ID Card: {{employee.idCard}}</p>
+                    <p class="card-text">Email: {{employee.email}}</p>
+                    <p class="card-text">Date of Birth: {{employee.birthday}}</p>
+                    <p class="card-text">Phone number: {{employee.phone}}</p>
+                    <p class="card-text">Bachground: {{employee.edu_bg}}</p>
+                    <p class="card-text">Position: {{employee.position}}</p>
+                    <p class="card-text">Salary: {{employee.salary}} USD</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn btn-dark" (click)='goBack()'>Back to list</button>

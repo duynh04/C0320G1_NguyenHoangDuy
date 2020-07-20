@@ -1,2 +1,108 @@
-<p>customer-edit works!</p>
-<button class="btn btn-dark" (click)='goBack()'>Return form edit</button>
+<div class="container">
+    <!-- <pre>{{ editForm.value | json }} </pre> -->
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <p class="card-header text-primary">Update Customer</p>
+            <div class="card-body">
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Name</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName='name' placeholder="Name">
+                    </div>
+                    <div *ngIf="name.touched && name.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="name.hasError('required')">
+                            Required Name!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="name.hasError('pattern')">
+                            Invalid Name!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">ID Card</span>
+                        </div>
+                        <input type="text" formControlName='idCard' class="form-control" placeholder="ID Card">
+                    </div>
+                    <div *ngIf="idCard.touched && idCard.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="idCard.hasError('required')">
+                            Required ID!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="idCard.hasError('pattern')">
+                            Invalid ID!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Phone Number</span>
+                        </div>
+                        <input type="text" formControlName='phone' class="form-control" placeholder="(+84)">
+                    </div>
+                    <div *ngIf="phone.touched && phone.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="phone.hasError('pattern')">
+                            Invalid Phone number!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Email</span>
+                        </div>
+                        <input type="email" formControlName='email' class="form-control" placeholder="abd@gmail.com">
+                    </div>
+                    <div *ngIf="email.touched && email.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="email.hasError('required')">
+                            Required Email!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="email.hasError('pattern')">
+                            Invalid Email!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Birthday</span>
+                        </div>
+                        <input type="date" formControlName='birthday' class="form-control"
+                            value="{{birthday.value | date: 'yyyy-MM-dd'}}">
+                    </div>
+                    <div *ngIf="birthday.touched && birthday.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="birthday.errors?.invalidDate">
+                            Invalid Date!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Code</span>
+                        </div>
+                        <input readonly type="text" formControlName='id' class="form-control" placeholder="KH-XXXX">
+                    </div>
+                    <div *ngIf="code.touched && code.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="code.hasError('required')">
+                            Required Code!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="code.hasError('pattern')">
+                            Invalid Code!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Type</span>
+                        </div>
+                        <select formControlName='type' class="form-control">
+                            <option *ngFor="let type of types">{{type}}</option>
+                        </select>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-6">
+                            <button class="btn float-left btn-dark" (click)='goBack()'>Back to list</button>
+                        </div>
+                        <div class="col-6">
+                            <input type="submit" [disabled]="!editForm.valid" value="Update"
+                                class="btn float-right btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

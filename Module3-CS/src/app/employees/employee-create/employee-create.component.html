@@ -1,0 +1,131 @@
+<div class="container">
+    <!-- <pre>{{ registerForm.value | json }} </pre> -->
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <p class="card-header text-primary">Create New Employee</p>
+            <div class="card-body">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Name</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName='name' placeholder="Name">
+                    </div>
+                    <div *ngIf="name.touched && name.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="name.hasError('required')">
+                            Required Name!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="name.hasError('pattern')">
+                            Invalid Name!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">ID Card</span>
+                        </div>
+                        <input type="text" formControlName='idCard' class="form-control" placeholder="ID Card">
+                    </div>
+                    <div *ngIf="idCard.touched && idCard.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="idCard.hasError('required')">
+                            Required ID!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="idCard.hasError('pattern')">
+                            Invalid ID!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Phone Number</span>
+                        </div>
+                        <input type="text" formControlName='phone' class="form-control" placeholder="(+84)">
+                    </div>
+                    <div *ngIf="phone.touched && phone.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="phone.hasError('pattern')">
+                            Invalid Phone number!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">email</span>
+                        </div>
+                        <input type="email" formControlName='email' class="form-control" placeholder="abd@gmail.com">
+                    </div>
+                    <div *ngIf="email.touched && email.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="email.hasError('required')">
+                            Required Email!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="email.hasError('pattern')">
+                            Invalid Email!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="email.errors?.taken">
+                            This email is already taken!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Birthday</span>
+                        </div>
+                        <input type="date" formControlName='birthday' class="form-control"
+                            value="{{birthday.value | date : 'yyyy-MM-dd'}}">
+                    </div>
+                    <div *ngIf="birthday.touched && birthday.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="birthday.errors?.invalidDate">
+                            Invalid Date!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Code</span>
+                        </div>
+                        <input type="text" formControlName='id' class="form-control" placeholder="NV-XXXX">
+                    </div>
+                    <div *ngIf="code.touched && code.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="code.hasError('required')">
+                            Required Code!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="code.hasError('pattern')">
+                            Invalid Code!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="code.errors?.taken">
+                            This code is already taken!
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Position</span>
+                        </div>
+                        <select formControlName='position' class="form-control">
+                            <option *ngFor="let pos of POSITION">{{pos}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Edu BackGround</span>
+                        </div>
+                        <select formControlName='edu_bg' class="form-control">
+                            <option *ngFor="let item of BACKGROUND">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Salary (USD)</span>
+                        </div>
+                        <input type="number" step="1" min="0" formControlName='salary' class="form-control">
+                    </div>
+                    <div *ngIf="salary.touched && salary.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="salary.hasError('required')">
+                            Required Salary!
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="salary.hasError('pattern')">
+                            Salary must be greater than zero!
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" [disabled]="!registerForm.valid" value="Register"
+                            class="btn float-right btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

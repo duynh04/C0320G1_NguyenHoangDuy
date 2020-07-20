@@ -1,0 +1,25 @@
+<table class="table table-hover table-striped text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employeeList$ | async | paginate: { itemsPerPage: 5, currentPage: p }; index as i">
+            <td>{{(i + 1) + 5 * (p - 1)}}</td>
+            <td>{{employee.id}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.position}}</td>
+            <td>
+                <a [routerLink]="['detail',employee.id]" class="text-success">Detail | </a>
+                <a [routerLink]="['edit',employee.id]" class="text-primary">Edit | </a>
+                <a (click)="del(employee.id)" class="text-danger">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

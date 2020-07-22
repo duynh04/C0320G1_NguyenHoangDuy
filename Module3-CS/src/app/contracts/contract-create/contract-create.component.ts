@@ -80,7 +80,7 @@ export class ContractCreateComponent implements OnInit, OnDestroy {
     console.log(`id: ${_id}`)
     this.sub1 = this.contractService.getServiceUnit(_id).subscribe(
       (data: IFacility | null) => {
-        console.log(`data: ${data == null ? 0 : data.price}`);
+        // console.log(`data: ${data == null ? 0 : data.price}`);
         this.priceUnit = data == null ? 0 : data.price;
         const totalPrice = this.contractService.caclTotalPrice(this.from.value, this.to.value, this.priceUnit);
         this.createForm.patchValue({

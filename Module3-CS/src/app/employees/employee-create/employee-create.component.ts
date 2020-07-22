@@ -5,6 +5,7 @@ import { IEmployee } from '../models/employee';
 import { UserValidatorService } from 'src/app/shared/user-validator.service';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormatterService } from './../../shared/formatter.service';
 
 @Component({
   selector: 'app-employee-create',
@@ -21,7 +22,8 @@ export class EmployeeCreateComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     public userValidatorService: UserValidatorService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private formatterService: FormatterService
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,7 @@ export class EmployeeCreateComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     let data: IEmployee = this.registerForm.value as IEmployee;
+    data.birthday = this.formatterService.FormatDate(this.birthday.value);
     this.sub = this.employeeService.add(data).subscribe(
       (obj: IEmployee) => {
         return this.router.navigate(['/employees'], { relativeTo: this.route })

@@ -6,6 +6,7 @@ import { CustomerService } from '../customer.service';
 import { UserValidatorService } from './../../shared/user-validator.service';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormatterService } from './../../shared/formatter.service';
 
 @Component({
   selector: 'app-customer-create',
@@ -23,7 +24,8 @@ export class CustomerCreateComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private customerService: CustomerService,
-    public userValidatorService: UserValidatorService
+    private userValidatorService: UserValidatorService,
+    private formatterService: FormatterService
   ) { }
 
   ngOnInit() {
@@ -39,6 +41,7 @@ export class CustomerCreateComponent implements OnInit, OnDestroy {
   }
   onSubmit() {
     let data: ICustomer = this.registerForm.value as ICustomer;
+    data.birthday = this.formatterService.FormatDate(this.birthday.value);
     this.sub = this.customerService.add(data).subscribe(
       (obj: ICustomer) => {
         return this.router.navigate(['/customers'], { relativeTo: this.route })

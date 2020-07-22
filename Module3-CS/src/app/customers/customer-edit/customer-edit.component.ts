@@ -7,6 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators'
 import { CustomerService } from '../customer.service';
 import { UserValidatorService } from 'src/app/shared/user-validator.service';
+import { FormatterService } from './../../shared/formatter.service';
 
 @Component({
   selector: 'app-customer-edit',
@@ -26,7 +27,8 @@ export class CustomerEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private customerService: CustomerService,
-    private userValidatorService: UserValidatorService
+    private userValidatorService: UserValidatorService,
+    private formatterService: FormatterService
   ) { }
 
   ngOnInit() {
@@ -43,6 +45,7 @@ export class CustomerEditComponent implements OnInit, OnDestroy {
       switchMap((param: ParamMap) => this.customerService.findById(param.get('id')))
     ).subscribe((customer: ICustomer | undefined) => {
       if (customer) {
+        customer.birthday = this.formatterService.FormatDate(customer.birthday, false)
         this.editForm.patchValue(customer);
       }
     });

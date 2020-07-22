@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { IFacility } from './models/facility';
-import { CRUDRepository } from '../shared/repository/repository';
+import { CRUDRepository } from '../shared/repository';
 import { handler } from '../shared/error-handling';
 @Injectable({
   providedIn: 'root'
@@ -31,8 +31,8 @@ export class FacilityService implements CRUDRepository<IFacility>{
     );
   }
 
-  delete(_id: string): Observable<IFacility> {
-    return this.http.delete<IFacility>(this.apiEndpointUri + `/${_id}`,).pipe(
+  delete(_id: string): Observable<any> {
+    return this.http.delete(this.apiEndpointUri + `/${_id}`,).pipe(
       catchError(handler)
     );
   }

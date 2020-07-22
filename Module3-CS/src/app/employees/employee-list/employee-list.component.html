@@ -1,3 +1,7 @@
+<form class="form form-group">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term"
+        [ngModelOptions]="{standalone: true}">
+</form>
 <table class="table table-hover table-striped text-center">
     <thead class="thead-dark">
         <tr>
@@ -9,17 +13,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let employee of employeeList$ | async | paginate: { itemsPerPage: 5, currentPage: p }; index as i">
-            <td>{{(i + 1) + 5 * (p - 1)}}</td>
+        <!-- <tr *ngFor="let employee of employeeList | paginate: { itemsPerPage: 5, currentPage: p }; index as i"> -->
+        <tr
+            *ngFor="let employee of employeeList | filter: term | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; index as i">
+            <td>{{(i + 1) + 5 * (page- 1)}}</td>
             <td>{{employee.id}}</td>
             <td>{{employee.name}}</td>
             <td>{{employee.position}}</td>
             <td>
                 <a [routerLink]="['detail',employee.id]" class="text-success">Detail | </a>
                 <a [routerLink]="['edit',employee.id]" class="text-primary">Edit | </a>
-                <a (click)="del(employee.id)" class="text-danger">Delete</a>
+                <a (click)="confirm(employee)" class="text-danger">Delete</a>
             </td>
         </tr>
     </tbody>
 </table>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize"></ngb-pagination>
+<!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->

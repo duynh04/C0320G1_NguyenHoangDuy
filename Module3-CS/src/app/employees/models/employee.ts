@@ -1,7 +1,7 @@
 export interface IEmployee {
     id: string;
     name: string;
-    birthday: Date;
+    birthday: string;
     email: string;
     idCard: string;
     phone: string;

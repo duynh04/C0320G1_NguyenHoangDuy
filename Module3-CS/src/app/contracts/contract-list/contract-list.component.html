@@ -1,0 +1,38 @@
+<form class="form form-group">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term"
+        [ngModelOptions]="{standalone: true}">
+</form>
+<table class="table table-hover table-striped text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Customer ID</th>
+            <th>Service ID</th>
+            <th>Employee ID</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Deposit</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contract of contractList | filter:term | paginate: { itemsPerPage: 5, currentPage: p }">
+            <td>{{contract.id}}</td>
+            <td>{{contract.customerCode}}</td>
+            <td>{{contract.employeeCode}}</td>
+            <td>{{contract.facilityCode}}</td>
+            <td>{{contract.date.start}}</td>
+            <td>{{contract.date.end}}</td>
+            <td>{{contract.price.deposit}}</td>
+            <td>{{contract.price.total}}</td>
+            <td>
+                <!-- <a [routerLink]="['detail',contract.id]" class="text-success">Detail | </a> -->
+                <a [routerLink]="['edit',contract.id]" class="text-primary">Edit | </a>
+                <a (click)="confirm(contract)" class="text-danger">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

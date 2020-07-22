@@ -3,6 +3,9 @@ import { ParamMap } from '@angular/router';
 import { FacilityService } from '../facility.service';
 import { Observable, Subscription } from 'rxjs';
 import { IFacility } from '../models/facility';
+import { map } from 'rxjs/operators';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-facility-list',
@@ -11,24 +14,42 @@ import { IFacility } from '../models/facility';
 })
 export class FacilityListComponent implements OnInit, OnDestroy {
 
+  // cross1: number;
+  term: string;
   p: number = 1;
-  facilityList$: Observable<IFacility[]>;
-  sub: Subscription;
+  facilityList: IFacility[];
+  sub: Subscription[] = [];
+  modalRef: NgbModalRef;
   constructor(
+    public modalService: NgbModal,
     private facilityService: FacilityService
   ) { }
 
   ngOnInit() {
-    this.facilityList$ = this.facilityService.getAll();
+    this.sub[0] = this.facilityService.getAll().subscribe(
+      (data: IFacility[]) => this.facilityList = data
+    );
   }
+
   ngOnDestroy() {
-    if (this.sub)
-      this.sub.unsubscribe();
+    this.sub.forEach(val => {
+      if (val)
+        val.unsubscribe();
+    })
+  }
+  confirm(facility: IFacility) {
+    this.modalRef = this.modalService.open(DialogComponent);
+    this.modalRef.componentInstance.message = facility.name;
+    this.modalRef.componentInstance.code = facility.id;
+    this.modalRef.result.then(
+      (result: string) => this.del(result)
+    ).catch(
+      (error: string) => console.error(`error`)
+    );
   }
   del(id: string) {
-    this.sub = this.facilityService.delete(id).subscribe(
-      null,
-      (error: any) => console.error(error)
+    this.sub[1] = this.facilityService.delete(id).subscribe(
+      () => this.facilityList = this.facilityList.filter(val => val.id !== id)
     )
   }
 }

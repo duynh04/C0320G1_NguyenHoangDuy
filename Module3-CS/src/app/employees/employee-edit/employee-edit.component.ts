@@ -6,6 +6,7 @@ import { UserValidatorService } from 'src/app/shared/user-validator.service'
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { FormatterService } from './../../shared/formatter.service';
 
 @Component({
   selector: 'app-employee-edit',
@@ -26,7 +27,8 @@ export class EmployeeEditComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     public userValidatorService: UserValidatorService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private formatterService: FormatterService
   ) { }
 
   ngOnInit() {
@@ -45,6 +47,7 @@ export class EmployeeEditComponent implements OnInit {
       switchMap((param: ParamMap) => this.employeeService.findById(param.get('id')))
     ).subscribe((employee: IEmployee | undefined) => {
       if (employee) {
+        employee.birthday = this.formatterService.FormatDate(employee.birthday, false);
         this.editForm.patchValue(employee);
       }
     });

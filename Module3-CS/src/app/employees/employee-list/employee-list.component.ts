@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from '../models/employee';
 import { EmployeeService } from '../employee.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -10,23 +12,45 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
 
-  p: number = 1;
-  employeeList$: Observable<IEmployee[]>;
-  sub: Subscription;
-  constructor(private employeeService: EmployeeService) { }
+  term: string
+  //pagingation
+  page: number = 1;
+  pageSize: number = 5;
+  collectionSize: number;
+  employeeList: IEmployee[];
+  sub: Subscription[] = [];
+  modalRef: NgbModalRef;
+  constructor(
+    public modalService: NgbModal,
+    private employeeService: EmployeeService
+  ) { }
 
   ngOnInit() {
-    this.employeeList$ = this.employeeService.getAll();
+    this.sub[0] = this.employeeService.getAll().subscribe(
+      (data: IEmployee[]) => {
+        this.employeeList = data
+        this.collectionSize = this.employeeList.length
+      });
   }
   ngOnDestroy() {
-    console.log(this.sub);
-    if (this.sub)
-      this.sub.unsubscribe();
+    this.sub.forEach(val => {
+      if (val)
+        val.unsubscribe();
+    })
+  }
+  confirm(employee: IEmployee) {
+    this.modalRef = this.modalService.open(DialogComponent);
+    this.modalRef.componentInstance.message = employee.name;
+    this.modalRef.componentInstance.code = employee.id;
+    this.modalRef.result.then(
+      (result: string) => this.del(result)
+    ).catch(
+      (error: string) => console.error(`error`)
+    );
   }
   del(id: string) {
-    this.sub = this.employeeService.delete(id).subscribe(
-      null,
-      (error: any) => console.error(error)
+    this.sub[1] = this.employeeService.delete(id).subscribe(
+      () => this.employeeList = this.employeeList.filter(val => val.id !== id)
     )
   }
 }

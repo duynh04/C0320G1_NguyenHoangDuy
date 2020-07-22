@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Specification } from '../specification';
+import { Specification } from './specification';
 
 export interface CRUDRepository<T> {
     getAll: () => Observable<T[]>;

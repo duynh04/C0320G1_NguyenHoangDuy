@@ -1,19 +1,468 @@
 {
-  "posts": [
+  "customers": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "id": "KH-6346",
+      "name": "Eartha",
+      "birthday": "1993-04-23",
+      "email": "epolo8@tinypic.com",
+      "idCard": "064285763",
+      "phone": "(+84)914734746",
+      "type": "Gold"
+    },
+    {
+      "id": "KH-1302",
+      "name": "Wenonah",
+      "birthday": "10/30/1994",
+      "email": "wratie9@360.cn",
+      "idCard": "694214524",
+      "phone": "+84904733123",
+      "type": "Platinum"
+    },
+    {
+      "id": "KH-3604",
+      "name": "Fanny",
+      "birthday": "02/03/1988",
+      "email": "ffaircliffb@facebook.com",
+      "idCard": "025122426",
+      "phone": "0906381120",
+      "type": "Diamond"
+    },
+    {
+      "id": "KH-5347",
+      "name": "Crissie",
+      "birthday": "01/19/1987",
+      "email": "chaibelc@baidu.com",
+      "idCard": "830990044",
+      "phone": "0904829798",
+      "type": "Member"
+    },
+    {
+      "id": "KH-2581",
+      "name": "Nat",
+      "birthday": "01/09/1997",
+      "email": "ncolliholed@newyorker.com",
+      "idCard": "473097044",
+      "phone": "+84903129160",
+      "type": "Member"
+    },
+    {
+      "id": "KH-1590",
+      "name": "Urbanus",
+      "birthday": "03/25/1985",
+      "email": "ubrodbinf@trellian.com",
+      "idCard": "889892393",
+      "phone": "+84913357298",
+      "type": "Gold"
+    },
+    {
+      "id": "KH-5673",
+      "name": "Albrecht",
+      "birthday": "12/08/1988",
+      "email": "ashelbourneg@oracle.com",
+      "idCard": "142221940",
+      "phone": "0905048448",
+      "type": "Diamond"
+    },
+    {
+      "id": "KH-6197",
+      "name": "Karen",
+      "birthday": "08/18/2000",
+      "email": "khaveh@google.ca",
+      "idCard": "043311981",
+      "phone": "0900609229",
+      "type": "Silver"
+    },
+    {
+      "id": "KH-6696",
+      "name": "Jami",
+      "birthday": "11/12/1986",
+      "email": "jmccaugheyi@topsy.com",
+      "idCard": "727488816",
+      "phone": "0915453695",
+      "type": "Member"
+    },
+    {
+      "id": "KH-0967",
+      "name": "Uriah",
+      "birthday": "02/23/1999",
+      "email": "umingottij@quantcast.com",
+      "idCard": "963079753",
+      "phone": "0909682569",
+      "type": "Member"
+    },
+    {
+      "id": "KH-1123",
+      "name": "Duy",
+      "birthday": "21/07/1996",
+      "email": "aaa@gmail.com",
+      "idCard": "123123123",
+      "phone": "0901232133",
+      "type": "Diamond"
     }
   ],
-  "comments": [
+  "employees": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": "NV-9135",
+      "name": "Trent",
+      "birthday": "12/31/1995",
+      "email": "twinyard3@nba.com",
+      "idCard": "874686962",
+      "phone": "+84900211843",
+      "salary": "1050",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-9933",
+      "name": "Emile",
+      "birthday": "04/25/1988",
+      "email": "edhillon4@cbsnews.com",
+      "idCard": "271558292",
+      "phone": "0912112132",
+      "salary": "1127",
+      "position": "Supervisor",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-7199",
+      "name": "Stanwood",
+      "birthday": "05/26/1985",
+      "email": "sflemmich5@cargocollective.com",
+      "idCard": "738161443",
+      "phone": "0909047149",
+      "salary": "1817",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-5384",
+      "name": "Ashia",
+      "birthday": "08/06/1981",
+      "email": "afalla6@patch.com",
+      "idCard": "034152617",
+      "phone": "0919193814",
+      "salary": "1550",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-6810",
+      "name": "Lezley",
+      "birthday": "06/20/1992",
+      "email": "ldreher8@dmoz.org",
+      "idCard": "103441904",
+      "phone": "+84908413626",
+      "salary": "1107",
+      "position": "Manager",
+      "edu_bg": "Master"
+    },
+    {
+      "id": "NV-1099",
+      "name": "Shanna",
+      "birthday": "09/23/1997",
+      "email": "sburcher9@guardian.co.uk",
+      "idCard": "920437972",
+      "phone": "0918841321",
+      "salary": "1630",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-6966",
+      "name": "Bridie",
+      "birthday": "07/02/1995",
+      "email": "bdymokea@bloglines.com",
+      "idCard": "016819598",
+      "phone": "+84905490736",
+      "salary": "1391",
+      "position": "Supervisor",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-6915",
+      "name": "Elvis",
+      "birthday": "03/13/1993",
+      "email": "evirrb@multiply.com",
+      "idCard": "810492604",
+      "phone": "0917855366",
+      "salary": "1214",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-0051",
+      "name": "Osgood",
+      "birthday": "09/06/1990",
+      "email": "ofairbardc@ca.gov",
+      "idCard": "773344259",
+      "phone": "0907913053",
+      "salary": "1843",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-3149",
+      "name": "Carroll",
+      "birthday": "03/18/1992",
+      "email": "cathowed@paginegialle.it",
+      "idCard": "233892475",
+      "phone": "+84911162080",
+      "salary": "1736",
+      "position": "Manager",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-0109",
+      "name": "Linda",
+      "birthday": "05/16/1989",
+      "email": "lburrowse@ovh.net",
+      "idCard": "678693219",
+      "phone": "0902100716",
+      "salary": "1149",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-6569",
+      "name": "Annis",
+      "birthday": "05/22/1986",
+      "email": "acoppenf@domainmarket.com",
+      "idCard": "224409765",
+      "phone": "+84904872994",
+      "salary": "1763",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-7845",
+      "name": "Mirelle",
+      "birthday": "12/08/1987",
+      "email": "mboodellg@irs.gov",
+      "idCard": "327696176",
+      "phone": "+84901680277",
+      "salary": "1641",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-8852",
+      "name": "Alonzo",
+      "birthday": "04/07/1984",
+      "email": "abauldh@hugedomains.com",
+      "idCard": "443020688",
+      "phone": "0916294007",
+      "salary": "1262",
+      "position": "Staff",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-0526",
+      "name": "Allistir",
+      "birthday": "08/21/1980",
+      "email": "ahurfordi@github.io",
+      "idCard": "363121690",
+      "phone": "+84918654285",
+      "salary": "1260",
+      "position": "Manager",
+      "edu_bg": "Bachelor"
+    },
+    {
+      "id": "NV-0341",
+      "name": "Tadd",
+      "birthday": "07/15/1984",
+      "email": "tschreinerj@sogou.com",
+      "idCard": "370239316",
+      "phone": "+84917276295",
+      "salary": "1729",
+      "position": "Supervisor",
+      "edu_bg": "Bachelor"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "facilities": [
+    {
+      "id": "DV-4268",
+      "name": "Vesku from Finland (Vesku)",
+      "area": 697,
+      "floor": 8,
+      "persons": 14,
+      "price": 332,
+      "type": "Villa"
+    },
+    {
+      "id": "DV-6464",
+      "name": "Georgy Girl",
+      "area": 379,
+      "floor": 7,
+      "persons": 7,
+      "price": 198,
+      "type": "House"
+    },
+    {
+      "id": "DV-3420",
+      "name": "Short Eyes",
+      "area": 356,
+      "floor": 6,
+      "persons": 9,
+      "price": 173,
+      "type": "House"
+    },
+    {
+      "id": "DV-8265",
+      "name": "Farsan",
+      "area": 243,
+      "floor": 4,
+      "persons": 9,
+      "price": 177,
+      "type": "House"
+    },
+    {
+      "id": "DV-1148",
+      "name": "Walking with Prehistoric Beasts",
+      "area": 746,
+      "floor": 8,
+      "persons": 14,
+      "price": 357,
+      "type": "Villa"
+    },
+    {
+      "id": "DV-5408",
+      "name": "The Golden Cage",
+      "area": 583,
+      "floor": 9,
+      "persons": 11,
+      "price": 297,
+      "type": "Villa"
+    },
+    {
+      "id": "DV-1344",
+      "name": "The Missouri Breaks",
+      "area": 540,
+      "floor": 10,
+      "persons": 14,
+      "price": 480,
+      "type": "Villa"
+    },
+    {
+      "id": "DV-0496",
+      "name": "Undertaker and His Pals, The",
+      "area": 690,
+      "floor": 8,
+      "persons": 12,
+      "price": 309,
+      "type": "Villa"
+    },
+    {
+      "id": "DV-0429",
+      "name": "Alias the Doctor",
+      "area": 87,
+      "floor": 1,
+      "persons": 1,
+      "price": 147,
+      "type": "Room"
+    },
+    {
+      "id": "DV-8286",
+      "name": "Happy We (Två killar och en tjej)",
+      "area": 464,
+      "floor": 6,
+      "persons": 7,
+      "price": 172,
+      "type": "House"
+    },
+    {
+      "id": "DV-2981",
+      "name": "Anamorph",
+      "area": 794,
+      "floor": 8,
+      "persons": 16,
+      "price": 322,
+      "type": "Villa"
+    }
+  ],
+  "contracts": [
+    {
+      "customerCode": "KH-6346",
+      "employeeCode": "NV-7199",
+      "facilityCode": "DV-8265",
+      "date": {
+        "start": "22/07/2020",
+        "end": "28/07/2020"
+      },
+      "price": {
+        "deposit": 200,
+        "total": 1062
+      },
+      "id": 1
+    },
+    {
+      "customerCode": "KH-0967",
+      "employeeCode": "NV-7199",
+      "facilityCode": "DV-1148",
+      "date": {
+        "start": "14/07/2020",
+        "end": "24/07/2020"
+      },
+      "price": {
+        "deposit": 1000,
+        "total": 3570
+      },
+      "id": 2
+    },
+    {
+      "customerCode": "KH-1590",
+      "employeeCode": "NV-0109",
+      "facilityCode": "DV-5408",
+      "date": {
+        "start": "01/08/2020",
+        "end": "04/08/2020"
+      },
+      "price": {
+        "deposit": 500,
+        "total": 891
+      },
+      "id": 3
+    },
+    {
+      "customerCode": "KH-6346",
+      "employeeCode": "NV-0051",
+      "facilityCode": "DV-1344",
+      "date": {
+        "start": "08/08/2020",
+        "end": "11/08/2020"
+      },
+      "price": {
+        "deposit": 544,
+        "total": 1440
+      },
+      "id": 5
+    },
+    {
+      "customerCode": "KH-1302",
+      "employeeCode": "NV-0051",
+      "facilityCode": "DV-5408",
+      "date": {
+        "start": "23/07/2020",
+        "end": "31/07/2020"
+      },
+      "price": {
+        "deposit": 1500,
+        "total": 2376
+      },
+      "id": 6
+    },
+    {
+      "customerCode": "KH-1302",
+      "employeeCode": "NV-6915",
+      "facilityCode": "DV-6464",
+      "date": {
+        "start": "22/07/2020",
+        "end": "25/07/2020"
+      },
+      "price": {
+        "deposit": "0",
+        "total": 594
+      },
+      "id": 7
+    }
+  ]
 }

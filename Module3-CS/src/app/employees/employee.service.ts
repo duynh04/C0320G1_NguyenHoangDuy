@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { IEmployee } from './models/employee';
-import { CRUDRepository } from '../shared/repository/repository';
+import { CRUDRepository } from '../shared/repository';
 import { handler } from '../shared/error-handling';
 
 

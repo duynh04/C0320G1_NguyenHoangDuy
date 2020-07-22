@@ -1,0 +1,117 @@
+<div class="container">
+    <pre>{{ editForm.value | json }} </pre>
+    <pre>{{ editForm.valid}} </pre>
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <p class="card-header text-primary">Update Contract</p>
+            <div class="card-body">
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Customer</span>
+                        </div>
+                        <select required formControlName='customerCode' class="form-control">
+                            <option value="" selected>Select Customer...</option>
+                            <option *ngFor="let cust of customerList$ | async" [value]="cust.id">{{cust.name}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="customerCode.touched && customerCode.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="customerCode.invalid">
+                            Choose a Customer
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Employee</span>
+                        </div>
+                        <select required formControlName='employeeCode' class="form-control">
+                            <option value="" selected>Select Employee...</option>
+                            <option *ngFor="let empl of employeeList$ | async" [value]="empl.id">{{empl.name}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="employeeCode.touched && employeeCode.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="employeeCode.invalid">
+                            Choose a Employee
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Service</span>
+                        </div>
+                        <select formControlName='facilityCode' class="form-control" (change)="calcPrice()">
+                            <option value="" selected>Select Service...</option>
+                            <option *ngFor="let faci of facilityList$ | async" [value]="faci.id">{{faci.name}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="facilityCode.touched && facilityCode.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="facilityCode.invalid">
+                            Choose a Service
+                        </span>
+                    </div>
+                    <fieldset formGroupName="date">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">From Date</span>
+                            </div>
+                            <input type="date" formControlName='start' class="form-control" (change)="calcPrice()"
+                                value="{{from.value | date : 'yyyy-MM-dd'}}">
+                        </div>
+                        <div *ngIf="from.touched && from.dirty">
+                            <span class="alert-danger" role="alert" *ngIf="from.errors?.invalidDate">
+                                Invalid Date!
+                            </span>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">To Date</span>
+                            </div>
+                            <input type="date" formControlName='end' class="form-control" (change)="calcPrice()"
+                                value="{{date.get('end').value | date : 'yyyy-MM-dd'}}">
+                        </div>
+                        <div *ngIf="to.touched && to.dirty">
+                            <span class="alert-danger" role="alert" *ngIf="to.errors?.invalidDate">
+                                Invalid Date!
+                            </span>
+                        </div>
+                        <div *ngIf="date.touched && date.dirty">
+                            <span class="alert-danger" role="alert" *ngIf="date.errors?.compare">
+                                Date From less than Date To
+                            </span>
+                        </div>
+                    </fieldset>
+                    <fieldset formGroupName="price">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Deposit (USD)</span>
+                            </div>
+                            <input type="number" step="0.01" class="form-control" formControlName='deposit'>
+                        </div>
+                        <div *ngIf="deposit.touched && deposit.dirty">
+                            <span class="alert-danger" role="alert" *ngIf="deposit.hasError('min')">
+                                Deposit must be greater or equal than zero
+                            </span>
+                            <span class="alert-danger" role="alert" *ngIf="price.hasError('compare')">
+                                Deposit must be less or equal than {{total.value}} USD
+                            </span>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Total Price</span>
+                            </div>
+                            <input readonly type="text" formControlName='total' class="form-control">
+                        </div>
+                    </fieldset>
+                    <div class="row form-group">
+                        <div class="col-6">
+                            <button class="btn float-left btn-dark" (click)='goBack()'>Back to list</button>
+                        </div>
+                        <div class="col-6">
+                            <input type="submit" [disabled]="!editForm.valid" value="Update"
+                                class="btn float-right btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

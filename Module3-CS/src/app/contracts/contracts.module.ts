@@ -18,13 +18,13 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
   declarations: [ContractCenterComponent, ContractCreateComponent, ContractDetailComponent, ContractEditComponent, ContractListComponent],
   imports: [
     CommonModule,
-    ContractsRoutingModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    ContractsRoutingModule,
     SharedModule,
     FormsModule,
     Ng2SearchPipeModule
   ],
-  entryComponents: [DialogComponent]
+  entryComponents: [DialogComponent, ContractEditComponent]
 })
 export class ContractsModule { }

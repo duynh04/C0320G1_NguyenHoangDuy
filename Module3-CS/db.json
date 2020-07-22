@@ -382,15 +382,15 @@
   "contracts": [
     {
       "customerCode": "KH-6346",
-      "employeeCode": "NV-7199",
-      "facilityCode": "DV-8265",
+      "employeeCode": "NV-9933",
+      "facilityCode": "DV-6464",
       "date": {
-        "start": "22/07/2020",
-        "end": "28/07/2020"
+        "start": "23/07/2020",
+        "end": "01/08/2020"
       },
       "price": {
-        "deposit": 200,
-        "total": 1062
+        "deposit": 500,
+        "total": 1782
       },
       "id": 1
     },
@@ -417,7 +417,7 @@
         "end": "04/08/2020"
       },
       "price": {
-        "deposit": 500,
+        "deposit": 300,
         "total": 891
       },
       "id": 3
@@ -459,7 +459,7 @@
         "end": "25/07/2020"
       },
       "price": {
-        "deposit": "0",
+        "deposit": 50,
         "total": 594
       },
       "id": 7

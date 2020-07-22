@@ -11,6 +11,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { FormatterService } from './../../shared/formatter.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-contract-edit',
@@ -32,7 +33,8 @@ export class ContractEditComponent implements OnInit {
     private userValidatorService: UserValidatorService,
     private formatterService: FormatterService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modal: NgbActiveModal
   ) { }
 
   ngOnInit() {
@@ -56,11 +58,9 @@ export class ContractEditComponent implements OnInit {
         validators: [this.userValidatorService.compare('number')]
       })
     });
-    this.sub[0] = this.route.paramMap.pipe(
-      switchMap(param => this.contractService.findById(param.get('id')))
-    ).subscribe(
+    this.sub[0] = this.contractService.findById(this.selectedId).subscribe(
       (contract: IContract) => {
-        this.selectedId = contract.id;
+        // this.selectedId = contract.id;
         contract.date.start = this.formatterService.FormatDate(contract.date.start, false);
         contract.date.end = this.formatterService.FormatDate(contract.date.end, false);
         this.editForm.patchValue(contract);
@@ -73,7 +73,7 @@ export class ContractEditComponent implements OnInit {
     contract.date.end = this.formatterService.FormatDate(this.to.value);
     contract.id = this.selectedId;
     this.sub[1] = this.contractService.update(contract).subscribe(
-      (_) => this.goBack()
+      (data: IContract) => this.modal.close(data)
     );
   }
 
@@ -97,8 +97,10 @@ export class ContractEditComponent implements OnInit {
       }
     );
   }
+
   goBack() {
-    this.router.navigate(['/contracts'], { relativeTo: this.route })
+    // this.router.navigate(['/contracts'], { relativeTo: this.route })
+    this.modal.dismiss('');
   }
   //getter
   get customerCode() {

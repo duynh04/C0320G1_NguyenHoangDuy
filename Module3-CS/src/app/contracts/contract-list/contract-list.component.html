@@ -28,11 +28,10 @@
             <td>{{contract.price.total}}</td>
             <td>
                 <!-- <a [routerLink]="['detail',contract.id]" class="text-success">Detail | </a> -->
-                <a [routerLink]="['edit',contract.id]" class="text-primary">Edit | </a>
+                <a (click)="openEditPopup(contract.id)" class="text-primary">Edit | </a>
                 <a (click)="confirm(contract)" class="text-danger">Delete</a>
             </td>
         </tr>
     </tbody>
 </table>
-
 <pagination-controls (pageChange)="p = $event"></pagination-controls>

@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ContractListComponent },
       { path: 'detail/:id', component: ContractDetailComponent },
-      { path: 'edit/:id', component: ContractEditComponent },
+      // { path: 'edit/:id', component: ContractEditComponent },
       { path: 'create', component: ContractCreateComponent }
     ]
   }

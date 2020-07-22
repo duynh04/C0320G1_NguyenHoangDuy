@@ -39,7 +39,7 @@ export class CustomerService implements CRUDRepository<ICustomer>{
   }
 
   findById(_id: string): Observable<ICustomer | null> {
-    return this.http.get<ICustomer[]>(this.apiEndpointUri, { params: { 'id': _id } }).pipe(
+    return this.http.get<ICustomer[]>(this.apiEndpointUri, { params: { id: _id } }).pipe(
       map((data: ICustomer[]) => data.length == 0 ? null : data[0] as ICustomer),
       catchError(handler)
     );

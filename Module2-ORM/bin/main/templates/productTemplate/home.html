@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/layout :: head"></head>
+<body class="mx-3 w-20">
+<div class="container">
+    <div class="row">
+        <h3 class="col-sm text-primary">PRODUCT MANAGEMENT</h3>
+        <div class="col-lg-2">
+            <p th:unless="${user} == null" class="text-primary" th:text="|Hi, ${user.getValue()}|"></p>
+            <a th:if="${user} == null" class="btn btn-primary" th:href="@{products/login}">Login</a>
+            <a th:unless="${user} == null" class="btn btn-primary" th:href="@{products/logout}">Logout</a>
+        </div>
+    </div>
+</div>
+<p>
+    <a th:href="@{/products/cart}" class="btn btn-primary">
+        View Cart
+    </a>
+</p>
+<p class="text-success" th:text="${success}?:_"> </p>
+<table class="table">
+    <thead class="thead-dark ">
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Add to cart</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.description}"></td>
+        <td><a th:href="@{/products/add/__${product.id}__}">Add</a></td>
+    </tr>
+    </tbody>
+</table>
+<ul class="pagination">
+    <li class="page-item" >
+        <a class="page-link" th:href="@{'/products' + ${'?page=' + __${products.number}__}}" th:if="${products.hasPrevious()}">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" th:text="|${products.number + 1} / ${products.totalPages}|"></a></li>
+    <li class="page-item" >
+        <a class="page-link" th:href="@{'/products' + ${'?page=' + __${products.number + 2}__}}" th:if="${products.hasNext()}">Next</a>
+    </li>
+</ul>
+
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</body>
+</html>

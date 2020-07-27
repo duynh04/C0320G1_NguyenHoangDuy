@@ -21,7 +21,9 @@
             <td>{{contract.id}}</td>
             <td>{{contract.customerCode}}</td>
             <td>{{contract.employeeCode}}</td>
-            <td>{{contract.facilityCode}}</td>
+            <td>
+                <a (click)="openFacilityDetailPopup(contract.facilityCode)"
+                    class="text-primary">{{contract.facilityCode}}</a>
             <td>{{contract.date.start}}</td>
             <td>{{contract.date.end}}</td>
             <td>{{contract.price.deposit}}</td>

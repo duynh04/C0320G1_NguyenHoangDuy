@@ -6,6 +6,7 @@ import { IFacility } from '../models/facility';
 import { map } from 'rxjs/operators';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
+import { FacilityDetailComponent } from '../facility-detail/facility-detail.component';
 
 @Component({
   selector: 'app-facility-list',
@@ -36,6 +37,10 @@ export class FacilityListComponent implements OnInit, OnDestroy {
       if (val)
         val.unsubscribe();
     })
+  }
+  detail(_id: string) {
+    this.modalRef = this.modalService.open(FacilityDetailComponent);
+    this.modalRef.componentInstance.selectedId = _id;
   }
   confirm(facility: IFacility) {
     this.modalRef = this.modalService.open(DialogComponent);

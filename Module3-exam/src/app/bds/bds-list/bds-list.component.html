@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-3">
+        <a routerLink='create' class="btn-lg btn-primary">Tạo mới</a>
+    </div>
+    <div class="col-4 offset-5">
+        <form class="form form-group">
+            <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term"
+                [ngModelOptions]="{standalone: true}">
+        </form>
+    </div>
+    <!-- <div class="col-2">
+        <button (click)="openSearchPopup()">Tìm kiếm</button>
+    </div> -->
+</div>
+<table class="table table-hover table-striped text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th>Tựa đề</th>
+            <th>Danh mục</th>
+            <th>Diện tích</th>
+            <th>Giá</th>
+            <th>Hướng</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of bdsList | filter: term | paginate :{ itemsPerPage: 5, currentPage: p }; index as i">
+            <td>{{item.tuaDe}}</td>
+            <td>{{item.danhMuc}}</td>
+            <td>{{item.dienTich}}</td>
+            <td>{{item.gia}}</td>
+            <td>{{item.huong}}</td>
+            <td>
+                <button class="text-light btn-sm btn-info">Detail </button>
+                <span> | </span>
+                <a class="text-light btn-sm btn-primary">Edit</a>
+                <span> | </span>
+                <button class="text-light btn-sm btn-danger">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

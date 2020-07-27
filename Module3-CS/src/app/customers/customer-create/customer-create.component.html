@@ -72,6 +72,9 @@
                         <span class="alert-danger" role="alert" *ngIf="birthday.errors?.invalidDate">
                             Invalid Date!
                         </span>
+                        <span class="alert-danger" role="alert" *ngIf="birthday.errors?.under">
+                            Customer must be over 18!
+                        </span>
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">

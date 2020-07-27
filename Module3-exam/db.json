@@ -1,0 +1,88 @@
+{
+  "bds": [
+    {
+      "danhMuc": "Phòng trọ",
+      "vungMien": "Hà Nội",
+      "toChuc": "Cá nhân",
+      "dangTin": "Cần mua",
+      "tinhTrang": "Mới",
+      "diaChi": "dsafasdf",
+      "dienTich": 123124,
+      "huong": "Đông",
+      "tuaDe": "asdf",
+      "noiDung": "asdfsaf",
+      "gia": "1211111111",
+      "id": 1
+    },
+    {
+      "danhMuc": "Nhà đất",
+      "vungMien": "Hà Nội",
+      "toChuc": "Công ty",
+      "dangTin": "Cần Thuê",
+      "tinhTrang": "Đã sử dụng",
+      "diaChi": "Dang nang",
+      "dienTich": 21,
+      "huong": "Tây",
+      "tuaDe": "Cần thuê 1 căn nhà",
+      "noiDung": "yêu cầu thoáng mát",
+      "gia": "100000000",
+      "id": 2
+    },
+    {
+      "danhMuc": "Nhà đất",
+      "vungMien": "Sài Gòn",
+      "toChuc": "Cá nhân",
+      "dangTin": "Cần bán",
+      "tinhTrang": "Đã sử dụng",
+      "diaChi": "sai gon",
+      "dienTich": 123,
+      "huong": "Đông",
+      "tuaDe": "Cần bán căn hộ",
+      "noiDung": "sạch sẽ thoáng mát",
+      "gia": "1000000000",
+      "id": 3
+    },
+    {
+      "danhMuc": "",
+      "vungMien": "",
+      "toChuc": "",
+      "dangTin": "Cần mua",
+      "tinhTrang": "Mới",
+      "diaChi": "hue",
+      "dienTich": 130,
+      "huong": "Nam",
+      "tuaDe": "can mua",
+      "noiDung": "mua mua mua",
+      "gia": 2500000000,
+      "id": 4
+    },
+    {
+      "danhMuc": "Phòng trọ",
+      "vungMien": "Sài Gòn",
+      "toChuc": "Cá nhân",
+      "dangTin": "Cho Thuê",
+      "tinhTrang": "Mới",
+      "diaChi": "da nang",
+      "dienTich": 30,
+      "huong": "Tây",
+      "tuaDe": "CHo thue",
+      "noiDung": "ádfa",
+      "gia": 120000000,
+      "id": 5
+    },
+    {
+      "danhMuc": "Nhà đất",
+      "vungMien": "Sài Gòn",
+      "toChuc": "Cá nhân",
+      "dangTin": "Cần mua",
+      "tinhTrang": "Mới",
+      "diaChi": "da nang",
+      "dienTich": 20,
+      "huong": "Tây",
+      "tuaDe": "can ban",
+      "noiDung": "can ban",
+      "gia": 100000000,
+      "id": 6
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/layout :: head"></head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/layout :: head"> </head>
+<header>
+    <div th:replace="layouts/layout :: header1"></div>
+</header>
+<body>
+<h3>View Product</h3>
+<p>
+    <a th:href="@{/products}">
+        Back to product list
+    </a>
+</p>
+<div id="detail">
+    <div class="prodetail">
+        <label>Name:</label>
+        <label th:text="${product.name}"></label>
+    </div>
+    <div class="prodetail">
+        <label>Price:</label>
+        <label th:text="${product.price}"></label>
+    </div>
+    <div class="prodetail">
+        <label>Manufacturer:</label>
+        <label th:text="${product.manufacturer}"></label>
+    </div>
+</div>
+<!--<th:block th:replace="layouts/layout :: css-script"/>-->
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</body>
+</html>

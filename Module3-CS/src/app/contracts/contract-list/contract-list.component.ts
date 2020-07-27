@@ -5,6 +5,8 @@ import { ContractService } from '../contract.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 import { ContractEditComponent } from '../contract-edit/contract-edit.component';
+import { FacilityService } from 'src/app/facilities/facility.service';
+import { FacilityDetailComponent } from 'src/app/facilities/facility-detail/facility-detail.component';
 
 @Component({
   selector: 'app-contract-list',
@@ -20,7 +22,8 @@ export class ContractListComponent implements OnInit, OnDestroy {
   modalRef: NgbModalRef;
   constructor(
     public modalService: NgbModal,
-    private contractService: ContractService
+    private contractService: ContractService,
+    private facilityService: FacilityService
   ) { }
 
   ngOnInit() {
@@ -34,6 +37,20 @@ export class ContractListComponent implements OnInit, OnDestroy {
         val.unsubscribe();
     })
   }
+
+  openFacilityDetailPopup(_id: string) {
+    this.modalRef = this.modalService.open(FacilityDetailComponent);
+    this.modalRef.componentInstance.selectedId = _id;
+    // this.modalRef.result.then((data: IContract) => {
+    //   this.contractList = this.contractList.map<IContract>((val) => {
+    //     if (val.id == data.id)
+    //       return data;
+    //     return val;
+    //   });
+    // }
+    // ).catch(data => console.log(data))
+
+  }
   openEditPopup(_id: string) {
     this.modalRef = this.modalService.open(ContractEditComponent);
     this.modalRef.componentInstance.selectedId = _id;
@@ -46,6 +63,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
     }
     ).catch(data => console.log(data))
   }
+
   confirm(contract: IContract) {
     this.modalRef = this.modalService.open(DialogComponent);
     this.modalRef.componentInstance.message = "";
@@ -56,6 +74,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
       (error: string) => console.error(`error`)
     );
   }
+
   del(id: string) {
     this.sub[1] = this.contractService.delete(id).subscribe(
       () => this.contractList = this.contractList.filter(val => val.id !== id)

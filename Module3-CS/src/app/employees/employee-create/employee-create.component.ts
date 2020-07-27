@@ -30,7 +30,7 @@ export class EmployeeCreateComponent implements OnInit, OnDestroy {
     this.registerForm = this.fb.group({
       id: ['', [Validators.required, Validators.pattern('^NV-\\d{4}$')], [this.userValidatorService.unique(this.employeeService, 'code')]],
       name: ['', [Validators.required, Validators.pattern(/^([A-Z][a-z]+\s?)+$/)]],
-      birthday: [new Date(), [this.userValidatorService.date]],
+      birthday: [new Date(), [this.userValidatorService.date, UserValidatorService.IsUnder(18)]],
       email: ['', [Validators.required, Validators.pattern(/^([-\w.])+[a-zA-Z\d]@(\w+\.)+(\w+)$/)], [this.userValidatorService.unique(this.employeeService, 'email')]],
       idCard: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       phone: ['', [Validators.pattern(/^$|^((\(\+84\))|0)9[01]\d{7}$/)]],

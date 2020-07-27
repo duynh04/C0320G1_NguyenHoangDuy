@@ -27,7 +27,8 @@ export class FacilityCreateComponent implements OnInit, OnDestroy {
     this.registerForm = this.fb.group({
       id: ['', [Validators.required, Validators.pattern('^DV-\\d{4}$')], [this.userValidatorService.unique(this.facilityService, 'code')]],
       name: ['', [Validators.required]],
-      area: ['', [Validators.required, Validators.min(30), Validators.max(1000)]],
+
+      area: ['', [Validators.required, Validators.pattern(/^([3-9]\d)(\.\d+)?$|^([1-9][0-9]{2,})(\.\d+)?$/)]],
       floor: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
       persons: ['', [Validators.required, Validators.min(1), Validators.max(20)]],
       price: ['', [Validators.required, Validators.min(1)]],

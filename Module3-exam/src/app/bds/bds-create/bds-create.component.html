@@ -1,0 +1,138 @@
+<div class="container">
+    <!-- <pre>{{ createForm.value | json }} </pre>
+    <pre>{{ createForm.valid}} </pre> -->
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <!-- <p class="card-header text-primary">Create New </p> -->
+            <div class="card-body">
+                <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Danh mục</span>
+                        </div>
+                        <select formControlName='danhMuc' class="form-control">
+                            <option value="" selected>Chọn danh mục...</option>
+                            <option *ngFor="let item of DANH_MUC" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Vùng miền</span>
+                        </div>
+                        <select formControlName='vungMien' class="form-control">
+                            <option value="" selected>Chọn vùng miền...</option>
+                            <option *ngFor="let item of VUNG_MIEN" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Bạn là</span>
+                        </div>
+                        <select formControlName='toChuc' class="form-control">
+                            <option value="" selected>Bạn là...</option>
+                            <option value="Cá nhân">Cá nhân</option>
+                            <option value="Công ty">Công ty</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Bạn đăng tin</span>
+                        </div>
+                        <select formControlName='dangTin' class="form-control">
+                            <option value="Cần bán">Cần bán</option>
+                            <option value="Cần mua">Cần mua</option>
+                            <option value="Cho Thuê">Cho Thuê</option>
+                            <option value="Cần Thuê">Cần Thuê</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Tình trạng</span>
+                        </div>
+                        <select formControlName='tinhTrang' class="form-control">
+                            <option value="" selected>Tình trạng...</option>
+                            <option value="Mới">Mới</option>
+                            <option value="Đã sử dụng">Đã sử dụng</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Địa chỉ</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName='diaChi'>
+                    </div>
+                    <div *ngIf="diaChi.touched && diaChi.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="diaChi.hasError('required')">
+                            Bắt buộc nhập
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Diện tích</span>
+                        </div>
+                        <input type="number" class="form-control" formControlName='dienTich'>
+                    </div>
+                    <div *ngIf="dienTich.touched && dienTich.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="dienTich.hasError('required')">
+                            Bắt buộc nhập
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="dienTich.hasError('pattern')">
+                            Diện tích phải lớn hơn 20m<sup>2</sup>
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Hướng</span>
+                        </div>
+                        <select formControlName='huong' class="form-control">
+                            <option value="Đông">Đông</option>
+                            <option value="Tây">Tây</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Bắc">Bắc</option>
+                        </select>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Tựa đề</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName='tuaDe'>
+                    </div>
+                    <div *ngIf="tuaDe.touched && tuaDe.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="tuaDe.hasError('required')">
+                            Bắt buộc nhập
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Nội dung</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName='noiDung'>
+                    </div>
+                    <div *ngIf="noiDung.touched && noiDung.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="noiDung.hasError('required')">
+                            Bắt buộc nhập
+                        </span>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Gia</span>
+                        </div>
+                        <input type="number" min="0" class="form-control" formControlName='gia'>
+                    </div>
+                    <div *ngIf="gia.touched && gia.dirty">
+                        <span class="alert-danger" role="alert" *ngIf="gia.hasError('required')">
+                            Bắt buộc nhập
+                        </span>
+                        <span class="alert-danger" role="alert" *ngIf="gia.hasError('min')">
+                            Giá phải lớn hơn 1 trăm triệu
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" [disabled]="createForm.invalid" value="Make"
+                            class="btn float-right btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

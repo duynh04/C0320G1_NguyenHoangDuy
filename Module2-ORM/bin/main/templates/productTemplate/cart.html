@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart information</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<h1>Cart information</h1>
+<p>
+    <a class="btn btn-primary" th:href="@{/products}">Back to product list</a>
+</p>
+<form th:action="@{/products/payment}" th:method="get" >
+
+<table class="table table-bordered table-dark">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    <th:block th:each="product:${cart.getProduct()}">
+        <tr >
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.description}"></td>
+            <td>
+                <a th:href="@{/products/deletecart/__${product.id}__}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+    <tr >
+        <td th:colspan="4">
+            <input type="submit" value="Payment">
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

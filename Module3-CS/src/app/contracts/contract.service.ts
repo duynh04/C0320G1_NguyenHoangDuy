@@ -66,7 +66,7 @@ export class ContractService implements CRUDRepository<IContract>{
   }
 
   findById(_id: string): Observable<IContract | null> {
-    return this.http.get<IContract[]>(this.apiEndpointUri, { params: { 'id': _id } }).pipe(
+    return this.http.get<IContract[]>(this.apiEndpointUri, { params: { id: _id } }).pipe(
       map((data: IContract[]) => data.length == 0 ? null : data[0] as IContract),
       catchError(handler)
     );

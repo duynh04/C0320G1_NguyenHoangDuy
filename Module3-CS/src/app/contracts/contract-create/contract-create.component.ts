@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContractService } from './../contract.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AsyncValidatorFn } from '@angular/forms';
 import { ICustomer } from './../../customers/models/customer';
 import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from './../../employees/models/employee';
 import { IFacility } from 'src/app/facilities/models/facility';
 import { IContract } from './../models/contract';
 import { UserValidatorService } from 'src/app/shared/user-validator.service';
-import { identifierModuleUrl } from '@angular/compiler';
 import { FormatterService } from './../../shared/formatter.service';
-import { ActivatedRoute, PreloadAllModules, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FacilityService } from 'src/app/facilities/facility.service';
 
 @Component({
   selector: 'app-contract-create',
@@ -33,7 +33,7 @@ export class ContractCreateComponent implements OnInit, OnDestroy {
     private userValidatorService: UserValidatorService,
     private formatterService: FormatterService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -75,9 +75,10 @@ export class ContractCreateComponent implements OnInit, OnDestroy {
     if (this.sub)
       this.sub.unsubscribe();
   }
+
   calcPrice() {
     let _id = this.facilityCode.value;
-    console.log(`id: ${_id}`)
+    // console.log(`id: ${_id}`)
     this.sub1 = this.contractService.getServiceUnit(_id).subscribe(
       (data: IFacility | null) => {
         // console.log(`data: ${data == null ? 0 : data.price}`);

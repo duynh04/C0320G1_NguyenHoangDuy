@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { AsyncValidatorFn, AbstractControl, ValidationErrors, FormControl, ValidatorFn, FormGroup } from '@angular/forms';
 import { CRUDRepository } from './repository';
+import { differenceInYears } from 'date-fns'
 @Injectable({
   providedIn: 'root'
 })
@@ -33,6 +34,10 @@ export class UserValidatorService {
     return null;
   }
 
+  static IsUnder(age: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null =>
+      differenceInYears(new Date(), new Date(control.value)) < age ? { under: true } : null;
+  }
   compare(field: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       let isValid: boolean;
@@ -53,6 +58,7 @@ export class UserValidatorService {
     const verification = control.value;
     return Number(verification.total) - Number(verification.deposit) > 0;
   }
+
 
   private compareDate(control: AbstractControl): boolean {
     const verification = control.value;

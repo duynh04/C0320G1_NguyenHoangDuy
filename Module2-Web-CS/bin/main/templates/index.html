@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layouts/layout :: head"></head>
+<header>
+    <div th:replace="layouts/layout :: header1"></div>
+</header>
+<body>
+<script th:replace="layouts/layout :: custome-script"></script>
+</body>
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</html>

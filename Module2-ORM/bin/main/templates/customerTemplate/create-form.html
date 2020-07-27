@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/layout :: head"> </head>
+<body class="mx-4 w-25">
+    <h3>Add customer</h3>
+    <p>
+        <a th:href="@{/customers}" class="btn btn-primary">
+            Back to customer list
+        </a>
+    </p>
+    <div>
+        <form action="#" th:action="@{/customers/save}" th:object="${customer}" method="POST" novalidate="novalidate">
+            <div class="form-group">
+                <div>
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" class="form-control" type="text" th:field="*{firstName}"/>
+                    <p class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+                </div>
+                <div>
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" class="form-control" type="text" th:field="*{lastName}"/>
+                    <p class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+                </div>
+                <div>
+                    <label for="email">Email address</label>
+                    <input id="email" class="form-control" type="text" th:field="*{email}" placeholder="name@example.com"/>
+                    <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                </div>
+                <div>
+                    <label for="province">Province</label>
+                    <select th:field="*{province.id}"  class="form-control" id="province">
+                        <option th:each="province: ${provinces}" th:text="${province.name}" th:value="${province.id}"></option>
+                    </select>
+                </div>
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+<!--<th:block th:replace="layouts/layout :: css-script"/>-->
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</body>
+</html>

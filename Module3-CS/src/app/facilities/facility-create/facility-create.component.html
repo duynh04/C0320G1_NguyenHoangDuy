@@ -26,12 +26,12 @@
                         <span class="alert-danger" role="alert" *ngIf="area.hasError('required')">
                             Required Area
                         </span>
-                        <span class="alert-danger" role="alert" *ngIf="area.hasError('min')">
+                        <span class="alert-danger" role="alert" *ngIf="area.hasError('pattern')">
                             The area must be greater than 30 m<sup>2</sup>
                         </span>
-                        <span class="alert-danger" role="alert" *ngIf="area.hasError('max')">
+                        <!-- <span class="alert-danger" role="alert" *ngIf="area.hasError('pattern')">
                             The area must be less than 1000 m<sup>2</sup>
-                        </span>
+                        </span> -->
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">

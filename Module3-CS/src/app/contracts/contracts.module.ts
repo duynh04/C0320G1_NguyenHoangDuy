@@ -12,6 +12,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from '../shared/shared.module';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FacilityDetailComponent } from '../facilities/facility-detail/facility-detail.component';
+import { FacilitiesModule } from '../facilities/facilities.module';
 
 
 @NgModule({
@@ -23,8 +25,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ContractsRoutingModule,
     SharedModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    FacilitiesModule
   ],
-  entryComponents: [DialogComponent, ContractEditComponent]
+  entryComponents: [DialogComponent, ContractEditComponent, FacilityDetailComponent]
 })
 export class ContractsModule { }

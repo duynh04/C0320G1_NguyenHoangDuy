@@ -22,7 +22,6 @@ export class RegisterRfComponent implements OnInit {
     gender: [''],
     phones: this.fb.array([this.fb.control('')], PhoneValidator),
   });
-  // [Validators.pattern(/^\+84\d{9,10}$/)]
   constructor(private fb: FormBuilder) { }
 
   get age() {

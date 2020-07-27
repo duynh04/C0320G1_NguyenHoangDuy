@@ -1,0 +1,27 @@
+<div class="modal-body">
+    <div class="card mb-3">
+        <div class="card-header">
+            Nội dung tin
+        </div>
+        <div class="row no-gutters">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <p class="card-text">Danh mục: {{fullContent.danhMuc}}</p>
+                    <p class="card-text">Vùng miền: {{fullContent.vungMien}}</p>
+                    <p class="card-text">Bạn là: {{fullContent.toChuc}}</p>
+                    <p class="card-text">Hướng: {{fullContent.huong}}</p>
+                    <p class="card-text">{{fullContent.dangTin}}: {{fullContent.tuaDe}}</p>
+                    <p class="card-text">Tình trạng: {{fullContent.tinhTrang}}</p>
+                    <p class="card-text">Địa chỉ: {{fullContent.diaChi}}</p>
+                    <p class="card-text">Diện tích: {{fullContent.dienTich}} m<sup>2</sup></p>
+                    <p class="card-text">Giá: {{fullContent.gia}} VND</p>
+                    <p class="card-text">Nội dung: {{fullContent.noiDung}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">Quay lại</button>
+    <button type="button" class="btn btn-danger" (click)="sayYes()">Xác nhận</button>
+</div>

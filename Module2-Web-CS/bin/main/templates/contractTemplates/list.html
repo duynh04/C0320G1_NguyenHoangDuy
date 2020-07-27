@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head sec:authorize="hasRole('ROLE_USER')" th:replace="layouts/layout :: head"></head>
+<head sec:authorize="hasRole('ROLE_ADMIN')" th:replace="layouts/admin-layout :: head"></head>
+<header sec:authorize="hasRole('ROLE_USER')">
+    <div th:replace="layouts/layout :: header1"></div>
+</header>
+<body>
+
+<nav sec:authorize="hasRole('ROLE_ADMIN')" th:replace="layouts/admin-layout :: admin-nav-bar"></nav>
+<div class="container-fluid">
+    <div class="row">
+        <nav sec:authorize="hasRole('ROLE_ADMIN')" th:replace="layouts/admin-layout :: admin-nav"></nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>Contracts</h2>
+            <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/}">Return Home</a>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Customer</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Facility</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="contract,stat : ${contracts}">
+                        <td th:text="${stat.count}"></td>
+                        <td th:text="${contract.customer.name}"></td>
+                        <td th:text="${contract.startDate}"></td>
+                        <td th:text="${contract.endDate}"></td>
+                        <td th:text="${contract.facility.name}"></td>
+                        <td th:text="${contract.price}"></td>
+                        <td class="text-success" th:if="${contract.status}" th:text="Available"></td>
+                        <td class="text-danger" th:unless="${contract.status}" th:text="Unavailable"></td>
+                        <td>
+                            <a th:href="@{/admin/edit/__${contract.id}__}">Edit | </a>
+                            <a class="text-danger" th:href="@{/admin/delete/__${contract.id}__}">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination">
+                <li class="page-item" >
+                    <a class="page-link" th:href="@{'/admin/contract' + ${'?page=' + __${contracts.number}__}}" th:if="${contracts.hasPrevious()}">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" th:text="|${contracts.number + 1} / ${contracts.totalPages}|"></a></li>
+                <li class="page-item" >
+                    <a class="page-link" th:href="@{'/admin/contract' + ${'?page=' + __${contracts.number + 2}__}}" th:if="${contracts.hasNext()}">Next</a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</div>
+</body>
+</html>

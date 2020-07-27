@@ -20,7 +20,7 @@
             <td>{{facility.name}}</td>
             <td>{{facility.type}}</td>
             <td>
-                <a [routerLink]="['detail',facility.id]" class="text-success">Detail | </a>
+                <a (click)="detail(facility.id)" class="text-success">Detail | </a>
                 <a [routerLink]="['edit',facility.id]" class="text-primary">Edit | </a>
                 <a (click)="confirm(facility)" class="text-danger">Delete</a>
             </td>

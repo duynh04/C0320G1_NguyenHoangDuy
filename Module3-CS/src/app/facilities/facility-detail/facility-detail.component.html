@@ -1,21 +1,23 @@
-<div class="card mb-3">
-    <div class="card-header">
-        Infomation
-    </div>
-    <div class="row no-gutters">
-        <div class="col-md-4 border border-primary">
-            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
-                class="card-img my-md-4" alt="facility image">
+<div class="modal-body">
+    <div class="card mb-3">
+        <div class="card-header">
+            Infomation
         </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <div *ngIf="facility$ | async as facility">
-                    <p class="card-text">Name: {{facility.name}}</p>
-                    <p class="card-text">Area: {{facility.area}} m<sup>2</sup></p>
-                    <p class="card-text">No. Floor: {{facility.floor}}</p>
-                    <p class="card-text">Capacity: {{facility.persons}} people</p>
-                    <p class="card-text">Price: {{facility.price}} USD / night</p>
-                    <p class="card-text">Type: {{facility.type}}</p>
+        <div class="row no-gutters">
+            <div class="col-md-4 border border-primary">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
+                    class="card-img my-md-4" alt="facility image">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div *ngIf="facility">
+                        <p class="card-text">Name: {{facility.name}}</p>
+                        <p class="card-text">Area: {{facility.area}} m<sup>2</sup></p>
+                        <p class="card-text">No. Floor: {{facility.floor}}</p>
+                        <p class="card-text">Capacity: {{facility.persons}} people</p>
+                        <p class="card-text">Price: {{facility.price}} USD / night</p>
+                        <p class="card-text">Type: {{facility.type}}</p>
+                    </div>
                 </div>
             </div>
         </div>

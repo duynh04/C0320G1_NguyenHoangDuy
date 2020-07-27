@@ -43,6 +43,7 @@ export class EmployeeService implements CRUDRepository<IEmployee> {
       catchError(handler)
     );
   }
+
   findByEmail(_email: string) {
     return this.http.get<IEmployee[]>(this.apiEndpointUri, { params: { 'email': _email } }).pipe(
       map((data: IEmployee[]) => data.length == 0 ? null : data[0] as IEmployee),

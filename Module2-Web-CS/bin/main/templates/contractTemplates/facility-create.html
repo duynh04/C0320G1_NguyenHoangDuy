@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layouts/layout :: head"> </head>
+<header>
+    <div th:replace="layouts/layout :: header1"></div>
+</header>
+<body>
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card1">
+            <p class="card-header text-primary">Select Service</p>
+            <div class="card-body">
+                <form th:action="@{/contracts/attach}" method="post" th:object="${contract}">
+                    <div class="form-group">
+                        <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Area</th>
+                                <th>Persons</th>
+                                <th>No. Floor</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="facility : ${facilities}" th:if="${facility.status} == true">
+                                <td th:text="${facility.name}"></td>
+                                <td th:text="${facility.price}"></td>
+                                <td th:text="${facility.area}"></td>
+                                <td th:text="${facility.maxPerson}"></td>
+                                <td th:text="${facility.floor}"></td>
+                                <td>
+                                    <input type="radio" th:field="*{facilityId}" th:value="${facility.id}" />
+                                </td>
+                                <!--                        <label th:for="${#ids.prev('contract.facility.id')}" th:text="#{${'seedstarter.type.' + facility}}">Wireframe</label>-->
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Next" class="btn float-right btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:replace="layouts/layout :: custome-script"></script>
+</body>
+<footer th:replace="layouts/layout :: footer(${#dates.year(#dates.createNow())})"></footer>
+</html>

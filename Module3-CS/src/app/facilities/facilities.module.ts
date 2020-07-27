@@ -25,6 +25,7 @@ import { DialogComponent } from '../shared/dialog/dialog.component';
     FormsModule,
     Ng2SearchPipeModule
   ],
-  entryComponents: [DialogComponent]
+  exports: [FacilityDetailComponent],
+  entryComponents: [DialogComponent, FacilityDetailComponent]
 })
 export class FacilitiesModule { }

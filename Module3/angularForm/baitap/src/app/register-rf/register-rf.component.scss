@@ -1,0 +1,28 @@
+select {
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:required, input:out-of-range, select:required {
+    background-image: url(https://cdn.chilindo.com/gfx/checkmark-green.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+input:invalid, select:invalid {
+    background-image: none;
+}

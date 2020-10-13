@@ -45,9 +45,9 @@ export class CustomerService implements CRUDRepository<ICustomer>{
     );
   }
 
-  findByEmail(_email: string) {
-    return this.http.get<ICustomer[]>(this.apiEndpointUri, { params: { 'email': _email } }).pipe(
-      map((data: ICustomer[]) => data.length == 0 ? null : data[0] as ICustomer),
+  findByEmail(_email: string): Observable<any> {
+    return this.http.get<any>(this.apiEndpointUri, { params: { 'email': _email } }).pipe(
+      map((data: ICustomer[]) => data.length == 0 ? null : true),
       catchError(handler)
     );
   }

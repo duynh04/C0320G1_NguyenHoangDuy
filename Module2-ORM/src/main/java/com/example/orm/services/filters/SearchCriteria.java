@@ -1,6 +1,7 @@
 package com.example.orm.services.filters;
 
 public class SearchCriteria {
+    // where key > value and key = value
     private String key;
     private String operation;
     private Object value;

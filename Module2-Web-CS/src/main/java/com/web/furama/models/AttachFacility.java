@@ -1,5 +1,6 @@
 package com.web.furama.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +31,7 @@ public class AttachFacility {
     private boolean status;
 
     @ManyToMany(mappedBy = "attachFacilities")
+    @JsonBackReference
     private List<Contract> contracts;
 
     public AttachFacility() {

@@ -33,4 +33,52 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "authority_id")
     private Authority authority;
+
+    public long getId() {
+        return id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
+    }
 }

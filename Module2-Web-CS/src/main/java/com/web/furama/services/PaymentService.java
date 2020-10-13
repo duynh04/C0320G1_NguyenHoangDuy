@@ -1,4 +1,7 @@
-package com.web.furama.services.restapi;
+package com.web.furama.services;
+
+
 
 public interface PaymentService {
+    String getToken();
 }

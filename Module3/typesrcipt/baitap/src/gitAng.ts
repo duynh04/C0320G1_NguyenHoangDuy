@@ -2,12 +2,11 @@ import { RequestInfo, Response } from "node-fetch";
 import fetch from "node-fetch";
 
 interface Item {
-  id: string;
-  watchers: number;
+  ID: string;
+  Title: number;
 }
 interface IRepo {
-  total_count: number;
-  items: Item[];
+  LtsItem: Item[];
 }
 // Http request api using async/wait
 export async function http<T>(url: RequestInfo): Promise<T> {
@@ -23,10 +22,10 @@ export async function http<T>(url: RequestInfo): Promise<T> {
 }
 
 const data = http<IRepo>(
-  "https://api.github.com/search/repositories?q=angular"
+  // "https://api.github.com/search/reposiYtories?q=angular"
+  "https://thongtindoanhnghiep.co/api/city"
 );
 
 data.then((value) => {
-  console.log(value.total_count);
-  console.log(`watchers: ${value.items[0].watchers}`);
+  console.log(`watchers: ${value.LtsItem[0].Title}`);
 });

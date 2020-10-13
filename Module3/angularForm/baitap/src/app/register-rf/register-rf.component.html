@@ -3,7 +3,7 @@
   <div class="form-group row">
     <label class="col">
       Email
-      <input type="email" class="form-control" formControlName="email" required />
+      <input required autocomplete="nope" type="email" class="form-control" formControlName="email" />
       <small class="alert-danger" role="alert" *ngIf="email.errors?.notMatch && email.touched">
         Invalid email!
       </small>
@@ -13,7 +13,7 @@
     <div class="form-group row">
       <label class="col">
         Password
-        <input type="password" class="form-control" formControlName="input" />
+        <input required type="password" class="form-control" formControlName="input" />
       </label>
     </div>
     <div class="form-group row">
@@ -28,7 +28,7 @@
   </fieldset>
   <div class="form-group row">
     <label for="inputState" class="col">Country
-      <select id="inputState" class="form-control" formControlName="country">
+      <select required id="inputState" class="form-control" formControlName="country">
         <option selected>Vietnam</option>
         <option>United State</option>
         <option>United Kingdom</option>

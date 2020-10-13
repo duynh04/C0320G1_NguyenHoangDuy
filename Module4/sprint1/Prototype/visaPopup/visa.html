@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="visa.css">
+    <link rel="stylesheet" href="style_hinhthucgiaohang.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Brand name<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <h1 class="col">Thanh Toán</h1>
+    </div>
+    <div class="row">
+        <div id="payment_wrapper" class="col-md-9">
+            <div id="payment_progress" class="d-md-table w-100 mt-md-2">
+                <span class="progress_bar d-md-table-cell align-middle"><a href="">Địa chỉ thanh toán</a></span>
+                <span class="progress_bar d-md-table-cell align-middle"><a class="active" href="">Hình thức giao
+                            hàng</a></span>
+                <span class="progress_bar d-md-table-cell align-middle"><a href="">Tình trạng đơn hàng</a></span>
+            </div>
+            <div class="mt-3">
+                <div class="row justify-content-center">
+                    <div class="px-md-5">
+                        <div>
+                            <h3>Chọn hình thức giao hàng:</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="border pl-5 pt-3 pb-3">
+                    <div class="pl-3">
+                        <h5>Giao hàng tiêu chuẩn</h5>
+                    </div>
+                    <input type="radio" name="stand" checked>
+                    <span>Giao hàng tận nơi</span>
+                    <div class="pl-3">
+                        <img src="https://www.chilindo.com/gfx/banks/ACB.png">
+                        <img src="https://www.chilindo.com/gfx/banks/VCB.png">
+                        <img src="https://www.chilindo.com/gfx/banks/VIB.png">
+                        <img src="https://seeklogo.com/images/P/paypal-logo-C83095A82C-seeklogo.com.png">
+                        <img src="https://seeklogo.com/images/V/visa-logo-6F4057663D-seeklogo.com.png">
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="row justify-content-center">
+                    <div class="px-md-5">
+                        <div class="row content_header">
+                            <h3>Chọn hình thức thanh toán:</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="card text-center col-md-3 h-25 p-0">
+                        <div class="card-header">
+                            <h6>Thanh Toán Trực Tiếp</h6>
+                        </div>
+                        <div class="card-body ">
+                            <img class="pay" src="https://invina.vn/upload/tm22.png">
+                        </div>
+                        <div class="m-2">
+                            <input type="radio" name="select" id="select">
+                        </div>
+                    </div>
+                    <div class="card text-center col-md-3 h-25 ml-2 p-0">
+                        <div class="card-header">
+                            <h6>ATM/Chuyển Khoản</h6>
+                        </div>
+                        <div class="card-body">
+                            <img src="https://bankerlink.vn/uploads/bank/logo/34/021262_larger.png">
+                            <img src="https://www.chilindo.com/gfx/banks/VCB.png">
+                            <img src="https://www.chilindo.com/gfx/banks/VIB.png">
+                        </div>
+                        <div class="m-2">
+                            <input type="radio" name="select" id="selectBank">
+                        </div>
+                    </div>
+                    <div class="card text-center col-md-3 h-25 ml-2 p-0">
+                        <div class="card-header">
+                            <h6>Thẻ tín dụng/ghi nợ</h6>
+                        </div>
+                        <div class="card-body">
+                            <img src="https://seeklogo.com/images/P/paypal-logo-C83095A82C-seeklogo.com.png">
+                            <img src="https://seeklogo.com/images/V/visa-logo-6F4057663D-seeklogo.com.png">
+                        </div>
+                        <div class="m-2">
+                            <input type="radio" name="select" id="selectVisa">
+                        </div>
+                    </div>
+                </div>
+                <div id="bank" style="display:none">
+                    <div class="row justify-content-center">
+                        <div class="px-md-5">
+                            <div class="row content_header">
+                                <h3>Chọn ngân hàng:</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <label>
+                            <input type="radio" name="payment-option" value="paypal" checked>
+                            <img src="paypal-mark.jpg" alt="Pay with PayPal">
+                        </label>
+
+                        <label>
+                            <input type="radio" name="payment-option" value="alternate">
+                            <div id="paypal-marks-container"></div>
+                        </label>
+
+                        <div id="paypal-buttons-container"></div>
+                        <div id="alternate-button-container">
+                            <button>Pay with a different method</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="visa" style="display:none">
+                    <div class="row justify-content-center">
+                        <div class="px-md-5">
+                            <div class="row content_header">
+                                <h3>Chọn thẻ tín dụng/ghi nợ:</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="card col-md-3 d-inline p-2 mr-3">
+                            <div id="paypal-button"></div>
+<!--                            <img src="https://seeklogo.com/images/P/paypal-logo-C83095A82C-seeklogo.com.png">-->
+                            <span>Paypal</span>
+                        </div>
+                        <div class="card col-md-3 d-inline p-2 mr-3">
+                            <input type="radio" name="bank1" id="sel-visa">
+                            <img src="https://seeklogo.com/images/V/visa-logo-6F4057663D-seeklogo.com.png">
+                            <span>Visa</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" d-flex justify-content-center m-3">
+                    <button class="btn btn-primary">Tiếp theo</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                    <div class="col">
+                        <div id="paypal-button-mark"></div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col px-md-0 pt-md-5">
+                    <ul class="list-group">
+                        <li class="list-group-item active card-header-customer">Tổng kết đơn hàng</li>
+                        <li class="list-group-item">
+                            <span class="order_item_label"> Giao hàng tiêu chuẩn - giao hàng tận nơi. </span>
+                            <span class="order_item_price">49.000</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="order_item_label total_payment">Số tiền cần thanh toán</span>
+                            <span class="order_item_price total_payment">150.000</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Visa Modal -->
+<div class="modal fade" id="visaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width: 700px" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Credit Card</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="ccAppearance">
+                        <div class="ccFront">
+                            <div class="brand no-maestro"></div>
+                            <form class="px-md-5">
+                                <div class="form-group row">
+                                    <label for="ccNumber">Card Number</label>
+                                    <input required type="text" class="form-control" id="ccNumber" placeholder="XXXX-XXXX-XXXX-XXXX">
+                                </div>
+                                <div id="cvv" class="form-group row">
+                                    <label for="ccSecurityCode" class="col-md-4 col-form-label px-0">CVV</label>
+                                    <input required type="text" class="col-md-8 form-control" id="ccSecurityCode" placeholder="XXX">
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label px-0">Expiration</label>
+                                    <div class="col-md-3">
+                                        <select required class="form-control" id="month">
+                                            <option value="" selected  disabled></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+<!--                                    <label for="month"></label><input required type="number" min="1" max="12" class="col-md-2 form-control form-control-xs" style="-moz-appearance: textfield" id="month" placeholder="1">-->
+                                    <label class="col-md-1 col-form-label">/</label>
+                                    <div class="col-md-3">
+                                        <select required class="form-control" id="year">
+                                            <option value="" selected disabled></option>
+                                            <option value="1">20</option>
+                                            <option value="2">21</option>
+                                            <option value="3">22</option>
+                                            <option value="4">23</option>
+                                            <option value="5">24</option>
+                                        </select>
+                                    </div>
+<!--                                    <label for="year"></label><input required type="number" min="20" max="25" class="col-md-2 form-control form-control-xs" style="-moz-appearance: textfield" id="year" placeholder="20">-->
+                                </div>
+                                <div class="form-group row">
+                                    <label for="ccHolder" class="col-md-4 col-form-label px-0">Card Holder</label>
+                                    <input required type="text" class="col-md-8 form-control" id="ccHolder" placeholder="NGUYEN VAN A">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bank Modal -->
+<div class="modal fade" id="bankModal" tabindex="-1" role="dialog" aria-labelledby="bankModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 550px" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bankModalLabel">ATM Card</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+<!--                    <div class="ccAppearance">-->
+                        <div class="ccFront">
+<!--                            <div class="brand no-maestro"></div>-->
+                            <form class="px-md-5">
+                                <div class="form-group row">
+                                    <label for="ccNumber1">Card Number</label>
+                                    <input required type="text" class="form-control" id="ccNumber1" placeholder="XXXX-XXXX-XXXX-XXXX">
+                                </div>
+                                <div class="form-group row">
+                                    <label for="ccHolder1" class="col-form-label">Card Holder</label>
+                                    <input required type="text" class="form-control" id="ccHolder1" placeholder="NGUYEN VAN A">
+                                </div>
+                            </form>
+                        </div>
+<!--                    </div>-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script><!--<script src="cityNameApi.js"></script>-->
+<script src="jquery_hinhthucgiaohang.js"></script>
+
+<!--<script src="https://www.paypalobjects.com/api/checkout.js"></script>-->
+<!--<script src="https://www.paypal.com/sdk/js?client-id=sb&components=buttons,funding-eligibility,marks"></script>-->
+<script src="https://www.paypal.com/sdk/js?client-id=sb&components=buttons,funding-eligibility"></script>
+<script>
+    var FUNDING_SOURCES = [
+        paypal.FUNDING.PAYPAL,
+        paypal.FUNDING.CREDIT
+    ];
+
+    // Loop over each funding source / payment method
+    FUNDING_SOURCES.forEach(function(fundingSource) {
+
+        // Initialize the buttons
+        var button = paypal.Buttons({
+            fundingSource: fundingSource
+        });
+
+        // Check if the button is eligible
+        if (button.isEligible()) {
+
+            // Render the standalone button for that funding source
+            button.render('#paypal-button-mark');
+        }
+    });
+    // paypal.Button.render({
+    //     // Configure environment
+    //     fundingSource: paypal.FUNDING.VENMO,
+    //     env: 'sandbox',
+    //     client: {
+    //         sandbox: 'AbCzPUUevBpwehD2HBR8Y0_ic2rt8ldWn-y_nn7SgR04TvK3r9tLU9MZonzGDnXTq5exF5hlhdll6wMp',
+    //     },
+    //     // Customize button (optional)
+    //     locale: 'en_US',
+    //     style: {
+    //         size: 'small',
+    //         color: 'gold',
+    //         shape: 'pill',
+    //     },
+    //
+    //     // Enable Pay Now checkout flow (optional)
+    //     commit: true,
+    //
+    //     // Set up a payment
+    //     payment: function(data, actions) {
+    //         return actions.payment.create({
+    //             transactions: [{
+    //                 amount: {
+    //                     total: '0.01',
+    //                     currency: 'USD'
+    //                 }
+    //             }]
+    //         });
+    //     },
+    //     // Execute the payment
+    //     onAuthorize: function(data, actions) {
+    //         return actions.payment.execute().then(function() {
+    //             // Show a confirmation message to the buyer
+    //             window.alert('Thank you for your purchase!');
+    //         });
+    //     }
+    // }, '#paypal-button');
+
+    // paypal.Marks().render('#paypal-marks-container');
+    //
+    // // Render the PayPal buttons
+    // paypal.Buttons().render('#paypal-buttons-container');
+    //
+    // // Listen for changes to the radio buttons
+    // document.querySelectorAll('input[name=payment-option]')
+    //     .forEach(function (el) {
+    //         el.addEventListener('change', function (event) {
+    //
+    //             // If PayPal is selected, show the PayPal button
+    //             if (event.target.value === 'paypal') {
+    //                 document.body.querySelector('#alternate-button-container')
+    //                     .style.display = 'none';
+    //                 document.body.querySelector('#paypal-button-container')
+    //                     .style.display = 'block';
+    //             }
+    //
+    //             // If alternate funding is selected, show a different button
+    //             if (event.target.value === 'alternate') {
+    //                 document.body.querySelector('#alternate-button-container')
+    //                     .style.display = 'block';
+    //                 document.body.querySelector('#paypal-button-container')
+    //                     .style.display = 'none';
+    //             }
+    //         });
+    //     });
+    //
+    // // Hide non-PayPal button by default
+    // document.body.querySelector('#alternate-button-container')
+    //     .style.display = 'none';
+</script>
+
+</body>
+</html>

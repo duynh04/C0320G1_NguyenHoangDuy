@@ -6,7 +6,6 @@ import com.web.furama.models.Account;
 import com.web.furama.models.Authority;
 import com.web.furama.models.Customer;
 import com.web.furama.models.CustomerType;
-import com.web.furama.repositories.AccountRepository;
 import com.web.furama.repositories.CustomerRepository;
 import com.web.furama.repositories.CustomerTypeRepository;
 import com.web.furama.searches.FilterCustomer;

@@ -3,8 +3,8 @@
     <div class="form-group row">
         <label class="col">
             Email
-            <input #email="ngModel" type="email" name="email" [(ngModel)]="login.email" class="form-control" required
-                emailPattern>
+            <input required #email="ngModel" type="email" name="email" [(ngModel)]="login.email" class="form-control"
+                required emailPattern>
         </label>
     </div>
     <div class="alert alert-danger" role="alert" *ngIf="email.invalid && (email.touched || email.dirty)">
@@ -19,7 +19,7 @@
     <div class="form-group row">
         <label class="col">
             Password
-            <input type="password" name="password" [(ngModel)]="login.password" class="form-control" required>
+            <input required type="password" name="password" [(ngModel)]="login.password" class="form-control" required>
         </label>
     </div>
     <p>{{login.password}}</p>

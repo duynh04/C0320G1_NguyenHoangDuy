@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICustomer } from '../models/customer';
 import { CustomerType } from '../models/customer-type.enum';
 import { CustomerService } from '../customer.service';
-import { UserValidatorService } from './../../shared/user-validator.service';
+import { UserValidatorService, uniqueEmail } from './../../shared/user-validator.service';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormatterService } from './../../shared/formatter.service';
@@ -24,16 +24,16 @@ export class CustomerCreateComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private customerService: CustomerService,
-    private userValidatorService: UserValidatorService,
+    // private userValidatorService: UserValidatorService,
     private formatterService: FormatterService
   ) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      id: ['', [Validators.required, Validators.pattern(/^KH-\d{4}$/)], [this.userValidatorService.unique(this.customerService, 'code')]],
+      id: ['', [Validators.required, Validators.pattern(/^KH-\d{4}$/)]],
       name: ['', [Validators.required, Validators.pattern(/^([A-Z][a-z]+\s?)+$/)]],
-      birthday: [new Date(), [this.userValidatorService.date, UserValidatorService.IsUnder(18)]],
-      email: ['', [Validators.required, Validators.pattern(/^([-\w.])+[a-zA-Z\d]@(\w+\.)+(\w+)$/)], [this.userValidatorService.unique(this.customerService, 'email')]],
+      birthday: [new Date(), [UserValidatorService.IsUnder(18)]],
+      email: ['', [Validators.required, Validators.pattern(/^([-\w.])+[a-zA-Z\d]@(\w+\.)+(\w+)$/)], [uniqueEmail(this.customerService)]],
       idCard: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       phone: ['', [Validators.pattern(/^$|^((\(\+84\))|0)9[01]\d{7}$/)]],
       type: ['Member']
@@ -74,3 +74,4 @@ export class CustomerCreateComponent implements OnInit, OnDestroy {
     return this.registerForm.get('phone');
   }
 }
+

@@ -51,4 +51,44 @@ public class AccountRegister implements Validator {
         if(!accountRegister.confirm.equals(accountRegister.password))
             errors.rejectValue("confirm", "reg.confirm.notequal");
     }
+
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public AccountService getAccountService() {
+        return accountService;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getConfirm() {
+        return confirm;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

@@ -13,13 +13,13 @@ public class CustomerSpecification implements Specification<Customer> {
     public CustomerSpecification(SearchCriteria searchCriteria) {
         criteria = searchCriteria;
     }
-
+    // where key like %value%.
     @Override
     public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-        if(criteria.getOperation().equalsIgnoreCase("=")) {
+        if(criteria.getOperation().equalsIgnoreCase("=")) { //equal, greater.
             return criteriaBuilder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
         } else if(criteria.getOperation().equalsIgnoreCase("join")) {
-            Join<Customer, Province> listJoin = root.join("province");
+            Join<Customer, Province> listJoin = root.join("province"); // inner join.
             return criteriaBuilder.like(listJoin.get(criteria.getKey()), "%" + criteria.getValue() + "%");
         }
         return null;

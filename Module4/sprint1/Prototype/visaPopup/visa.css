@@ -1,0 +1,65 @@
+
+/*input[type=number] {*/
+/*    -moz-appearance:textfield !important;*/
+/*}*/
+select {
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+input:required,  select:required {
+    background-image: url(https://cdn.chilindo.com/gfx/checkmark-green.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+input:invalid, input:out-of-range, select:invalid {
+    background-image: none;
+}
+
+.ccAppearance {
+    position: relative;
+    width: 650px;
+    background: url('https://account.jetbrains.com/static/images/ccBackBg.png') #ecebeb 0 0 repeat-x;
+    box-shadow: 0 2px 5px 0 rgba(119, 119, 119, 0.5);
+    border-radius: 11px;
+}
+
+.ccFront {
+    width: 480px;
+    border: 1px solid #ffffff;
+    background: url('https://account.jetbrains.com/static/images/ccFrontBg.png') 0 0 repeat-x;
+    border-radius: 11px;
+    padding: 65px 16px 5px 16px;
+    z-index: 1;
+    box-shadow: 10px 2px 5px 0 rgba(119, 119, 119, 0.5);
+}
+
+.ccFront .brand {
+    position: absolute;
+    top: 16px;
+    background: url('https://account.jetbrains.com/static/images/cc-images.svg') 0 0 no-repeat;
+    width: 312px;
+    height: 24px;
+}
+
+
+#cvv {
+    /*display: block;*/
+    position: absolute;
+    width: 100px;
+    /*min-width: 65px;*/
+    left: 530px;
+    top: 95px;
+    z-index: 1;
+    text-shadow: 0 -1px 1px rgba(255, 255, 255, 0.3);
+}
+

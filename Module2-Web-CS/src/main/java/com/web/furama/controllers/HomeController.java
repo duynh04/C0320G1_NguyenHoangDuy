@@ -1,8 +1,10 @@
 package com.web.furama.controllers;
 
 import com.web.furama.models.Authority;
+import com.web.furama.services.PaymentService;
 import com.web.furama.services.restapi.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +23,23 @@ public class HomeController {
 
     @Autowired
     private WeatherService weatherService;
+
+    @Qualifier("paypal")
+    @Autowired
+    private PaymentService paypalService;
+
+    @Qualifier("visa")
+    @Autowired
+    private PaymentService visalService;
+
+    @ModelAttribute("visaToken")
+    public String getVisaToken() {
+        return visalService.getToken();
+    }
+    @ModelAttribute("paypalToken")
+    public String getPaypalToken() {
+        return paypalService.getToken();
+    }
 
     @ModelAttribute("weather")
     public String getWeather() {

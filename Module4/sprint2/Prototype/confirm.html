@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/confirm.css">
+</head>
+
+<body>
+
+    <div class="container-menu">
+        <div class="container">
+            <nav class="navbar navbar-expand-sm navbar-dark">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a class="navbar-brand " href="#">
+                            <span>Trang chủ</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a class="navbar-brand menu" href="#">
+                            <span>Vé giá tốt</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a class="navbar-brand menu" href="#">
+                            <span>Thanh toán vé</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a class="navbar-brand menu" href="#">
+                            <span>Tin khuyến mại</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a class="navbar-brand menu" href="#">
+                            <span>Checkin online</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a class="navbar-brand menu" href="#">
+                            <span>Hướng dẫn</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a class="navbar-brand menu2" href="#">
+                            <span>Đăng Nhập/Đăng xuất</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Thông tin khách hàng </h3>
+        <!-- departure -->
+        <div class="row bg-color-custom text-center">
+            <h5 class="text-light ml-md-2">Khởi hành từ TP Hồ Chí Minh</h5>
+        </div>
+        <hr>
+        <div class="row">
+            <!-- đi -->
+            <div class="col-md-3">
+                <p>TP Hồ Chí Minh (SGN)</p>
+                <p>07:00, 27/08/2020</p>
+                <p>Tân sơn nhất</p>
+            </div>
+            <!-- đến -->
+            <div class="col-md-3">
+                <p>Hà Nội (HAN)</p>
+                <p>09:00, 27/08/2020</p>
+                <p>Nội Bài</p>
+            </div>
+            <!-- hãng bay -->
+            <div class="col-md-3">
+                <p>Vietnam Airline</p>
+                <p>Chyến bay: VN123</p>
+                <p>Loại vé: Phổ thông</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md">
+                <p class="font-weight-bold">Hành khách</p>
+                <p>Người lớn</p>
+            </div>
+            <div class="col-md">
+                <p class="font-weight-bold">Số lượng</p>
+                <p>1</p>
+            </div>
+            <div class="col-md">
+                <p class="font-weight-bold">Giá vé</p>
+                <p>1.290.000 VND</p>
+            </div>
+            <div class="col-md">
+                <p class="font-weight-bold">Thuế và phí</p>
+                <p>550.000 VND</p>
+            </div>
+            <div class="col-md">
+                <p class="font-weight-bold"> Tổng giá </p>
+                <p>1.840.000 VND</p>
+            </div>
+        </div>
+        <hr>
+        <p>Thông tin hành khách bay từ TP Hồ Chí Minh</p>
+        <form class="border rounded p-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Họ và tên
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 offset-md-1">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Giới tính
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select class="form-control custom-select">
+                                <option value="" selected disabled>Chọn...</option>
+                                <option value="nam">Nam</option>
+                                <option value="nữ">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Điện thoại
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 offset-md-1">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label">CMND-Passport
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 offset-md-1">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Hành lý kí gửi
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select class="form-control custom-select">
+                                <option value="0" selected>Miễn phí - 7Kg hành lý</option>
+                                <option value="1">Mua thêm - 15Kg - 170.000 VND</option>
+                                <option value="2">Mua thêm - 20Kg - 225.000 VND</option>
+                                <option value="3">Mua thêm - 25Kg - 275.000 VND</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- departure -->
+        <div class="row bg-color-custom text-center mt-lg-5">
+            <h5 class="text-light ml-md-2">Khởi hành từ Hà Nội</h5>
+        </div>
+        <hr>
+        <div class="row">
+            <!-- đi -->
+            <div class="col-md-3">
+                <p>Hà Nội (HAN)</p>
+                <p>09:00, 27/08/2020</p>
+                <p>Nội Bài</p>
+            </div>
+            <!-- đến -->
+            <div class="col-md-3">
+                <p>TP Hồ Chí Minh (SGN)</p>
+                <p>07:00, 27/08/2020</p>
+                <p>Tân sơn nhất</p>
+            </div>
+            <!-- hãng bay -->
+            <div class="col-md">
+                <p>Bamboo Airline</p>
+                <p>Chyến bay: QH451</p>
+                <p>Loại vé: Phổ thông</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md">
+                <p class="font-weight-bold">Hành khách</p>
+                <p>Người lớn</p>
+            </div>
+            <div class="col-md">
+                <p class="font-weight-bold">Số lượng</p>
+                <p>1</p>
+            </div>
+            <div class="col-md">
+                <p class="font-weight-bold">Giá vé</p>
+                <p>1.290.000 VND</p>
+            </div>
+            <div class="col-md">
+                <p class="font-weight-bold">Thuế và phí</p>
+                <p>550.000 VND</p>
+            </div>
+            <div class="col-md">
+                <p class="font-weight-bold"> Tổng giá </p>
+                <p>1.840.000 VND</p>
+            </div>
+        </div>
+        <hr>
+        <p>Thông tin hành khách bay từ Hà Nội</p>
+        <form class="border rounded p-md-3">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Họ và tên
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 offset-md-1">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Giới tính
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select class="form-control custom-select">
+                                <option value="" selected disabled>Chọn...</option>
+                                <option value="nam">Nam</option>
+                                <option value="nữ">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Điện thoại
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 offset-md-1">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label">CMND-Passport
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 offset-md-1">
+                    <div class="row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label"> Hành lý kí gửi
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select class="form-control custom-select">
+                                <option value="0" selected>Miễn phí - 7Kg hành lý</option>
+                                <option value="1">Mua thêm - 15Kg - 170.000 VND</option>
+                                <option value="2">Mua thêm - 20Kg - 225.000 VND</option>
+                                <option value="3">Mua thêm - 25Kg - 275.000 VND</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row my-md-3">
+            <div class="col-md-3 offset-md-1">
+                <a class="btn btn-confirm-fn" href="flight-list.html">Chọn lại chuyến bay</a>
+            </div>
+            <div class="col-md-2 offset-sm-6">
+                <button class="btn btn-confirm-fn">Đặt vé</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

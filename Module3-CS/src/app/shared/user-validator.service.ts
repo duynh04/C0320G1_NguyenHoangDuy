@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { AsyncValidatorFn, AbstractControl, ValidationErrors, FormControl, ValidatorFn, FormGroup } from '@angular/forms';
 import { CRUDRepository } from './repository';
 import { differenceInYears } from 'date-fns'
+import { CustomerService } from 'src/app/customers/customer.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +19,7 @@ export class UserValidatorService {
           _data = service.findById(control.value);
           break;
         case 'email':
-          _data = service.findByEmail(control.value);
+          // _data = service.findByEmail(control.value);
           break;
       };
       return _data.pipe(
@@ -66,4 +67,12 @@ export class UserValidatorService {
     const d2 = new Date(verification.end);
     return d2.valueOf() - d1.valueOf() > 0;
   }
+}
+
+export function uniqueEmail(service: CustomerService): AsyncValidatorFn {
+  return (control: FormControl): Observable<ValidationErrors | null> => {
+    return service.findByEmail(control.value).pipe(
+      map((value) => { return value ? { taken: true } : null; })
+    )
+  };
 }

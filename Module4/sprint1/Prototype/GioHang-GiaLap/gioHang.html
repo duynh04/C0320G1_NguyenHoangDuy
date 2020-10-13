@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+</head>
+<body style="box-sizing: border-box; min-width: 1024px;">
+<div class="container-fluid px-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Brand name<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div class="row my-3 mx-0">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a id="cart" class="nav-link active" href="#">Giỏ hàng</a>
+            </li>
+            <li id="favorites" class="nav-item">
+                <a class="nav-link" href="./favorites.html">Danh sách yêu thích</a>
+            </li>
+            <li id="bid" class="nav-item">
+                <a class="nav-link" href="#">Danh sách sẽ đấu giá</a>
+            </li>
+            <li id="bid-later" class="nav-item">
+                <a class="nav-link" href="#">Danh sách đấu giá sau</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Shopping cart -->
+    <div id="cart-items">
+        <div id="cartItem1" class="row border border-secondary rounded py-3 mb-3 mx-0">
+            <div class="col-2"><img class="w-100"
+                                    src="https://salt.tikicdn.com/cache/200x200/ts/product/8a/cc/66/3cee4411929a689cf7b42ef86a112805.jpg"
+                                    alt="product" srcset=""></div>
+            <div class="col-7">Combo Sữa Tắm L'amont En Provence Cherry Blossom Shower Gel Hương Hoa Anh Đào +
+                Hoa Hồng (500ml / Chai)</div>
+            <div class="col-3">
+                <div class="w-100 d-flex justify-content-end position-absolute" style="bottom: 0px;">
+                    <button id="deleteCartItem1" type="button" class="btn btn-outline-danger btn-sm mr-4"
+                            data-toggle="modal" data-target="#deleteCartItemModal">Xóa</button>
+                </div>
+                <div class="row">
+                    <div class="col-6 px-0">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <button id="qtyDecrease1" class="btn btn-outline-primary" type="button"
+                                        style="min-width: 30px;" disabled>-</button>
+                            </div>
+                            <input id="qty1" type="text" class="form-control text-center" value="1">
+                            <div class="input-group-append">
+                                <button id="qtyIncrease1" class="btn btn-outline-primary" type="button"
+                                        style="min-width: 30px;">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="realPrice1"
+                         class="col-6 d-flex justify-content-end align-items-center font-weight-bold">113.900đ</div>
+                </div>
+            </div>
+        </div>
+        <div id="cartItem2" class="row border border-secondary rounded py-3 mb-3 mx-0">
+            <div class="col-2"><img class="w-100"
+                                    src="https://salt.tikicdn.com/cache/200x200/ts/product/f0/f8/be/c75250ec03dcb50ef19cf49195435784.jpg"
+                                    alt="product" srcset=""></div>
+            <div class="col-7">Ngũ Cốc Calbee Frugra Nhật Bản (482g)</div>
+            <div class="col-3">
+                <div class="w-100 d-flex justify-content-end position-absolute" style="bottom: 0px;">
+                    <button id="deleteCartItem2" type="button" class="btn btn-outline-danger btn-sm mr-4"
+                            data-toggle="modal" data-target="#deleteCartItemModal">Xóa</button>
+                </div>
+                <div class="row">
+                    <div class="col-6 px-0">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <button id="qtyDecrease2" class="btn btn-outline-primary" type="button"
+                                        style="min-width: 30px;" disabled>-</button>
+                            </div>
+                            <input id="qty2" type="text" class="form-control text-center" value="1">
+                            <div class="input-group-append">
+                                <button id="qtyIncrease2" class="btn btn-outline-primary" type="button"
+                                        style="min-width: 30px;">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="realPrice2"
+                         class="col-6 d-flex justify-content-end align-items-center font-weight-bold">161.900đ</div>
+                </div>
+            </div>
+        </div>
+        <div id="cartItem3" class="row border border-secondary rounded py-3 mb-3 mx-0">
+            <div class="col-2"><img class="w-100"
+                                    src="https://salt.tikicdn.com/cache/200x200/ts/product/9a/4c/ae/301656c2abeced8b3ed250924b65c1e8.jpg"
+                                    alt="product" srcset=""></div>
+            <div class="col-7">Thùng 24 Lon Cao Strongbow Cider Đặc Biệt 4 Vị (330ml / Lon)</div>
+            <div class="col-3">
+                <div class="w-100 d-flex justify-content-end position-absolute" style="bottom: 0px;">
+                    <button id="deleteCartItem3" type="button" class="btn btn-outline-danger btn-sm mr-4"
+                            data-toggle="modal" data-target="#deleteCartItemModal">Xóa</button>
+                </div>
+                <div class="row">
+                    <div class="col-6 px-0">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <button id="qtyDecrease3" class="btn btn-outline-primary" type="button"
+                                        style="min-width: 30px;" disabled>-</button>
+                            </div>
+                            <input id="qty3" type="text" class="form-control text-center" value="1">
+                            <div class="input-group-append">
+                                <button id="qtyIncrease3" class="btn btn-outline-primary" type="button"
+                                        style="min-width: 30px;">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="realPrice3"
+                         class="col-6 d-flex justify-content-end align-items-center font-weight-bold">385.000đ</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-100 d-flex justify-content-end mb-3">
+            <div>Tổng tiền: <span id="totalCost" class="text-primary font-weight-bold ml-1 mr-3">1.000.000đ</span>
+            </div>
+        </div>
+        <div class="w-100 d-flex justify-content-end">
+            <div>
+                <a class="btn btn-success mr-3" href="../DiaChiThanhToan/diaChiThanhToan.html">Tiến hành đặt hàng</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete Cart Item-->
+<div class="modal fade" id="deleteCartItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span class="font-weight-bold">Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="button" id="deleteCartItemBtn" class="btn btn-danger"
+                        data-dismiss="modal">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal alert -->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span class="font-weight-bold">Vui lòng nhập số lượng là số nguyên dương!</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        // Shopping cart
+        const cartItems = [{ id: 1, price: 113900 }, { id: 2, price: 161900 }, { id: 3, price: 385000 }];
+        const totalCost = $("#totalCost");
+        const cartItem1 = $("#cartItem1");
+        const qty1 = $("#qty1");
+        const qtyDecrease1 = $("#qtyDecrease1");
+        const qtyIncrease1 = $("#qtyIncrease1");
+        const realPrice1 = $("#realPrice1");
+        const cartItem2 = $("#cartItem2");
+        const qty2 = $("#qty2");
+        const qtyDecrease2 = $("#qtyDecrease2");
+        const qtyIncrease2 = $("#qtyIncrease2");
+        const realPrice2 = $("#realPrice2");
+        const cartItem3 = $("#cartItem3");
+        const qty3 = $("#qty3");
+        const qtyDecrease3 = $("#qtyDecrease3");
+        const qtyIncrease3 = $("#qtyIncrease3");
+        const realPrice3 = $("#realPrice3");
+        const deleteCartItem1 = $("#deleteCartItem1");
+        const deleteCartItem2 = $("#deleteCartItem2");
+        const deleteCartItem3 = $("#deleteCartItem3");
+        const deleteCartItemBtn = $("#deleteCartItemBtn");
+        let deletedCartItem = cartItem1;
+        qtyIncrease1.click(function () {
+            const qty = Number(qty1.val()) + 1;
+            qty1.val(qty);
+            const price = cartItems[0].price * qty;
+            realPrice1.text(formatCurrency(price));
+            if (qty > 1) {
+                qtyDecrease1.prop("disabled", false);
+            }
+        });
+        qtyIncrease2.click(function () {
+            const qty = Number(qty2.val()) + 1;
+            qty2.val(qty);
+            const price = cartItems[1].price * qty;
+            realPrice2.text(formatCurrency(price));
+            if (qty > 1) {
+                qtyDecrease2.prop("disabled", false);
+            }
+        });
+        qtyIncrease3.click(function () {
+            const qty = Number(qty3.val()) + 1;
+            qty3.val(qty);
+            const price = cartItems[2].price * qty;
+            realPrice3.text(formatCurrency(price));
+            if (qty > 1) {
+                qtyDecrease3.prop("disabled", false);
+            }
+        });
+        qtyDecrease1.click(function () {
+            const qty = Number(qty1.val()) - 1;
+            qty1.val(qty);
+            const price = cartItems[0].price * qty;
+            realPrice1.text(formatCurrency(price));
+            if (qty === 1) {
+                qtyDecrease1.prop("disabled", true);
+            }
+        });
+        qtyDecrease2.click(function () {
+            const qty = Number(qty2.val()) - 1;
+            qty2.val(qty);
+            const price = cartItems[1].price * qty;
+            realPrice2.text(formatCurrency(price));
+            if (qty === 1) {
+                qtyDecrease2.prop("disabled", true);
+            }
+        });
+        qtyDecrease3.click(function () {
+            const qty = Number(qty3.val()) - 1;
+            qty3.val(qty);
+            const price = cartItems[2].price * qty;
+            realPrice3.text(formatCurrency(price));
+            if (qty === 1) {
+                qtyDecrease3.prop("disabled", true);
+            }
+        });
+        qty1.change(function () {
+            const qty = Number(qty1.val());
+            if (qty < 1) {
+                $("#alertModal").modal('show');
+                qty1.val(1);
+                realPrice1.text(formatCurrency(cartItems[0].price));
+                qtyDecrease1.prop("disabled", true);
+            } else if (!Number.isInteger(qty)) {
+                $("#alertModal").modal('show');
+                const rounded = Math.round(qty);
+                qty1.val(rounded);
+                realPrice1.text(formatCurrency(cartItems[0].price * rounded));
+                if (rounded > 1) {
+                    qtyDecrease1.prop("disabled", false);
+                } else {
+                    qtyDecrease1.prop("disabled", true);
+                }
+            } else {
+                const price = cartItems[0].price * qty;
+                realPrice1.text(formatCurrency(price));
+                if (qty > 1) {
+                    qtyDecrease1.prop("disabled", false);
+                } else {
+                    qtyDecrease1.prop("disabled", true);
+                }
+            }
+        });
+        qty2.change(function () {
+            const qty = Number(qty2.val());
+            if (qty < 1) {
+                $("#alertModal").modal('show');
+                qty2.val(1);
+                realPrice2.text(formatCurrency(cartItems[1].price));
+                qtyDecrease2.prop("disabled", true);
+            } else if (!Number.isInteger(qty)) {
+                $("#alertModal").modal('show');
+                const rounded = Math.round(qty);
+                qty2.val(rounded);
+                realPrice2.text(formatCurrency(cartItems[1].price * rounded));
+                if (rounded > 1) {
+                    qtyDecrease2.prop("disabled", false);
+                } else {
+                    qtyDecrease2.prop("disabled", true);
+                }
+            } else {
+                const price = cartItems[1].price * qty;
+                realPrice2.text(formatCurrency(price));
+                if (qty > 1) {
+                    qtyDecrease2.prop("disabled", false);
+                } else {
+                    qtyDecrease2.prop("disabled", true);
+                }
+            }
+        });
+        qty3.change(function () {
+            const qty = Number(qty3.val());
+            if (qty < 1) {
+                $("#alertModal").modal('show');
+                qty3.val(1);
+                realPrice3.text(formatCurrency(cartItems[2].price));
+                qtyDecrease3.prop("disabled", true);
+            } else if (!Number.isInteger(qty)) {
+                $("#alertModal").modal('show');
+                const rounded = Math.round(qty);
+                qty3.val(rounded);
+                realPrice3.text(formatCurrency(cartItems[2].price * rounded));
+                if (rounded > 1) {
+                    qtyDecrease3.prop("disabled", false);
+                } else {
+                    qtyDecrease3.prop("disabled", true);
+                }
+            } else {
+                const price = cartItems[2].price * qty;
+                realPrice3.text(formatCurrency(price));
+                if (qty > 1) {
+                    qtyDecrease3.prop("disabled", false);
+                } else {
+                    qtyDecrease3.prop("disabled", true);
+                }
+            }
+        });
+        deleteCartItem1.click(function () {
+            deletedCartItem = cartItem1;
+        });
+        deleteCartItem2.click(function () {
+            deletedCartItem = cartItem2;
+        });
+        deleteCartItem3.click(function () {
+            deletedCartItem = cartItem3;
+        });
+        deleteCartItemBtn.click(function () {
+            deletedCartItem.hide();
+        });
+        setInterval(function () {
+            let cost = 0;
+            if (cartItem1.is(':visible')) {
+                cost += Number(qty1.val()) * cartItems[0].price;
+            }
+            if (cartItem2.is(':visible')) {
+                cost += Number(qty2.val()) * cartItems[1].price;
+            }
+            if (cartItem3.is(':visible')) {
+                cost += Number(qty3.val()) * cartItems[2].price;
+            }
+            totalCost.text(formatCurrency(cost));
+        }, 500);
+    });
+
+    function formatCurrency(price) {
+        return price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + "đ";
+    }
+</script>
+</body>
+
+</html>

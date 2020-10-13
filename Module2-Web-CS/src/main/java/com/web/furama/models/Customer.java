@@ -62,4 +62,100 @@ public class Customer {
 
     @OneToOne(mappedBy = "customer")
     private Account account;
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public void setCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public CustomerType getCustomerType() {
+        return customerType;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
 }
